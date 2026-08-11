@@ -1,0 +1,17 @@
+node_modules/
+*.backup
+*.before-*
+*.working
+*.anizenx-working
+*.current-backup
+*.safe
+*.home-ui-working
+*.search-working
+*.natural-poster-backup
+*.card-before-crunchy
+liar-test.html
+test-poster.jpg
+*-backup
+*.backup-*
+*.working-backup
+index.html.working-continue-final

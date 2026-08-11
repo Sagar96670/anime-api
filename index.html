@@ -1,0 +1,3564 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08080d">
+<title>AnizenX</title>
+
+<style>
+*{box-sizing:border-box}
+
+:root{
+  --bg:#08080d;
+  --panel:#111119;
+  --panel2:#181821;
+  --text:#fff;
+  --muted:#9b9ba8;
+  --accent:#8b5cf6;
+  --accent2:#ec4899;
+  --border:rgba(255,255,255,.08);
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  padding-bottom:80px;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.container{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+  padding:0 14px;
+}
+
+
+/* ---------- PREMIUM HOME UI ---------- */
+
+.home-welcome{
+  margin:18px 0;
+  padding:24px 20px;
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(236,72,153,.30),transparent 35%),
+    radial-gradient(circle at 10% 90%,rgba(139,92,246,.30),transparent 40%),
+    linear-gradient(135deg,#1b1428,#101017 70%);
+  border:1px solid var(--border);
+  box-shadow:0 14px 45px rgba(0,0,0,.28);
+}
+
+.home-welcome .eyebrow{
+  color:#b8a5ff;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+
+.home-welcome h1{
+  margin:0;
+  font-size:28px;
+  line-height:1.15;
+}
+
+.home-welcome p{
+  margin:9px 0 0;
+  color:#b8b8c5;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.home-section{
+  margin:25px 0;
+}
+
+.home-section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.home-section-head h2{
+  margin:0;
+  font-size:19px;
+}
+
+.home-section-head span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.quick-actions{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.quick-action{
+  padding:13px 8px;
+  text-align:center;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  color:#ddd;
+}
+
+.quick-action strong{
+  display:block;
+  font-size:20px;
+  margin-bottom:5px;
+}
+
+.quick-action span{
+  font-size:11px;
+  color:var(--muted);
+}
+
+.continue-card{
+  display:flex;
+  gap:12px;
+  padding:10px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+  margin-bottom:10px;
+}
+
+.continue-card img{
+  width:58px;
+  height:78px;
+  object-fit:cover;
+  border-radius:9px;
+  background:#17171f;
+}
+
+.continue-info{
+  min-width:0;
+  flex:1;
+}
+
+.continue-title{
+  font-size:14px;
+  font-weight:700;
+  margin:2px 0 7px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.continue-episode{
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:9px;
+}
+
+.continue-progress{
+  height:4px;
+  background:#292934;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.continue-progress span{
+  display:block;
+  height:100%;
+  width:45%;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+}
+
+.continue-btn{
+  align-self:center;
+  padding:8px 11px;
+  border-radius:9px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;
+  border:0;
+  font-size:11px;
+}
+
+@media(min-width:700px){
+  .home-welcome{
+    padding:34px;
+  }
+
+  .home-welcome h1{
+    font-size:36px;
+  }
+
+  .continue-card{
+    max-width:700px;
+  }
+}
+
+
+/* ---------- CONTINUE WATCHING PREMIUM ---------- */
+
+.continue-card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px;
+  margin-bottom:10px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.continue-thumb{
+  position:relative;
+  flex:0 0 58px;
+  width:58px;
+  height:78px;
+  border-radius:9px;
+  overflow:hidden;
+  cursor:pointer;
+  background:#17171f;
+}
+
+.continue-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.continue-play{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.35);
+  color:#fff;
+  font-size:20px;
+  opacity:.9;
+}
+
+.continue-info{
+  min-width:0;
+  flex:1;
+}
+
+.continue-title{
+  font-size:14px;
+  font-weight:700;
+  margin:2px 0 6px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.continue-episode{
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:9px;
+}
+
+.continue-progress{
+  height:4px;
+  width:100%;
+  background:#292934;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.continue-progress span{
+  display:block;
+  height:100%;
+  min-width:3px;
+  background:linear-gradient(
+    90deg,
+    var(--accent),
+    var(--accent2)
+  );
+  border-radius:10px;
+}
+
+.continue-btn{
+  flex-shrink:0;
+  padding:8px 11px;
+  border:0;
+  border-radius:9px;
+  background:linear-gradient(
+    135deg,
+    var(--accent),
+    var(--accent2)
+  );
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+}
+
+@media(max-width:420px){
+
+  .continue-card{
+    gap:9px;
+  }
+
+  .continue-btn{
+    padding:7px 8px;
+    font-size:10px;
+  }
+
+}
+
+
+/* ---------- TRENDING UI ---------- */
+
+.trending-section{
+  margin:24px 0;
+}
+
+.trending-scroll{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding:2px 2px 8px;
+  scrollbar-width:none;
+}
+
+.trending-scroll::-webkit-scrollbar{
+  display:none;
+}
+
+.trending-card{
+  flex:0 0 180px;
+  position:relative;
+  background:linear-gradient(145deg,var(--panel),rgba(255,255,255,.025));
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.trending-card:active{
+  transform:scale(.965);
+}
+
+.trending-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(139,92,246,.5);
+  box-shadow:0 14px 34px rgba(0,0,0,.28);
+}
+
+.trending-card .card-image-wrap{
+  position:relative;
+  width:100%;
+  aspect-ratio:2 / 3;
+  overflow:hidden;
+  background:#15151d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.trending-card .card-image-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  transition:transform .28s ease,filter .28s ease;
+}
+
+.trending-card:hover .card-image-wrap img{
+  transform:scale(1.035);
+  filter:brightness(1.05);
+}
+
+.trending-card .card-title{
+  padding:11px 10px 13px;
+  font-size:13px;
+  font-weight:650;
+  line-height:1.35;
+  letter-spacing:.05px;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+.trending-badge{
+  position:absolute;
+  top:8px;
+  right:8px;
+  z-index:4;
+  padding:4px 8px;
+  border-radius:999px;
+  background:rgba(20,20,30,.88);
+  border:1px solid rgba(255,255,255,.18);
+  color:#fff;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.5px;
+  line-height:1;
+  box-shadow:0 4px 12px rgba(0,0,0,.35);
+  backdrop-filter:blur(6px);
+}
+
+.trending-views{
+  padding:0 10px 9px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.3px;
+  color:var(--muted);
+}
+
+.trending-number{
+  position:absolute;
+  left:8px;
+  bottom:48px;
+  z-index:4;
+  min-width:34px;
+  height:34px;
+  padding:0 8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  border-radius:10px 10px 14px 14px;
+  background:linear-gradient(145deg,rgba(35,35,50,.94),rgba(12,12,20,.92));
+  border:1px solid rgba(255,255,255,.22);
+  color:#fff;
+  font-size:18px;
+  font-weight:900;
+  line-height:1;
+  text-shadow:0 2px 6px rgba(0,0,0,.8);
+  box-shadow:
+    0 5px 14px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.12);
+  backdrop-filter:blur(6px);
+}
+
+.trending-number::before{
+  content:"";
+  position:absolute;
+  top:-4px;
+  left:50%;
+  width:18px;
+  height:4px;
+  transform:translateX(-50%);
+  border-radius:5px 5px 2px 2px;
+  background:rgba(255,255,255,.22);
+}
+
+@media(min-width:700px){
+  .trending-card{
+    flex-basis:220px;
+  }
+}
+
+
+/* ---------- NEW BADGE ---------- */
+
+.card-image-wrap{
+  position:relative;
+}
+
+.new-badge{
+  position:absolute;
+  top:8px;
+  left:8px;
+  padding:5px 8px;
+  border-radius:7px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.6px;
+  box-shadow:0 4px 12px rgba(0,0,0,.35);
+  backdrop-filter:blur(6px);
+}
+
+
+/* ---------- PREMIUM ANIME DETAILS ---------- */
+
+.premium-details{
+  padding-bottom:30px;
+}
+
+.premium-back{
+  margin-bottom:14px;
+}
+
+.anime-hero-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  border:1px solid var(--border);
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(139,92,246,.28),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(236,72,153,.20),
+      transparent 40%
+    ),
+    linear-gradient(145deg,#191522,#0f0f15);
+  box-shadow:0 18px 55px rgba(0,0,0,.35);
+}
+
+.anime-hero-glow{
+  position:absolute;
+  width:180px;
+  height:180px;
+  right:-70px;
+  top:-70px;
+  border-radius:50%;
+  background:rgba(139,92,246,.25);
+  filter:blur(35px);
+  pointer-events:none;
+}
+
+.anime-hero-content{
+  position:relative;
+  z-index:1;
+  display:flex;
+  gap:18px;
+  padding:22px;
+  align-items:flex-start;
+}
+
+.anime-poster-placeholder{
+  flex:0 0 105px;
+  width:105px;
+  height:150px;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    linear-gradient(145deg,#29233a,#111117);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+
+.anime-poster-placeholder img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+.anime-poster-placeholder span{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1.5px;
+  color:#aaa1c5;
+}
+
+.anime-info{
+  min-width:0;
+  flex:1;
+}
+
+.anime-label{
+  margin:2px 0 8px;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:1.4px;
+  color:#b9a7ff;
+}
+
+.details-title{
+  margin:0;
+  font-size:25px;
+  line-height:1.15;
+  word-break:break-word;
+}
+
+.anime-meta{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-top:10px;
+  color:#aaa8b7;
+  font-size:10px;
+}
+
+.anime-meta span:first-child{
+  color:#ddd;
+}
+
+.anime-new-badge{
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  margin-top:11px;
+  padding:5px 9px;
+  border-radius:999px;
+  background:rgba(177,130,255,.12);
+  border:1px solid rgba(177,130,255,.28);
+  color:#d8c6ff;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.8px;
+  box-shadow:0 4px 18px rgba(0,0,0,.18);
+}
+
+.anime-info .description{
+  margin-top:13px;
+  color:#aaa9b5;
+  font-size:12px;
+  line-height:1.6;
+  max-height:115px;
+  overflow:auto;
+}
+
+.episode-panel{
+  margin-top:18px;
+  padding:17px;
+  border-radius:20px;
+  background:rgba(20,20,27,.75);
+  border:1px solid var(--border);
+  box-shadow:0 12px 35px rgba(0,0,0,.22);
+}
+
+.episode-panel .section-head{
+  margin-bottom:14px;
+}
+
+.episode-panel .section-head h2{
+  margin:0;
+}
+
+.episode-panel .section-head span{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:10px;
+}
+
+#episodeList{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+}
+
+#episodeList button{
+  min-height:42px;
+  padding:9px 10px;
+  border-radius:11px;
+  border:1px solid var(--border);
+  background:#181820;
+  color:#ddd;
+  font-size:11px;
+  font-weight:600;
+  transition:
+    transform .15s ease,
+    border-color .15s ease,
+    background .15s ease;
+}
+
+#episodeList button:hover{
+  transform:translateY(-1px);
+  border-color:var(--accent);
+  background:#211b2b;
+}
+
+#episodeList button:active{
+  transform:scale(.97);
+}
+
+@media(min-width:700px){
+
+  .anime-hero-content{
+    padding:30px;
+    gap:25px;
+  }
+
+  .anime-poster-placeholder{
+    flex-basis:150px;
+    width:150px;
+    height:210px;
+  }
+
+  .details-title{
+    font-size:34px;
+  }
+
+  #episodeList{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+
+}
+
+/* ---------- HEADER ---------- */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(8,8,13,.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+
+.topbar-inner{
+  max-width:1200px;
+  margin:auto;
+  min-height:64px;
+  padding:10px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:.3px;
+}
+
+.logo span{
+  color:var(--accent);
+}
+
+.logo small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:500;
+  margin-top:2px;
+}
+
+/* ---------- SEARCH ---------- */
+
+.search-wrap{
+  position:relative;
+  margin:16px 0;
+}
+
+.search{
+  width:100%;
+  padding:14px 16px 14px 45px;
+  border:1px solid var(--border);
+  outline:none;
+  border-radius:14px;
+  background:var(--panel);
+  color:#fff;
+  font-size:15px;
+  box-shadow:0 8px 30px rgba(0,0,0,.2);
+}
+
+.search:focus{
+  border-color:rgba(139,92,246,.7);
+}
+
+.search::placeholder{
+  color:#777784;
+}
+
+.search-icon{
+  position:absolute;
+  left:16px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#888894;
+  pointer-events:none;
+}
+
+/* ---------- HERO ---------- */
+
+.hero{
+  margin:8px 0 22px;
+  padding:25px 20px;
+  min-height:155px;
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 85% 20%,rgba(236,72,153,.32),transparent 35%),
+    radial-gradient(circle at 20% 90%,rgba(139,92,246,.30),transparent 40%),
+    linear-gradient(135deg,#171324,#0f0f17 65%,#15101b);
+  border:1px solid var(--border);
+  overflow:hidden;
+  position:relative;
+}
+
+.hero h1{
+  margin:0 0 8px;
+  font-size:28px;
+}
+
+.hero p{
+  margin:0;
+  max-width:600px;
+  color:#c2c2cc;
+  line-height:1.5;
+  font-size:13px;
+}
+
+/* ---------- SECTIONS ---------- */
+
+.section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:20px 2px 12px;
+}
+
+.section-head h2{
+  margin:0;
+  font-size:18px;
+}
+
+.section-head span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+
+/* ---------- UPDATED BADGE ---------- */
+
+.card-update-badge{
+  position:absolute;
+  top:8px;
+  right:8px;
+  z-index:2;
+  padding:5px 8px;
+  border-radius:7px;
+  background:rgba(20,20,28,.88);
+  border:1px solid rgba(255,255,255,.12);
+  color:#fff;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.6px;
+  box-shadow:0 4px 12px rgba(0,0,0,.35);
+  backdrop-filter:blur(6px);
+}
+
+/* ---------- CARDS ---------- */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.card{
+  position:relative;
+  background:linear-gradient(145deg,var(--panel),rgba(255,255,255,.025));
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.card:active{
+  transform:scale(.965);
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(139,92,246,.5);
+  box-shadow:0 14px 34px rgba(0,0,0,.28);
+}
+
+.card-image-wrap{
+  position:relative;
+  width:100%;
+  aspect-ratio:2 / 3;
+  overflow:hidden;
+  background:#15151d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  transition:transform .28s ease,filter .28s ease;
+}
+
+.card:hover img{
+  transform:scale(1.035);
+  filter:brightness(1.05);
+}
+
+.card-title{
+  padding:11px 10px 13px;
+  font-size:13px;
+  font-weight:650;
+  line-height:1.35;
+  letter-spacing:.05px;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+/* ---------- PREMIUM ANIME CARD BADGES ---------- */
+
+.card-type-badge,
+.card-rating-badge{
+  position:absolute;
+  top:9px;
+  z-index:3;
+  padding:6px 9px;
+  border-radius:8px;
+  font-size:10px;
+  font-weight:850;
+  line-height:1;
+  box-shadow:0 4px 12px rgba(0,0,0,.3);
+  backdrop-filter:blur(7px);
+}
+
+.card-type-badge{
+  left:9px;
+  background:#f4b400;
+  color:#111;
+}
+
+.card-rating-badge{
+  right:9px;
+  background:rgba(20,20,26,.88);
+  border:1px solid rgba(255,255,255,.14);
+  color:#fff;
+}
+
+.card-title{
+  min-height:58px;
+  padding:12px 11px 14px;
+  font-size:14px;
+  font-weight:750;
+  line-height:1.3;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+/* ---------- STATUS ---------- */
+
+
+
+.status{
+  padding:18px 5px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* ---------- ANIME DETAILS ---------- */
+
+.details{
+  padding:20px 0;
+}
+
+.details-title{
+  font-size:26px;
+  margin:0 0 10px;
+}
+
+.description{
+  color:#aaaab5;
+  line-height:1.6;
+  font-size:14px;
+}
+
+.back{
+  margin:10px 0 18px;
+  padding:10px 15px;
+  color:#fff;
+  background:var(--panel2);
+  border:1px solid var(--border);
+  border-radius:11px;
+}
+
+.back:active{
+  transform:scale(.97);
+}
+
+#episodeList{
+  margin-top:20px;
+}
+
+/* ---------- PLAYER ---------- */
+
+.player{
+  width:100%;
+  aspect-ratio:16/9;
+  background:#000;
+  border-radius:16px;
+  overflow:hidden;
+  margin:14px 0 20px;
+  border:1px solid var(--border);
+  box-shadow:0 12px 40px rgba(0,0,0,.4);
+}
+
+iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+#playerTitle{
+  margin:10px 0;
+  font-size:20px;
+}
+
+#servers,
+#playerEpisodes,
+#episodeList{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+
+button{
+  margin:0;
+  padding:9px 13px;
+  color:#ddd;
+  background:var(--panel2);
+  border:1px solid var(--border);
+  border-radius:9px;
+}
+
+button:active{
+  transform:scale(.96);
+}
+
+button.active{
+  color:#fff;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-color:transparent;
+}
+
+/* ---------- MOBILE NAV ---------- */
+
+.bottom-nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:30;
+  height:64px;
+  background:rgba(12,12,18,.94);
+  backdrop-filter:blur(15px);
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.bottom-nav-inner{
+  width:100%;
+  max-width:500px;
+  display:flex;
+  justify-content:space-around;
+}
+
+.nav-item{
+  flex:1;
+  border:0;
+  margin:0;
+  padding:0;
+  background:transparent;
+  color:#858591;
+  text-align:center;
+  font-size:11px;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.nav-item strong{
+  display:block;
+  color:#ddd;
+  font-size:18px;
+  line-height:20px;
+}
+
+/* ---------- DESKTOP ---------- */
+
+@media(min-width:700px){
+  .grid{
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:16px;
+  }
+
+  .hero{
+    padding:35px;
+    min-height:190px;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+}
+
+@media(min-width:1000px){
+  .grid{
+    grid-template-columns:repeat(6,minmax(0,1fr));
+  }
+}
+
+/* ---------- HIDDEN ---------- */
+
+.hidden{
+  display:none!important;
+}
+
+/* ---------- PREMIUM SEASON / EPISODE UI ---------- */
+
+.season-tabs{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  overflow-x:auto;
+  padding:4px 2px 14px;
+  margin-bottom:10px;
+  scrollbar-width:none;
+}
+
+.season-tabs::-webkit-scrollbar{
+  display:none;
+}
+
+.season-tab{
+  flex:0 0 auto;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.05);
+  color:#aaa;
+  padding:10px 16px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.season-tab.active{
+  background:rgba(255,255,255,.14);
+  color:#fff;
+  border-color:rgba(255,255,255,.24);
+}
+
+.season-episodes{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:10px;
+}
+
+.episode-card{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  padding:13px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  background:rgba(255,255,255,.045);
+  color:#fff;
+  text-align:left;
+  cursor:pointer;
+  transition:transform .18s ease,background .18s ease;
+}
+
+.episode-card:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.09);
+}
+
+.episode-number{
+  font-weight:800;
+}
+
+.episode-label{
+  flex:1;
+  color:#c8c8c8;
+  font-size:13px;
+}
+
+.episode-play{
+  opacity:.8;
+}
+
+
+/* ---------- PREMIUM HERO SLIDER ---------- */
+
+.hero-slider{
+  position:relative;
+  width:100%;
+  height:245px;
+  margin:14px 0 22px;
+  border-radius:20px;
+  overflow:hidden;
+  background:#111118;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 14px 40px rgba(0,0,0,.35);
+}
+
+.hero-slides{
+  width:100%;
+  height:100%;
+  position:relative;
+}
+
+.hero-slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transform:scale(1.02);
+  transition:opacity .45s ease,transform .7s ease;
+  pointer-events:none;
+}
+
+.hero-slide.active{
+  opacity:1;
+  transform:scale(1);
+  pointer-events:auto;
+}
+
+.hero-slide-bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.hero-slide-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5,5,10,.96) 0%,
+      rgba(5,5,10,.78) 38%,
+      rgba(5,5,10,.25) 72%,
+      rgba(5,5,10,.55) 100%
+    );
+}
+
+.hero-slide-content{
+  position:absolute;
+  left:20px;
+  right:70px;
+  bottom:38px;
+  z-index:2;
+  max-width:560px;
+}
+
+.hero-meta{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-bottom:8px;
+}
+
+.hero-badge{
+  padding:5px 8px;
+  border-radius:7px;
+  background:rgba(244,180,0,.95);
+  color:#111;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.5px;
+}
+
+.hero-rating{
+  padding:5px 8px;
+  border-radius:7px;
+  background:rgba(15,15,22,.82);
+  border:1px solid rgba(255,255,255,.14);
+  color:#fff;
+  font-size:9px;
+  font-weight:800;
+}
+
+.hero-title{
+  margin:0 0 7px;
+  color:#fff;
+  font-size:24px;
+  line-height:1.15;
+  font-weight:900;
+  text-shadow:0 3px 14px rgba(0,0,0,.7);
+}
+
+.hero-description{
+  margin:0 0 12px;
+  color:#d5d5dd;
+  font-size:11px;
+  line-height:1.45;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+.hero-watch{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:9px 13px;
+  border:0;
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 7px 20px rgba(0,0,0,.3);
+}
+
+.hero-watch:active{
+  transform:scale(.96);
+}
+
+.hero-arrow{
+  position:absolute;
+  top:50%;
+  z-index:5;
+  width:32px;
+  height:32px;
+  transform:translateY(-50%);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:50%;
+  background:rgba(10,10,16,.58);
+  color:#fff;
+  font-size:25px;
+  line-height:25px;
+  padding:0;
+  cursor:pointer;
+  backdrop-filter:blur(8px);
+}
+
+.hero-prev{
+  left:10px;
+}
+
+.hero-next{
+  right:10px;
+}
+
+.hero-dots{
+  position:absolute;
+  z-index:6;
+  left:20px;
+  bottom:12px;
+  display:flex;
+  gap:5px;
+}
+
+.hero-dot{
+  width:6px;
+  height:6px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.38);
+  cursor:pointer;
+}
+
+.hero-dot.active{
+  width:18px;
+  border-radius:5px;
+  background:#fff;
+}
+
+@media(max-width:500px){
+
+  .hero-slider{
+    height:220px;
+    border-radius:17px;
+  }
+
+  .hero-slide-content{
+    left:16px;
+    right:55px;
+    bottom:34px;
+  }
+
+  .hero-title{
+    font-size:20px;
+  }
+
+  .hero-description{
+    font-size:10px;
+    -webkit-line-clamp:2;
+  }
+
+  .hero-arrow{
+    width:29px;
+    height:29px;
+    font-size:22px;
+  }
+
+}
+
+@media(min-width:700px){
+
+  .hero-slider{
+    height:310px;
+  }
+
+  .hero-slide-content{
+    left:30px;
+    bottom:45px;
+  }
+
+  .hero-title{
+    font-size:32px;
+  }
+
+  .hero-description{
+    font-size:13px;
+    max-width:520px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">
+      Ani<span>zenX</span>
+      <small>ANIME STREAMING</small>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- HOME -->
+  <section id="home">
+
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input
+        id="search"
+        class="search"
+        type="search"
+        placeholder="Search anime..."
+        autocomplete="off"
+      >
+    </div>
+
+
+    <!-- PREMIUM HERO SLIDER -->
+    <section id="heroSlider" class="hero-slider hidden">
+      <div id="heroSlides" class="hero-slides"></div>
+
+      <button
+        type="button"
+        class="hero-arrow hero-prev"
+        aria-label="Previous"
+      >‹</button>
+
+      <button
+        type="button"
+        class="hero-arrow hero-next"
+        aria-label="Next"
+      >›</button>
+
+      <div id="heroDots" class="hero-dots"></div>
+    </section>
+
+    <div class="home-welcome">
+      <div class="eyebrow">ANIZENX • ANIME HUB</div>
+      <h1>Welcome to your Anime Universe ✨</h1>
+      <p>
+        Discover anime, continue watching your favourites,
+        and jump straight into your next episode.
+      </p>
+    </div>
+
+    <div class="home-section">
+      <div class="home-section-head">
+        <h2>Quick Access</h2>
+        <span>Explore</span>
+      </div>
+
+      <div class="quick-actions">
+        <button class="quick-action" onclick="focusSearch()">
+          <strong>⌕</strong>
+          <span>Search</span>
+        </button>
+
+        <button class="quick-action" onclick="scrollToLatest()">
+          <strong>🔥</strong>
+          <span>Latest</span>
+        </button>
+
+        <button class="quick-action" onclick="showContinueWatching()">
+          <strong>▶</strong>
+          <span>Continue</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="continueSection" class="home-section hidden">
+      <div class="home-section-head">
+        <h2>Continue Watching</h2>
+        <span>Your progress</span>
+      </div>
+
+      <div id="continueList"></div>
+    </div>
+
+    <div id="latestSection" class="home-section">
+      <div class="home-section-head">
+        <h2>Latest Anime</h2>
+        <span id="catalogCount">Loading...</span>
+      </div>
+
+    <div id="status" class="status">
+      Loading...
+    </div>
+
+    
+<div class="trending-section">
+  <div class="home-section-head">
+    <h2>🔥 Trending Now</h2>
+    <span>Top picks</span>
+  </div>
+
+  <div id="trendingList" class="trending-scroll"></div>
+</div>
+
+
+<div id="recentlyUpdatedSection" class="home-section">
+  <div class="home-section-head">
+    <h2>🔄 Recently Updated</h2>
+    <span>Latest updates</span>
+  </div>
+
+  <div id="recentlyUpdatedList" class="grid"></div>
+</div>
+
+
+<div id="newReleasesSection" class="home-section">
+  <div class="home-section-head">
+    <h2>🆕 New Releases</h2>
+    <span>Recently added</span>
+  </div>
+
+  <div id="newReleasesList" class="grid"></div>
+</div>
+
+<div id="animeGrid" class="grid"></div>
+
+  </section>
+
+
+  <!-- ANIME -->
+  <section id="animePage" class="hidden">
+
+    <div class="premium-details">
+
+      <button class="back premium-back" onclick="showHome()">
+        ← Back
+      </button>
+
+      <div class="anime-hero-card" id="animeHeroCard">
+
+        <div class="anime-backdrop" id="animeBackdrop"></div>
+
+        <div class="anime-hero-glow"></div>
+
+        <div class="anime-hero-content">
+
+          <div class="anime-poster-placeholder">
+            <img
+              id="animePoster"
+              src=""
+              alt=""
+              loading="lazy"
+            >
+          </div>
+
+          <div class="anime-info">
+
+            <div class="anime-label">
+              ANIZENX • DETAILS
+            </div>
+
+            <h2 id="animeTitle" class="details-title"></h2>
+
+            <div class="anime-meta">
+              <span>📺 Series</span>
+              <span>•</span>
+              <span>HD</span>
+            </div>
+
+            <div
+              id="episodeStatus"
+              class="episode-status hidden"
+              aria-live="polite"
+            ></div>
+
+            <p id="animeDescription" class="description"></p>
+
+            <button
+              id="startWatchingBtn"
+              class="start-watching-btn"
+              type="button"
+            >
+              ▶ Start Watching
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="episode-panel">
+
+        <div class="section-head">
+          <div>
+            <h2>Episodes</h2>
+            <span>Select an episode to watch</span>
+          </div>
+        </div>
+
+        <div id="episodeList"></div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PLAYER -->
+  <section id="playerPage" class="hidden">
+
+    <button class="back" onclick="showAnime()">
+      ← Episodes
+    </button>
+
+    <h2 id="playerTitle">Player</h2>
+
+    <div class="player">
+      <iframe
+        id="player"
+        src="about:blank"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="section-head">
+      <h2>Servers</h2>
+    </div>
+
+    <div id="servers"></div>
+
+    <div class="section-head">
+      <h2>Episodes</h2>
+    </div>
+
+    <div id="playerEpisodes"></div>
+
+  </section>
+
+</div>
+
+<nav class="bottom-nav">
+  <div class="bottom-nav-inner">
+
+    <button class="nav-item" type="button" onclick="showHome()">
+      <strong>⌂</strong>
+      Home
+    </button>
+
+    <button class="nav-item" type="button" onclick="showSearch()">
+      <strong>⌕</strong>
+      Search
+    </button>
+
+    <button class="nav-item" type="button" onclick="showWatch()">
+      <strong>▶</strong>
+      Watch
+    </button>
+
+  </div>
+</nav>
+
+<script>
+
+let homeData = [];
+let currentAnime = null;
+let currentAnimeTitle = "";
+let currentAnimeImage = "";
+let streamData = null;
+let currentServer = 0;
+
+
+/* ---------------- HOME ---------------- */
+
+async function loadHome(){
+
+  const status = document.getElementById("status");
+
+  try{
+
+    const res = await fetch("/api/home");
+    const data = await res.json();
+
+    if(!data.success){
+
+      status.textContent = "Home load failed";
+      return;
+    }
+
+    homeData = (data.results || []).filter(item => {
+
+      return item.image &&
+             item.link &&
+             !item.link.includes("/category/") &&
+             !item.link.includes("t.me/") &&
+             !item.link.includes("hdmovieshub");
+
+    });
+
+    renderHome(homeData);
+    renderNewReleases(homeData);
+    renderRecentlyUpdated(homeData);
+    renderTrending(homeData);
+    renderHeroSlider(homeData);
+
+    const count = document.getElementById("catalogCount");
+    if(count){
+      count.textContent = homeData.length + " titles";
+    }
+
+    renderContinueWatching();
+
+  }catch(error){
+
+    console.error(error);
+    status.textContent = "API connection error";
+
+  }
+}
+
+
+function focusSearch(){
+  const search = document.getElementById("search");
+  search.focus();
+  search.scrollIntoView({behavior:"smooth", block:"center"});
+}
+
+function scrollToLatest(){
+  const section = document.getElementById("latestSection");
+  if(section){
+    section.scrollIntoView({behavior:"smooth", block:"start"});
+  }
+}
+
+function showContinueWatching(){
+  const section = document.getElementById("continueSection");
+
+  if(!section) return;
+
+  if(section.classList.contains("hidden")){
+    renderContinueWatching();
+  }
+
+  section.classList.remove("hidden");
+  section.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+
+function resumeContinueWatching(item){
+
+  if(!item || !item.slug){
+    console.error("CONTINUE ERROR: invalid saved item");
+    return;
+  }
+
+  console.log(
+    "CONTINUE WATCHING:",
+    item.title,
+    "S" + (item.season || 1),
+    "E" + (item.episode || 1)
+  );
+
+  // Open the selected anime and load its stream data.
+  openAnime(item.slug).then(() => {
+
+    if(
+      !streamData ||
+      !streamData.success ||
+      !Array.isArray(streamData.servers)
+    ){
+      console.error("CONTINUE ERROR: stream data unavailable");
+      return;
+    }
+
+    const season = String(item.season || 1);
+    const episode = String(item.episode || 1);
+
+    let found = null;
+    let serverIndex = -1;
+
+    streamData.servers.forEach((server, index) => {
+
+      (server.episodes || []).forEach(ep => {
+
+        if(
+          found === null &&
+          String(ep.season) === season &&
+          String(ep.episode) === episode &&
+          ep.url
+        ){
+          found = ep;
+          serverIndex = index;
+        }
+
+      });
+
+    });
+
+    if(!found){
+      console.warn(
+        "CONTINUE: saved episode not found, opening anime page"
+      );
+      return;
+    }
+
+    currentServer = serverIndex;
+
+    document.getElementById("animePage")
+      .classList.add("hidden");
+
+    document.getElementById("playerPage")
+      .classList.remove("hidden");
+
+    document.getElementById("playerTitle")
+      .textContent =
+        "Season " + found.season +
+        " • Episode " + found.episode;
+
+    renderServers();
+    renderPlayerEpisodes();
+    loadPlayer(found);
+
+  }).catch(error => {
+
+    console.error(
+      "CONTINUE WATCHING ERROR:",
+      error
+    );
+
+  });
+}
+
+function renderContinueWatching(){
+
+  const box = document.getElementById("continueList");
+
+  if(!box) return;
+
+  let saved = [];
+
+  try{
+    saved = JSON.parse(
+      localStorage.getItem("anizenx_continue") || "[]"
+    );
+  }catch{
+    saved = [];
+  }
+
+  box.innerHTML = "";
+
+  if(!saved.length){
+
+    box.innerHTML = `
+      <div class="status">
+        Start watching an anime and it will appear here.
+      </div>
+    `;
+
+    return;
+  }
+
+  saved
+    .sort((a,b) => (b.updatedAt || 0) - (a.updatedAt || 0))
+    .slice(0,5)
+    .forEach(item => {
+
+      const card = document.createElement("div");
+
+      card.className = "continue-card";
+
+      /*
+       * Since the saved item currently stores the last watched
+       * episode rather than exact video time, we show a visual
+       * episode-progress indicator.
+       */
+      const progress = item.progress != null
+        ? Math.max(0, Math.min(100, Number(item.progress)))
+        : 45;
+
+      card.innerHTML = `
+        <div class="continue-thumb">
+
+          <img
+            src="${escapeHtml(item.image || "")}"
+            alt=""
+            loading="lazy"
+          >
+
+          <div class="continue-play">
+            ▶
+          </div>
+
+        </div>
+
+        <div class="continue-info">
+
+          <div class="continue-title">
+            ${escapeHtml(item.title || "Anime")}
+          </div>
+
+          <div class="continue-episode">
+            S${escapeHtml(item.season || 1)}
+            • E${escapeHtml(item.episode || 1)}
+          </div>
+
+          <div class="continue-progress">
+            <span style="width:${progress}%"></span>
+          </div>
+
+        </div>
+
+        <button class="continue-btn">
+          Continue
+        </button>
+      `;
+
+      card.querySelector(".continue-btn").onclick = () => {
+        resumeContinueWatching(item);
+      };
+
+      card.querySelector(".continue-thumb").onclick = () => {
+        resumeContinueWatching(item);
+      };
+
+      box.appendChild(card);
+
+    });
+}
+
+function cleanTitle(title){
+
+  return title
+    .replace(/SERIES\s*/i,"")
+    .replace(/MOVIE\s*/i,"")
+    .replace(/\s+/g," ")
+    .trim();
+}
+
+
+function getSlug(link){
+
+  try{
+
+    const url = new URL(link);
+    return url.pathname
+      .replace(/^\/|\/$/g,"");
+
+  }catch{
+
+    return "";
+  }
+}
+
+
+
+
+function renderRecentlyUpdated(list){
+
+  const box = document.getElementById("recentlyUpdatedList");
+  const section = document.getElementById("recentlyUpdatedSection");
+
+  if(!box || !section) return;
+
+  const updated = (list || [])
+    .filter(item => item && item.lastSeenAt)
+    .sort((a,b) => {
+      return new Date(b.lastSeenAt) - new Date(a.lastSeenAt);
+    })
+    .slice(0,10);
+
+  box.innerHTML = "";
+
+  if(!updated.length){
+    section.classList.add("hidden");
+    return;
+  }
+
+  section.classList.remove("hidden");
+
+  updated.forEach(item => {
+
+    const slug = getSlug(item.link);
+
+    if(!slug) return;
+
+    const card = document.createElement("div");
+
+    card.className = "card";
+
+    card.innerHTML = `
+      <div class="card-image-wrap">
+
+        <img
+          src="${escapeHtml(item.image || "")}"
+          loading="lazy"
+          alt=""
+        >
+
+        <div class="card-update-badge">
+          UPDATED
+        </div>
+
+      </div>
+
+      <div class="card-title">
+        ${escapeHtml(cleanTitle(item.title || "Anime"))}
+      </div>
+    `;
+
+    card.onclick = () => openAnime(slug);
+
+    box.appendChild(card);
+
+  });
+}
+
+
+function renderNewReleases(list){
+
+  const box = document.getElementById("newReleasesList");
+  const section = document.getElementById("newReleasesSection");
+
+  if(!box || !section) return;
+
+  const releases = (list || [])
+    .filter(item => item && item.firstSeenAt)
+    .sort((a,b) => {
+      return new Date(b.firstSeenAt) - new Date(a.firstSeenAt);
+    })
+    .slice(0,10);
+
+  box.innerHTML = "";
+
+  if(!releases.length){
+    section.classList.add("hidden");
+    return;
+  }
+
+  section.classList.remove("hidden");
+
+  releases.forEach(item => {
+
+    const slug = getSlug(item.link);
+
+    if(!slug) return;
+
+    const card = document.createElement("div");
+
+    card.className = "card";
+
+    card.innerHTML = `
+      <div class="card-image-wrap">
+
+        <img
+          src="${escapeHtml(item.image || "")}"
+          loading="lazy"
+          alt=""
+        >
+
+      </div>
+
+      <div class="card-title">
+        ${escapeHtml(cleanTitle(item.title || "Anime"))}
+      </div>
+    `;
+
+    card.onclick = () => openAnime(slug);
+
+    box.appendChild(card);
+  });
+}
+
+
+function renderHome(list){
+
+  const grid = document.getElementById("animeGrid");
+  const status = document.getElementById("status");
+
+  grid.innerHTML = "";
+
+  if(!list.length){
+
+    status.textContent = "No anime found";
+    return;
+  }
+
+  status.textContent = "";
+
+  list.forEach(item => {
+
+    const slug = getSlug(item.link);
+
+    if(!slug) return;
+
+    const card = document.createElement("div");
+
+    card.className = "card";
+
+    const isNew =
+      item.firstSeenAt &&
+      (Date.now() - new Date(item.firstSeenAt).getTime()) <
+      (48 * 60 * 60 * 1000);
+
+    card.innerHTML = `
+      <div class="card-image-wrap">
+
+        <img
+          src="${escapeHtml(item.image)}"
+          loading="lazy"
+          alt=""
+        >
+
+        <span class="card-type-badge">
+          SERIES
+        </span>
+
+        <span class="card-rating-badge">
+          ★ ${escapeHtml(
+            item.rating ||
+            item.score ||
+            item.malScore ||
+            "—"
+          )}
+        </span>
+
+        ${
+          isNew
+            ? '<span class="new-badge">NEW</span>'
+            : ''
+        }
+
+      </div>
+
+      <div class="card-title">
+        ${escapeHtml(cleanTitle(item.title))}
+      </div>
+    `;
+
+    card.onclick = () => openAnime(slug);
+
+    grid.appendChild(card);
+
+  });
+}
+
+
+
+
+/* ---------- PREMIUM HERO SLIDER LOGIC ---------- */
+
+let heroIndex = 0;
+let heroTimer = null;
+let heroItems = [];
+
+function renderHeroSlider(list){
+
+  const slider = document.getElementById("heroSlider");
+  const slidesBox = document.getElementById("heroSlides");
+  const dotsBox = document.getElementById("heroDots");
+
+  if(!slider || !slidesBox || !dotsBox) return;
+
+  if(!Array.isArray(list) || !list.length){
+    slider.classList.add("hidden");
+    return;
+  }
+
+  heroItems = list
+    .filter(item => item && item.image && getSlug(item.link))
+    .slice(0,6);
+
+  if(!heroItems.length){
+    slider.classList.add("hidden");
+    return;
+  }
+
+  heroIndex = 0;
+
+  slidesBox.innerHTML = "";
+  dotsBox.innerHTML = "";
+
+  heroItems.forEach((item,index) => {
+
+    const slug = getSlug(item.link);
+
+    const title =
+      cleanTitle(item.title || "Anime");
+
+    const rating =
+      item.rating ||
+      item.score ||
+      item.malScore ||
+      "—";
+
+    const slide = document.createElement("article");
+
+    slide.className =
+      "hero-slide" +
+      (index === 0 ? " active" : "");
+
+    slide.innerHTML = `
+      <img
+        class="hero-slide-bg"
+        src="${escapeHtml(item.image)}"
+        loading="${index === 0 ? "eager" : "lazy"}"
+        alt=""
+      >
+
+      <div class="hero-slide-overlay"></div>
+
+      <div class="hero-slide-content">
+
+        <div class="hero-meta">
+
+          <span class="hero-badge">
+            SERIES
+          </span>
+
+          <span class="hero-rating">
+            ★ ${escapeHtml(rating)}
+          </span>
+
+        </div>
+
+        <h2 class="hero-title">
+          ${escapeHtml(title)}
+        </h2>
+
+        <p class="hero-description">
+          Watch ${escapeHtml(title)}
+          and continue your anime journey on AniZenX.
+        </p>
+
+        <button
+          type="button"
+          class="hero-watch"
+        >
+          ▶ Watch Now
+        </button>
+
+      </div>
+    `;
+
+    const watch =
+      slide.querySelector(".hero-watch");
+
+    watch.onclick = (event) => {
+      event.stopPropagation();
+      openAnime(slug);
+    };
+
+    slide.onclick = () =>
+      openAnime(slug);
+
+    slidesBox.appendChild(slide);
+
+    const dot =
+      document.createElement("button");
+
+    dot.type = "button";
+    dot.className =
+      "hero-dot" +
+      (index === 0 ? " active" : "");
+
+    dot.setAttribute(
+      "aria-label",
+      "Slide " + (index + 1)
+    );
+
+    dot.onclick = () => {
+      showHeroSlide(index);
+      restartHeroTimer();
+    };
+
+    dotsBox.appendChild(dot);
+
+  });
+
+  slider.classList.remove("hidden");
+
+  setupHeroButtons();
+  restartHeroTimer();
+}
+
+
+function showHeroSlide(index){
+
+  if(!heroItems.length) return;
+
+  heroIndex =
+    (index + heroItems.length) %
+    heroItems.length;
+
+  document
+    .querySelectorAll(".hero-slide")
+    .forEach((slide,i) => {
+      slide.classList.toggle(
+        "active",
+        i === heroIndex
+      );
+    });
+
+  document
+    .querySelectorAll(".hero-dot")
+    .forEach((dot,i) => {
+      dot.classList.toggle(
+        "active",
+        i === heroIndex
+      );
+    });
+
+}
+
+
+function setupHeroButtons(){
+
+  const prev =
+    document.querySelector(".hero-prev");
+
+  const next =
+    document.querySelector(".hero-next");
+
+  if(prev){
+    prev.onclick = () => {
+      showHeroSlide(heroIndex - 1);
+      restartHeroTimer();
+    };
+  }
+
+  if(next){
+    next.onclick = () => {
+      showHeroSlide(heroIndex + 1);
+      restartHeroTimer();
+    };
+  }
+
+}
+
+
+function restartHeroTimer(){
+
+  if(heroTimer){
+    clearInterval(heroTimer);
+  }
+
+  if(heroItems.length <= 1) return;
+
+  heroTimer = setInterval(() => {
+    showHeroSlide(heroIndex + 1);
+  }, 5000);
+
+}
+
+
+/* ---------- END HERO SLIDER ---------- */
+
+async function renderTrending(list){
+
+  const box = document.getElementById("trendingList");
+
+  if(!box) return;
+
+  box.innerHTML = `
+    <div class="status">
+      Loading trending...
+    </div>
+  `;
+
+  try{
+
+    const res = await fetch("/api/trending");
+
+    const data = await res.json();
+
+    if(
+      !data ||
+      !data.success ||
+      !Array.isArray(data.results)
+    ){
+      throw new Error("Invalid trending response");
+    }
+
+    const catalog = Array.isArray(list)
+      ? list
+      : [];
+
+    const catalogMap = new Map();
+
+    catalog.forEach(item => {
+
+      if(!item) return;
+
+      const slug =
+        item.slug ||
+        getSlug(item.link || "");
+
+      if(slug){
+        catalogMap.set(String(slug), item);
+      }
+
+    });
+
+    const items = data.results
+      .map(item => {
+
+        const catalogItem =
+          catalogMap.get(String(item.slug));
+
+        if(!catalogItem){
+          return null;
+        }
+
+        return {
+          ...catalogItem,
+          views: Number(item.views || 0),
+          lastWatchedAt: item.lastWatchedAt || null,
+          trendingScore: Number(item.trendingScore || 0)
+        };
+
+      })
+      .filter(Boolean)
+      .sort((a,b) => {
+
+        if(b.trendingScore !== a.trendingScore){
+          return b.trendingScore - a.trendingScore;
+        }
+
+        return b.views - a.views;
+
+      })
+      .slice(0,10);
+
+    if(!items.length){
+
+      box.innerHTML = `
+        <div class="status">
+          No watch data yet.
+        </div>
+      `;
+
+      return;
+    }
+
+    // Remove loading/status content before rendering real cards
+    box.innerHTML = "";
+
+    items.forEach((item,index) => {
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "trending-card";
+
+      const slug =
+        item.slug ||
+        getSlug(item.link || "");
+
+      card.innerHTML = `
+
+        <div class="card-image-wrap">
+
+          <img
+            src="${escapeHtml(item.image || "")}"
+            alt="${escapeHtml(
+              cleanTitle(item.title || "Anime")
+            )}"
+            loading="lazy"
+          >
+
+          <div class="trending-number">
+            ${index + 1}
+          </div>
+
+          ${
+            Number(item.trendingScore || 0) >= 180
+              ? '<div class="trending-badge">HOT</div>'
+              : Number(item.views || 0) >= 10
+                ? '<div class="trending-badge">POPULAR</div>'
+                : Number(item.trendingScore || 0) >= 100
+                  ? '<div class="trending-badge">RISING</div>'
+                  : ''
+          }
+
+        </div>
+
+        <div class="card-title">
+          ${escapeHtml(
+            cleanTitle(item.title || "Anime")
+          )}
+        </div>
+
+        <div class="trending-views">
+          ${Number(item.views || 0)} VIEWS
+        </div>
+
+      `;
+
+      card.onclick = () =>
+        openAnime(slug);
+
+      box.appendChild(card);
+
+    });
+
+  }catch(error){
+
+    console.error(
+      "REAL TRENDING ERROR:",
+      error
+    );
+
+    box.innerHTML = `
+      <div class="status">
+        Unable to load trending.
+      </div>
+    `;
+
+  }
+
+}
+
+/* ---------------- SEARCH ---------------- */
+
+let searchTimer;
+
+document.getElementById("search").addEventListener(
+  "input",
+  function () {
+    const q = this.value.trim();
+
+    clearTimeout(searchTimer);
+
+    const searchSections = [
+      "continueSection",
+      "trendingList",
+      "recentlyUpdatedSection",
+      "newReleasesSection"
+    ];
+
+    const setSearchMode = (active) => {
+      searchSections.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        const section = id === "trendingList"
+          ? el.closest(".trending-section")
+          : el;
+
+        if (section) {
+          section.classList.toggle("hidden", active);
+        }
+      });
+    };
+
+    if (!q) {
+      setSearchMode(false);
+      renderHome(homeData);
+      return;
+    }
+
+    setSearchMode(true);
+
+    searchTimer = setTimeout(async () => {
+      try {
+        const res = await fetch(
+          "/api/search?q=" + encodeURIComponent(q)
+        );
+
+        const data = await res.json();
+
+        if (!data.success) {
+          renderHome([]);
+          return;
+        }
+
+        renderHome(data.results || []);
+      } catch (error) {
+        console.error("SEARCH ERROR:", error);
+        renderHome([]);
+      }
+    }, 300);
+  }
+);
+
+
+/* ---------------- ANIME DETAILS ---------------- */
+
+
+async function openAnime(slug){
+
+  document.getElementById("home")
+    .classList.add("hidden");
+
+  document.getElementById("playerPage")
+    .classList.add("hidden");
+
+  document.getElementById("animePage")
+    .classList.remove("hidden");
+
+  document.getElementById("animeTitle")
+    .textContent = "Loading...";
+
+  document.getElementById("animeDescription")
+    .textContent = "";
+
+  document.getElementById("episodeList")
+    .innerHTML = "";
+
+  try{
+
+    const [animeRes, streamRes] = await Promise.all([
+
+      fetch("/api/anime/" + encodeURIComponent(slug)),
+
+      fetch("/api/streams/" + encodeURIComponent(slug))
+
+    ]);
+
+    const anime = await animeRes.json();
+    streamData = await streamRes.json();
+
+    currentAnime = slug;
+
+    const hasNewEpisode =
+      saveEpisodeSnapshot(slug, streamData);
+
+    const episodeStatus =
+      document.getElementById("episodeStatus");
+
+    if(episodeStatus){
+      episodeStatus.classList.add("hidden");
+      episodeStatus.textContent = "";
+      episodeStatus.className = "episode-status hidden";
+    }
+
+    if(hasNewEpisode){
+      console.log(
+        "NEW EPISODE DETECTED:",
+        slug
+      );
+
+      if(episodeStatus){
+        episodeStatus.textContent = "🆕 NEW EPISODE";
+        episodeStatus.className = "anime-new-badge";
+      }
+    }
+
+    if(anime.success && anime.anime){
+
+      document.getElementById("animeTitle")
+        .textContent = anime.anime.title || slug;
+
+      document.getElementById("animeDescription")
+        .textContent = anime.anime.description || "";
+
+      const image = anime.anime.image || "";
+
+      currentAnimeTitle =
+        anime.anime.title || slug;
+
+      currentAnimeImage =
+        image;
+
+      const poster =
+        document.getElementById("animePoster");
+
+      if(poster){
+        poster.src = image;
+      }
+
+      const backdrop =
+        document.getElementById("animeBackdrop");
+
+      if(backdrop && image){
+        backdrop.style.backgroundImage =
+          `url("${image}")`;
+      }
+
+      const watchBtn =
+        document.getElementById("startWatchingBtn");
+
+      if(watchBtn){
+        watchBtn.onclick = () => {
+
+          const firstEpisode =
+            getFirstAvailableEpisode(streamData);
+
+          if(firstEpisode){
+            playEpisodeFromData(firstEpisode);
+          }else{
+            alert("No episode available yet.");
+          }
+
+        };
+      }
+
+    }else{
+
+      document.getElementById("animeTitle")
+        .textContent = cleanTitle(slug);
+
+    }
+
+    renderAnimeEpisodes();
+
+  }catch(error){
+
+    console.error(error);
+
+    document.getElementById("animeTitle")
+      .textContent = "Unable to load anime";
+
+  }
+}
+
+
+
+function getEpisodeCount(streams){
+
+  if(!streams || !streams.success || !Array.isArray(streams.servers)){
+    return 0;
+  }
+
+  const seen = new Set();
+
+  streams.servers.forEach(server => {
+
+    (server.episodes || []).forEach(ep => {
+
+      const key = String(ep.season) + "-" + String(ep.episode);
+
+      seen.add(key);
+
+    });
+
+  });
+
+  return seen.size;
+}
+
+function saveEpisodeSnapshot(slug, streams){
+
+  if(!slug) return false;
+
+  const count = getEpisodeCount(streams);
+
+  if(!count) return false;
+
+  let snapshots = {};
+
+  try{
+    snapshots = JSON.parse(
+      localStorage.getItem("anizenx_episode_snapshots") || "{}"
+    );
+  }catch{
+    snapshots = {};
+  }
+
+  const previous = snapshots[slug];
+  const isNewEpisode =
+    !!previous &&
+    Number(count) > Number(previous.count || 0);
+
+  snapshots[slug] = {
+    count,
+    updatedAt: Date.now()
+  };
+
+  localStorage.setItem(
+    "anizenx_episode_snapshots",
+    JSON.stringify(snapshots)
+  );
+
+  return isNewEpisode;
+}
+
+
+
+function getWatchedEpisodes(){
+  try{
+    return JSON.parse(
+      localStorage.getItem("anizenx_watched_episodes") || "{}"
+    );
+  }catch{
+    return {};
+  }
+}
+
+function markEpisodeWatched(slug, ep){
+  if(!slug || !ep) return;
+
+  const watched = getWatchedEpisodes();
+
+  if(!watched[slug]){
+    watched[slug] = {};
+  }
+
+  watched[slug][getEpisodeKey(ep)] = Date.now();
+
+  localStorage.setItem(
+    "anizenx_watched_episodes",
+    JSON.stringify(watched)
+  );
+}
+
+function isEpisodeWatched(slug, ep){
+  const watched = getWatchedEpisodes();
+
+  return !!(
+    watched[slug] &&
+    watched[slug][getEpisodeKey(ep)]
+  );
+}
+
+function getLatestEpisodeNumber(slug){
+  const snapshots = (() => {
+    try{
+      return JSON.parse(
+        localStorage.getItem("anizenx_episode_snapshots") || "{}"
+      );
+    }catch{
+      return {};
+    }
+  })();
+
+  return Number(snapshots[slug]?.count || 0);
+}
+
+function renderAnimeEpisodes(){
+
+  const box = document.getElementById("episodeList");
+
+  box.innerHTML = "";
+
+  if(
+    !streamData ||
+    !streamData.success ||
+    !Array.isArray(streamData.servers) ||
+    !streamData.servers.length
+  ){
+
+    box.textContent = "No episodes found";
+    return;
+  }
+
+  const episodes = [];
+  const seen = new Set();
+
+  streamData.servers.forEach(server => {
+
+    (server.episodes || []).forEach(ep => {
+
+      if(
+        !ep ||
+        ep.season == null ||
+        ep.episode == null ||
+        !ep.url
+      ){
+        return;
+      }
+
+      const key =
+        String(ep.season) + "-" +
+        String(ep.episode);
+
+      if(seen.has(key)) return;
+
+      seen.add(key);
+      episodes.push(ep);
+
+    });
+
+  });
+
+  if(!episodes.length){
+
+    box.textContent = "No episodes found";
+    return;
+  }
+
+  episodes.sort((a,b) => {
+
+    const seasonA = Number(a.season) || 0;
+    const seasonB = Number(b.season) || 0;
+
+    if(seasonA !== seasonB){
+      return seasonA - seasonB;
+    }
+
+    return (Number(a.episode) || 0) -
+           (Number(b.episode) || 0);
+
+  });
+
+  const seasons = [...new Set(
+    episodes.map(ep => String(ep.season))
+  )];
+
+  const seasonTabs = document.createElement("div");
+  seasonTabs.className = "season-tabs";
+
+  const episodeContainer = document.createElement("div");
+  episodeContainer.className = "season-episodes";
+
+  function renderSeason(season){
+
+    episodeContainer.innerHTML = "";
+
+    const seasonEpisodes =
+      episodes.filter(ep =>
+        String(ep.season) === String(season)
+      );
+
+    seasonEpisodes.forEach(ep => {
+
+      const btn = document.createElement("button");
+
+      btn.className = "episode-card";
+
+      const watched = isEpisodeWatched(currentAnime, ep);
+
+      const latestCount = getLatestEpisodeNumber(currentAnime);
+
+      const isNew =
+        latestCount > 0 &&
+        Number(ep.episode) > latestCount;
+
+      btn.innerHTML = `
+        <span class="episode-number">
+          E${Number(ep.episode)}
+        </span>
+
+        <span class="episode-label">
+          Episode ${Number(ep.episode)}
+        </span>
+
+        ${watched ? `
+          <span class="episode-status watched">
+            ✓ Watched
+          </span>
+        ` : ""}
+
+        ${isNew && !watched ? `
+          <span class="episode-status new">
+            NEW
+          </span>
+        ` : ""}
+
+        <span class="episode-play">
+          ▶
+        </span>
+      `;
+
+      btn.onclick = () =>
+        playEpisodeFromData(ep);
+
+      episodeContainer.appendChild(btn);
+
+    });
+
+    seasonTabs
+      .querySelectorAll(".season-tab")
+      .forEach(tab => {
+
+        tab.classList.toggle(
+          "active",
+          String(tab.dataset.season) === String(season)
+        );
+
+      });
+
+  }
+
+  seasons.forEach((season, index) => {
+
+    const tab = document.createElement("button");
+
+    tab.className = "season-tab";
+
+    tab.dataset.season = season;
+
+    tab.textContent =
+      "Season " + season;
+
+    tab.onclick = () =>
+      renderSeason(season);
+
+    seasonTabs.appendChild(tab);
+
+    if(index === 0){
+      renderSeason(season);
+    }
+
+  });
+
+  box.appendChild(seasonTabs);
+  box.appendChild(episodeContainer);
+
+}
+
+
+/* ---------------- PLAYER ---------------- */
+
+let currentEpisodeKey = null;
+
+function getEpisodeKey(ep){
+  return String(ep.season) + "-" + String(ep.episode);
+}
+
+function findEpisode(serverIndex, season, episode){
+  const server = streamData?.servers?.[serverIndex];
+
+  if(!server) return null;
+
+  return (server.episodes || []).find(ep =>
+    String(ep.season) === String(season) &&
+    String(ep.episode) === String(episode)
+  ) || null;
+}
+
+function getFirstAvailableEpisode(streams){
+
+  if(
+    !streams ||
+    !streams.success ||
+    !Array.isArray(streams.servers)
+  ){
+    return null;
+  }
+
+  for(const server of streams.servers){
+
+    const episodes = Array.isArray(server.episodes)
+      ? server.episodes
+      : [];
+
+    const first = episodes.find(ep =>
+      ep &&
+      ep.url &&
+      ep.season != null &&
+      ep.episode != null
+    );
+
+    if(first){
+      return first;
+    }
+  }
+
+  return null;
+}
+
+
+function saveContinueWatching(ep){
+
+  if(!currentAnime || !ep){
+    return;
+  }
+
+  let saved = [];
+
+  try{
+    saved = JSON.parse(
+      localStorage.getItem("anizenx_continue") || "[]"
+    );
+
+    if(!Array.isArray(saved)){
+      saved = [];
+    }
+
+  }catch{
+    saved = [];
+  }
+
+  const item = {
+    slug: currentAnime,
+    title: currentAnimeTitle || currentAnime,
+    image: currentAnimeImage || "",
+    season: Number(ep.season) || 1,
+    episode: Number(ep.episode) || 1,
+    progress: 0,
+    updatedAt: Date.now()
+  };
+
+  saved = saved.filter(x =>
+    x && x.slug !== currentAnime
+  );
+
+  saved.unshift(item);
+
+  saved = saved.slice(0,10);
+
+  localStorage.setItem(
+    "anizenx_continue",
+    JSON.stringify(saved)
+  );
+
+  renderContinueWatching();
+}
+
+
+function playEpisodeFromData(ep){
+
+  if(!ep || !ep.url) return;
+
+  markEpisodeWatched(currentAnime, ep);
+
+  saveContinueWatching(ep);
+
+  let visitorId = "anonymous";
+
+  try{
+    visitorId =
+      localStorage.getItem("anizenx_visitor_id") || "";
+
+    if(!visitorId){
+      visitorId =
+        "v_" +
+        Date.now().toString(36) +
+        "_" +
+        Math.random().toString(36).slice(2,10);
+
+      localStorage.setItem(
+        "anizenx_visitor_id",
+        visitorId
+      );
+    }
+  }catch{
+    visitorId = "anonymous";
+  }
+
+  fetch("/api/watch", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      slug: currentAnime,
+      season: ep.season,
+      episode: ep.episode,
+      visitorId: visitorId
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data && data.success){
+      console.log(
+        "WATCH RECORDED:",
+        currentAnime,
+        "S" + ep.season,
+        "E" + ep.episode,
+        "Views:",
+        data.views
+      );
+    }
+  })
+  .catch(error => {
+    console.error(
+      "WATCH TRACKING ERROR:",
+      error
+    );
+  });
+
+  const serverIndex = streamData.servers.findIndex(server =>
+    (server.episodes || []).some(x =>
+      String(x.season) === String(ep.season) &&
+      String(x.episode) === String(ep.episode) &&
+      x.url === ep.url
+    )
+  );
+
+  if(serverIndex === -1) return;
+
+  currentServer = serverIndex;
+
+  document.getElementById("animePage")
+    .classList.add("hidden");
+
+  document.getElementById("playerPage")
+    .classList.remove("hidden");
+
+  document.getElementById("playerTitle")
+    .textContent =
+      "Season " + ep.season +
+      " • Episode " + ep.episode;
+
+  renderServers();
+  renderPlayerEpisodes();
+
+  loadPlayer(ep);
+}
+
+
+function renderServers(){
+
+  const box = document.getElementById("servers");
+
+  box.innerHTML = "";
+
+  if(!streamData || !streamData.servers) return;
+
+  streamData.servers.forEach((server,index) => {
+
+    const btn = document.createElement("button");
+
+    btn.textContent = server.name || ("Server " + (index + 1));
+
+    if(index === currentServer){
+      btn.classList.add("active");
+    }
+
+    btn.onclick = () => {
+
+      currentServer = index;
+
+      renderServers();
+      renderPlayerEpisodes();
+
+      const server = streamData.servers[currentServer];
+
+      if(server && server.episodes && server.episodes.length){
+        loadPlayer(server.episodes[0]);
+      }
+
+    };
+
+    box.appendChild(btn);
+
+  });
+
+}
+
+
+function renderPlayerEpisodes(){
+
+  const box = document.getElementById("playerEpisodes");
+
+  box.innerHTML = "";
+
+  if(!streamData || !streamData.servers) return;
+
+  const server = streamData.servers[currentServer];
+
+  if(!server || !server.episodes){
+    return;
+  }
+
+  server.episodes.forEach(ep => {
+
+    const btn = document.createElement("button");
+
+    btn.textContent =
+      "S" + ep.season +
+      " • E" + ep.episode;
+
+    btn.onclick = () => {
+
+      if(!ep.url) return;
+
+      document.getElementById("playerTitle")
+        .textContent =
+          "Season " + ep.season +
+          " • Episode " + ep.episode;
+
+      loadPlayer(ep);
+
+    };
+
+    box.appendChild(btn);
+
+  });
+
+}
+
+
+function loadPlayer(ep){
+
+  const player = document.getElementById("player");
+
+  if(!player || !ep || !ep.url){
+    return;
+  }
+
+  /*
+   * Force iframe reload when changing episode.
+   * This prevents the previous episode from remaining visible.
+   */
+  player.src = "about:blank";
+
+  setTimeout(() => {
+
+    player.src = ep.url;
+
+  }, 50);
+
+}
+
+/* ---------------- NAVIGATION ---------------- */
+
+function showHome(){
+
+  document.getElementById("animePage")
+    .classList.add("hidden");
+
+  document.getElementById("playerPage")
+    .classList.add("hidden");
+
+  document.getElementById("home")
+    .classList.remove("hidden");
+
+}
+
+
+function showSearch(){
+
+  document.getElementById("animePage")
+    .classList.add("hidden");
+
+  document.getElementById("playerPage")
+    .classList.add("hidden");
+
+  document.getElementById("home")
+    .classList.remove("hidden");
+
+  const search = document.getElementById("search");
+
+  if(search){
+    search.focus();
+    search.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+  }
+
+}
+
+
+function showWatch(){
+
+  document.getElementById("animePage")
+    .classList.add("hidden");
+
+  document.getElementById("playerPage")
+    .classList.add("hidden");
+
+  document.getElementById("home")
+    .classList.remove("hidden");
+
+  const section =
+    document.getElementById("continueSection");
+
+  const box =
+    document.getElementById("continueList");
+
+  if(section){
+    section.classList.remove("hidden");
+  }
+
+  if(box){
+    renderContinueWatching();
+
+    setTimeout(() => {
+      section?.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+    }, 50);
+  }
+
+}
+
+function showAnime(){
+
+  document.getElementById("playerPage")
+    .classList.add("hidden");
+
+  document.getElementById("animePage")
+    .classList.remove("hidden");
+
+}
+
+
+/* ---------------- SECURITY ---------------- */
+
+function escapeHtml(value){
+
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+
+/* ---------------- AUTO HOME REFRESH ---------------- */
+
+let homeRefreshTimer = null;
+let lastCatalogSignature = "";
+
+function getCatalogSignature(data){
+  if(!data || !Array.isArray(data.results)){
+    return "";
+  }
+
+  return data.results
+    .map(item => String(item.slug || item.link || ""))
+    .sort()
+    .join("|");
+}
+
+async function refreshHomeIfChanged(){
+
+  try{
+
+    const res = await fetch(
+      "/api/home?_=" + Date.now(),
+      { cache:"no-store" }
+    );
+
+    const data = await res.json();
+
+    if(!data.success){
+      return;
+    }
+
+    const signature = getCatalogSignature(data);
+
+    if(!signature){
+      return;
+    }
+
+    if(!lastCatalogSignature){
+
+      lastCatalogSignature = signature;
+      return;
+
+    }
+
+    if(signature === lastCatalogSignature){
+      return;
+    }
+
+    console.log("NEW CATALOG DATA DETECTED");
+
+    lastCatalogSignature = signature;
+
+    homeData = (data.results || []).filter(item => {
+
+      return item.image &&
+             item.link &&
+             !item.link.includes("/category/") &&
+             !item.link.includes("t.me/") &&
+             !item.link.includes("hdmovieshub");
+
+    });
+
+    renderHome(homeData);
+    renderNewReleases(homeData);
+
+    const count = document.getElementById("catalogCount");
+
+    if(count){
+      count.textContent = homeData.length + " titles";
+    }
+
+    renderContinueWatching();
+
+    if(typeof renderTrending === "function"){
+      renderTrending(homeData);
+    }
+
+  }catch(error){
+
+    console.error("AUTO HOME REFRESH ERROR:", error);
+
+  }
+}
+
+
+function startHomeAutoRefresh(){
+
+  if(homeRefreshTimer){
+    clearInterval(homeRefreshTimer);
+  }
+
+  homeRefreshTimer = setInterval(
+    refreshHomeIfChanged,
+    5 * 60 * 1000
+  );
+
+  console.log("HOME AUTO REFRESH: every 5 minutes");
+}
+
+
+/* ---------------- START ---------------- */
+
+loadHome().then(() => {
+  lastCatalogSignature = getCatalogSignature({
+    results: homeData
+  });
+
+  startHomeAutoRefresh();
+});
+
+</script>
+
+</body>
+</html>
