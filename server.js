@@ -174,13 +174,37 @@ function clearRecoveryData(){
   }
 }
 
-const recoveryTransporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.RECOVERY_GMAIL,
-    pass: process.env.GMAIL_APP_PASSWORD
+async function sendRecoveryEmail(to, otp){
+
+  const apiKey =
+    String(process.env.RESEND_API_KEY || "").trim();
+
+  if(!apiKey){
+    throw new Error("RESEND_API_KEY is not configured");
   }
-});
+
+  const response = await axios.post(
+    "https://api.resend.com/emails",
+    {
+      from: "AnimeVerse <onboarding@resend.dev>",
+      to: [to],
+      subject: "AnimeVerse Admin Password Recovery",
+      text:
+        `Your AnimeVerse admin password recovery OTP is: ${otp}\n\n` +
+        "This OTP expires in 10 minutes.\n" +
+        "If you did not request this, ignore this email."
+    },
+    {
+      headers: {
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json"
+      },
+      timeout: 15000
+    }
+  );
+
+  return response.data;
+}
 
 app.post("/admin/api/forgot-password", async (req, res) => {
   try{
@@ -209,15 +233,7 @@ app.post("/admin/api/forgot-password", async (req, res) => {
       attempts: 0
     });
 
-    await recoveryTransporter.sendMail({
-      from: recoveryEmail,
-      to: recoveryEmail,
-      subject: "AnimeVerse Admin Password Recovery",
-      text:
-        `Your AnimeVerse admin password recovery OTP is: ${otp}\n\n` +
-        "This OTP expires in 10 minutes.\n" +
-        "If you did not request this, ignore this email."
-    });
+    await sendRecoveryEmail(recoveryEmail, otp);
 
     res.json({
       success:true,
