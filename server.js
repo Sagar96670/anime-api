@@ -228,6 +228,10 @@ app.post("/admin/api/forgot-password", async (req, res) => {
 
     console.error(
       "PASSWORD RECOVERY EMAIL ERROR:",
+      error.name,
+      error.code || "",
+      error.responseCode || "",
+      error.command || "",
       error.message
     );
 
