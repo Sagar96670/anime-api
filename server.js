@@ -335,29 +335,7 @@ app.post("/admin/api/reset-password", (req, res) => {
       });
     }
 
-    const envFile =
-      path.join(__dirname, ".env");
-
-    let env =
-      fs.readFileSync(envFile, "utf8");
-
-    if(/^ADMIN_PASSWORD=/m.test(env)){
-      env = env.replace(
-        /^ADMIN_PASSWORD=.*$/m,
-        `ADMIN_PASSWORD=${newPassword}`
-      );
-    }else{
-      env += `\nADMIN_PASSWORD=${newPassword}\n`;
-    }
-
-    fs.writeFileSync(
-      envFile,
-      env,
-      {
-        encoding:"utf8",
-        mode:0o600
-      }
-    );
+    process.env.ADMIN_PASSWORD = newPassword;
 
     clearRecoveryData();
 
