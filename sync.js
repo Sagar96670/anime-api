@@ -71,6 +71,30 @@ function saveCatalog(results) {
   console.log("Catalog saved:", CATALOG_FILE);
 }
 
+async function getAnimeRating(url) {
+  try {
+    const { data } = await client.get(url);
+    const $ = cheerio.load(data);
+
+    const metaText = $(".nf-meta-row")
+      .first()
+      .text()
+      .replace(/\s+/g, " ")
+      .trim();
+
+    const match = metaText.match(/★\s*(\d+(?:\.\d+)?)/);
+
+    return match ? match[1] : "";
+  } catch (error) {
+    console.error(
+      "RATING ERROR:",
+      url,
+      error.message
+    );
+    return "";
+  }
+}
+
 async function scrapeHomePage(page = 1) {
   const url = page === 1 ? "/" : `/page/${page}/`;
 
@@ -178,7 +202,12 @@ async function syncCatalog() {
 
       for (const item of items) {
         if (!all.has(item.slug)) {
-          all.set(item.slug, item);
+          const rating = await getAnimeRating(item.link);
+
+          all.set(item.slug, {
+            ...item,
+            rating,
+          });
         }
       }
     } catch (error) {
@@ -248,4 +277,5 @@ function startAutoSync() {
 module.exports = {
   syncCatalog,
   startAutoSync,
+  getAnimeRating,
 };

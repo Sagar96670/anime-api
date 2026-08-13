@@ -1,1950 +1,2193 @@
 {
-  "updatedAt": "2026-08-11T11:13:28.419Z",
+  "updatedAt": "2026-08-13T06:03:24.274Z",
   "count": 243,
   "results": [
+    {
+      "slug": "trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-for-mobs",
+      "title": "SERIES Trapped in a Dating Sim: The World of Otome Games Is Tough for Mobs",
+      "image": "https://image.tmdb.org/t/p/w1280/c0oFoz7PttzMLsQOQn54Lcu8V9d.jpg",
+      "link": "https://1xanimes.com/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-for-mobs/",
+      "rating": "7.4",
+      "firstSeenAt": "2026-08-10T11:30:25.627Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+    },
+    {
+      "slug": "rezero-starting-life-in-another-world",
+      "title": "SERIES Re:ZERO -Starting Life in Another World-",
+      "image": "https://image.tmdb.org/t/p/original/Nee0RqMT4HIOqVi6Z5gYBUIZtD.jpg",
+      "link": "https://1xanimes.com/rezero-starting-life-in-another-world/",
+      "rating": "7.8",
+      "firstSeenAt": "2026-08-11T04:30:24.761Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+    },
+    {
+      "slug": "clevatess",
+      "title": "SERIES Clevatess",
+      "image": "https://image.tmdb.org/t/p/original/UErKAycnzSAJqGvJpSy0tw5auS.jpg",
+      "link": "https://1xanimes.com/clevatess/",
+      "rating": "7.9",
+      "firstSeenAt": "2026-08-11T04:30:24.761Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+    },
+    {
+      "slug": "scum-of-the-brave",
+      "title": "SERIES Scum of the Brave",
+      "image": "https://image.tmdb.org/t/p/w1280/1hS9huDDGeirdy1Regli71wo9ot.jpg",
+      "link": "https://1xanimes.com/scum-of-the-brave/",
+      "rating": "8",
+      "firstSeenAt": "2026-08-11T04:30:24.761Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+    },
     {
       "slug": "captain-tsubasa",
       "title": "SERIES Captain Tsubasa",
       "image": "https://image.tmdb.org/t/p/original/1OVPswj6njGM3jcRQlDnn2WQcDx.jpg",
       "link": "https://1xanimes.com/captain-tsubasa/",
+      "rating": "8.2",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "yowayowa-sensei",
       "title": "SERIES Yowayowa Sensei",
       "image": "https://image.tmdb.org/t/p/original/mpkiDHqtYinpRrMhpyvvt0kvc5H.jpg",
       "link": "https://1xanimes.com/yowayowa-sensei/",
+      "rating": "5.4",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "tamons-b-side",
       "title": "SERIES Tamon’s B-Side",
       "image": "https://image.tmdb.org/t/p/original/gb0ewH7HOO3PSduPANOTZhSFZjJ.jpg",
       "link": "https://1xanimes.com/tamons-b-side/",
+      "rating": "7.7",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "liar-game",
       "title": "SERIES LIAR GAME",
       "image": "https://image.tmdb.org/t/p/w1280/Ag6VnSAb1g02YWHYxYFKRUiBtnc.jpg",
       "link": "https://1xanimes.com/liar-game/",
+      "rating": "9",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "bleach",
       "title": "SERIES Bleach",
       "image": "https://image.tmdb.org/t/p/original/c61mxRPBIdHw9BYxkIJAB0gDtez.jpg",
       "link": "https://1xanimes.com/bleach/",
+      "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "sparks-of-tomorrow",
       "title": "SERIES Sparks of Tomorrow",
       "image": "https://image.tmdb.org/t/p/w1280/fx5JyhFvPn1GSm5ITtNNM6hmpUa.jpg",
       "link": "https://1xanimes.com/sparks-of-tomorrow/",
+      "rating": "7.7",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "hanaori-san-still-wants-to-fight-in-the-next-life",
       "title": "SERIES Hanaori-san Still Wants to Fight in the Next Life",
       "image": "https://image.tmdb.org/t/p/w1280/uwDbJwDrzM6Xqx1yh4lkh8xUsbp.jpg",
       "link": "https://1xanimes.com/hanaori-san-still-wants-to-fight-in-the-next-life/",
+      "rating": "6.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "daemons-of-the-shadow-realm",
       "title": "SERIES Daemons of the Shadow Realm",
       "image": "https://image.tmdb.org/t/p/w1280/6bgpCe46hXWN8hloDTQA6BhsSSU.jpg",
       "link": "https://1xanimes.com/daemons-of-the-shadow-realm/",
+      "rating": "10",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-elusive-samurai",
       "title": "SERIES The Elusive Samurai",
       "image": "https://image.tmdb.org/t/p/original/rOliKet6nTuZ1ViTFgGsTudhHbR.jpg",
       "link": "https://1xanimes.com/the-elusive-samurai/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-ribbon-hero",
       "title": "MOVIE THE RIBBON HERO",
       "image": "https://image.tmdb.org/t/p/w1280/8SEb8rEZ9DYqBT7U3FI5nBOS1lV.jpg",
       "link": "https://1xanimes.com/the-ribbon-hero/",
+      "rating": "0",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "that-time-i-got-reincarnated-as-a-slime",
       "title": "SERIES That Time I Got Reincarnated as a Slime",
       "image": "https://image.tmdb.org/t/p/original/8njJS6M1EdciIPUsBBT6n5NuC9t.jpg",
       "link": "https://1xanimes.com/that-time-i-got-reincarnated-as-a-slime/",
+      "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "i-became-a-legend-after-my-10-year-long-last-stand",
-      "title": "SERIES I Became a Legend After My 10 Year-Long Last Stand",
-      "image": "https://image.tmdb.org/t/p/w1280/ttcHr50V6A4JNKUlkIhhLsX9c04.jpg",
+      "title": "Series ★ 4.5 I Became a Legend After My 10 Year-Long Last Stand",
+      "image": "https://image.tmdb.org/t/p/w500/4LaPshxWTFcBhc5ib8xOfYeD9tH.jpg",
       "link": "https://1xanimes.com/i-became-a-legend-after-my-10-year-long-last-stand/",
+      "rating": "4.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "chainsmoker-cat",
-      "title": "SERIES Chainsmoker Cat",
-      "image": "https://image.tmdb.org/t/p/w1280/4ei68OmZr0XHnN82OjiV8GBqfyN.jpg",
+      "title": "Series ★ 8.8 Chainsmoker Cat",
+      "image": "https://image.tmdb.org/t/p/w500/kqeKlSd7o9BCbTraZsDnksRSfxm.jpg",
       "link": "https://1xanimes.com/chainsmoker-cat/",
+      "rating": "8.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "smoking-behind-the-supermarket-with-you",
-      "title": "SERIES Smoking Behind the Supermarket with You",
-      "image": "https://image.tmdb.org/t/p/w1280/gkmE41A5ev5M299hLgX3JrWAM16.jpg",
+      "title": "Series ★ 9.1 Smoking Behind the Supermarket with You",
+      "image": "https://image.tmdb.org/t/p/w500/gHVfuuOXPVs0ltFbOZQjxpXtSSH.jpg",
       "link": "https://1xanimes.com/smoking-behind-the-supermarket-with-you/",
+      "rating": "9.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "a-mortals-journey-to-immortality",
-      "title": "SERIES A Mortal’s Journey to Immortality",
-      "image": "https://image.tmdb.org/t/p/original/q21a9wvag9RH7YNTz81vrpLk9Y5.jpg",
+      "title": "Series A Mortal’s Journey to Immortality",
+      "image": "https://image.tmdb.org/t/p/w500/9pfqNpz2YRdLgg5FUKVbWzz5fLR.jpg",
       "link": "https://1xanimes.com/a-mortals-journey-to-immortality/",
+      "rating": "0",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "thunder-3",
       "title": "Series Thunder 3",
       "image": "https://image.tmdb.org/t/p/w500/EwgegTmDUuf71tjZCswhJGo79F.jpg",
       "link": "https://1xanimes.com/thunder-3/",
+      "rating": "0",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "arifureta-from-commonplace-to-worlds-strongest",
       "title": "Series ★ 8.4 Arifureta: From Commonplace to World’s Strongest",
       "image": "https://image.tmdb.org/t/p/original/eZqgq7lE6E3ZyltsYdHm4ysA2HN.jpg",
       "link": "https://1xanimes.com/arifureta-from-commonplace-to-worlds-strongest/",
+      "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
-    },
-    {
-      "slug": "trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-for-mobs",
-      "title": "Series ★ 7.4 Trapped in a Dating Sim: The World of Otome Games Is Tough for Mobs",
-      "image": "https://image.tmdb.org/t/p/original/kLoDKrCBie56YVkDd6drScAimcS.jpg",
-      "link": "https://1xanimes.com/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-for-mobs/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
-    },
-    {
-      "slug": "rezero-starting-life-in-another-world",
-      "title": "Series ★ 7.8 Re:ZERO -Starting Life in Another World-",
-      "image": "https://image.tmdb.org/t/p/original/rB1Dvo446eQgiMq6sDGstj4sE3F.jpg",
-      "link": "https://1xanimes.com/rezero-starting-life-in-another-world/",
-      "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
-    },
-    {
-      "slug": "clevatess",
-      "title": "Series ★ 7.9 Clevatess",
-      "image": "https://image.tmdb.org/t/p/original/qJc32lffkMs34KfltQITySHAbJ0.jpg",
-      "link": "https://1xanimes.com/clevatess/",
-      "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "baki-hanma",
       "title": "Series ★ 8.1 Baki Hanma",
       "image": "https://image.tmdb.org/t/p/w500/x145FSI9xJ6UbkxfabUsY2SFbu3.jpg",
       "link": "https://1xanimes.com/baki-hanma/",
+      "rating": "8.1",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
-    },
-    {
-      "slug": "scum-of-the-brave",
-      "title": "Series ★ 8 Scum of the Brave",
-      "image": "https://image.tmdb.org/t/p/w500/kSJv65fW98dUqRD5f0ahLLYoZQN.jpg",
-      "link": "https://1xanimes.com/scum-of-the-brave/",
-      "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "tomb-raider-king",
       "title": "Series ★ 8.7 Tomb Raider King",
       "image": "https://image.tmdb.org/t/p/w500/xDW6cor12UD0b2IqboQWnrIn0UO.jpg",
       "link": "https://1xanimes.com/tomb-raider-king/",
+      "rating": "8.7",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "oshi-no-ko",
       "title": "Series ★ 8.3 OSHI NO KO",
       "image": "https://image.tmdb.org/t/p/original/mErHxLBgXK3FrfigrA19QFS1nbz.jpg",
       "link": "https://1xanimes.com/oshi-no-ko/",
+      "rating": "8.3",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "fullmetal-alchemist-brotherhood",
       "title": "Series ★ 8.7 Fullmetal Alchemist: Brotherhood",
       "image": "https://image.tmdb.org/t/p/w500/5ZFUEOULaVml7pQuXxhpR2SmVUw.jpg",
       "link": "https://1xanimes.com/fullmetal-alchemist-brotherhood/",
+      "rating": "8.7",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "demon-slayer-kimetsu-no-yaiba-infinity-castle",
       "title": "Movie ★ 7.7 Demon Slayer: Kimetsu no Yaiba Infinity Castle",
       "image": "https://image.tmdb.org/t/p/original/izIjiW4S4JKkYazv0CPO7Rl2wi3.jpg",
       "link": "https://1xanimes.com/demon-slayer-kimetsu-no-yaiba-infinity-castle/",
+      "rating": "7.7",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "karna-the-guardian",
       "title": "Series Karna the Guardian",
       "image": "https://image.tmdb.org/t/p/w500/3M7PkwXvT2scTNUoXOaCqlIpfVM.jpg",
       "link": "https://1xanimes.com/karna-the-guardian/",
+      "rating": "0",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "sword-of-the-demon-hunter",
       "title": "Series ★ 7.3 Sword of the Demon Hunter",
       "image": "https://image.tmdb.org/t/p/w500/8BNGnDKMaDvpmkTd6z9pQL97Upe.jpg",
       "link": "https://1xanimes.com/sword-of-the-demon-hunter/",
+      "rating": "7.3",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "eren-the-southpaw",
       "title": "Series ★ 8 Eren the Southpaw",
       "image": "https://image.tmdb.org/t/p/w500/AkhxnKGDcNKikr1xDP4mi1wpfEr.jpg",
       "link": "https://1xanimes.com/eren-the-southpaw/",
+      "rating": "8",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "marriage-toxin",
       "title": "Series ★ 8.2 Marriage Toxin",
       "image": "https://image.tmdb.org/t/p/w500/2b1akkaoutSo3xbykjAKnEb92Rs.jpg",
       "link": "https://1xanimes.com/marriage-toxin/",
+      "rating": "8.2",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "farming-life-in-another-world",
       "title": "Series ★ 7.6 Farming Life in Another World",
       "image": "https://image.tmdb.org/t/p/w500/pT4OoVQE8zGJ0Z0GZpJotK5Vzsj.jpg",
       "link": "https://1xanimes.com/farming-life-in-another-world/",
+      "rating": "7.6",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "agents-of-the-four-seasons-dance-of-spring",
       "title": "Series ★ 7.2 Agents of the Four Seasons Dance of Spring",
       "image": "https://image.tmdb.org/t/p/w500/zbzbUDLO3iTAuXDmoqtpOsrtLPi.jpg",
       "link": "https://1xanimes.com/agents-of-the-four-seasons-dance-of-spring/",
+      "rating": "7.2",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "snowball-earth",
       "title": "Series ★ 7 SNOWBALL EARTH",
       "image": "https://image.tmdb.org/t/p/w500/rLin4VCC1QK7MDmeaSBZqw7SWRu.jpg",
       "link": "https://1xanimes.com/snowball-earth/",
+      "rating": "7",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "heaven-officials-blessing",
       "title": "Series ★ 8.1 Heaven Official’s Blessing",
       "image": "https://image.tmdb.org/t/p/w500/4psWk1qJZKXlH78DjZUnvXCwSAM.jpg",
       "link": "https://1xanimes.com/heaven-officials-blessing/",
+      "rating": "8.1",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "haikyu",
       "title": "Series ★ 8.6 Haikyu!!",
       "image": "https://image.tmdb.org/t/p/w500/rBXEmHQaYoIAyOWRpu8v3cBGKcT.jpg",
       "link": "https://1xanimes.com/haikyu/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "wistoria-wand-and-sword",
       "title": "Series ★ 7.6 Wistoria: Wand and Sword",
       "image": "https://image.tmdb.org/t/p/original/hM00JrQlrfI0wTSweYDMLUMcv8u.jpg",
       "link": "https://1xanimes.com/wistoria-wand-and-sword/",
+      "rating": "7.6",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "witch-hat-atelier",
       "title": "Series ★ 8.6 Witch Hat Atelier",
       "image": "https://image.tmdb.org/t/p/w500/78m1Tv3suHmUryTI9VNPwKLKjHZ.jpg",
       "link": "https://1xanimes.com/witch-hat-atelier/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "reborn-as-a-vending-machine-i-now-wander-the-dungeon",
       "title": "Series ★ 6.9 Reborn as a Vending Machine, I Now Wander the Dungeon",
       "image": "https://image.tmdb.org/t/p/original/2F7zlgOtk9z0FGn2EjOFWDjGcBP.jpg",
       "link": "https://1xanimes.com/reborn-as-a-vending-machine-i-now-wander-the-dungeon/",
+      "rating": "6.9",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "kurokos-basketball",
       "title": "Series ★ 8.4 Kuroko’s Basketball",
       "image": "https://image.tmdb.org/t/p/w500/qi8dlAgQEeahpEn1AOb5BJEOcVB.jpg",
       "link": "https://1xanimes.com/kurokos-basketball/",
+      "rating": "8.4",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-warrior-princess-and-the-barbaric-king",
       "title": "Series ★ 6.6 The Warrior Princess and the Barbaric King",
       "image": "https://image.tmdb.org/t/p/original/hO5fLLMqteEopcYy5r0gQB1pWl.jpg",
       "link": "https://1xanimes.com/the-warrior-princess-and-the-barbaric-king/",
+      "rating": "6.6",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-beginning-after-the-end",
       "title": "Series ★ 6.7 The Beginning After the End",
       "image": "https://image.tmdb.org/t/p/original/dpyWHuDi9NEctmBuyUn6IDXPrNs.jpg",
       "link": "https://1xanimes.com/the-beginning-after-the-end/",
+      "rating": "6.7",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "my-hero-academia-vigilantes",
       "title": "Series ★ 7.8 My Hero Academia: Vigilantes",
       "image": "https://image.tmdb.org/t/p/original/94YELK3KZt8WKGAZFDCJAb5vhk7.jpg",
       "link": "https://1xanimes.com/my-hero-academia-vigilantes/",
+      "rating": "7.8",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-angel-next-door-spoils-me-rotten",
       "title": "Series ★ 7.7 The Angel Next Door Spoils Me Rotten",
       "image": "https://image.tmdb.org/t/p/original/pjNFTabj2mXUGquE8Oj3buPeKvQ.jpg",
       "link": "https://1xanimes.com/the-angel-next-door-spoils-me-rotten/",
+      "rating": "7.7",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "an-observation-log-of-my-fiancee-who-calls-herself-a-villainess",
       "title": "Series ★ 7.5 An Observation Log of My Fiancée Who Calls Herself a Villainess",
       "image": "https://image.tmdb.org/t/p/w500/xlpYhXiyX52t6Dtg1fFN0CqLbK4.jpg",
       "link": "https://1xanimes.com/an-observation-log-of-my-fiancee-who-calls-herself-a-villainess/",
+      "rating": "7.5",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-ramparts-of-ice",
       "title": "Series The Ramparts of Ice",
       "image": "https://image.tmdb.org/t/p/w500/rke9UC2QrogvxiQD9TGpbvqDosi.jpg",
       "link": "https://1xanimes.com/the-ramparts-of-ice/",
+      "rating": "0",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "gantz",
       "title": "Series ★ 7.3 GANTZ",
       "image": "https://image.tmdb.org/t/p/original/cE1FZ117b95UaBr4VoCRF1fpiLd.jpg",
       "link": "https://1xanimes.com/gantz/",
+      "rating": "7.3",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "blue-box",
       "title": "Series ★ 7.9 Blue Box",
       "image": "https://image.tmdb.org/t/p/w500/mVAWCCNBxPX3EUf9XhcFff4wW5V.jpg",
       "link": "https://1xanimes.com/blue-box/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "dr-stone",
       "title": "Series ★ 8.5 Dr. STONE",
       "image": "https://image.tmdb.org/t/p/original/cqQKXou6KWC38HgIM2SSfPI0zLC.jpg",
       "link": "https://1xanimes.com/dr-stone/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "nippon-sangoku-the-three-nations-of-the-crimson-sun",
       "title": "Series NIPPON SANGOKU: The Three Nations of the Crimson Sun",
       "image": "https://image.tmdb.org/t/p/w500/qHQnNHefuHI8N4lCoRQQP6pckMr.jpg",
       "link": "https://1xanimes.com/nippon-sangoku-the-three-nations-of-the-crimson-sun/",
+      "rating": "0",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "watari-kuns-is-about-to-collapse",
       "title": "Series ★ 7.5 Watari-kun’s ****** Is About to Collapse",
       "image": "https://image.tmdb.org/t/p/w500/lbg43t7mslXskfuWpLeMz1NEQGR.jpg",
       "link": "https://1xanimes.com/watari-kuns-is-about-to-collapse/",
+      "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-rising-of-the-shield-hero",
       "title": "Series ★ 8.5 The Rising of the Shield Hero",
       "image": "https://image.tmdb.org/t/p/original/a5PPRNK5fQfmSzhiTKvZhHQKzpM.jpg",
       "link": "https://1xanimes.com/the-rising-of-the-shield-hero/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "skeleton-knight-in-another-world",
       "title": "Series ★ 7.3 Skeleton Knight in Another World",
       "image": "https://image.tmdb.org/t/p/w500/jMhzjbRI1iL2ENtMnS3Zm3DBAJw.jpg",
       "link": "https://1xanimes.com/skeleton-knight-in-another-world/",
+      "rating": "7.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "grand-blue-dreaming",
       "title": "Series ★ 7.8 Grand Blue Dreaming",
       "image": "https://image.tmdb.org/t/p/original/qgB3NPnZl22YiXwXo2OIGgliM8v.jpg",
       "link": "https://1xanimes.com/grand-blue-dreaming/",
+      "rating": "7.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "rezero-starting-life-in-another-world-the-frozen-bond",
       "title": "Movie ★ 7.3 Re:ZERO -Starting Life in Another World- The Frozen Bond",
       "image": "https://image.tmdb.org/t/p/w500/ca2ZsUa4Qeik2IwlXFzV51hdxh0.jpg",
       "link": "https://1xanimes.com/rezero-starting-life-in-another-world-the-frozen-bond/",
+      "rating": "7.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "rezero-starting-life-in-another-world-memory-snow",
       "title": "Movie ★ 7.2 Re:ZERO -Starting Life in Another World- Memory Snow",
       "image": "https://image.tmdb.org/t/p/w500/y7XwmyE5ue9hjk65fEWpO2hGU2B.jpg",
       "link": "https://1xanimes.com/rezero-starting-life-in-another-world-memory-snow/",
+      "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "dorohedoro",
       "title": "Series ★ 8.3 Dorohedoro",
       "image": "https://image.tmdb.org/t/p/original/rFQ3uPXsUtUWMIK8xH39qEfCW72.jpg",
       "link": "https://1xanimes.com/dorohedoro/",
+      "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "one-piece",
       "title": "Series ★ 8.7 One Piece",
       "image": "https://image.tmdb.org/t/p/original/d8Jp38youa7vtQf7ZkxQUD257f8.jpg",
       "link": "https://1xanimes.com/one-piece/",
+      "rating": "8.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "mob-psycho-100",
       "title": "Series ★ 8.5 Mob Psycho 100",
       "image": "https://image.tmdb.org/t/p/original/KI2MeKPdjWyCEbNo8966lH9ZlE.jpg",
       "link": "https://1xanimes.com/mob-psycho-100/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "easygoing-territory-defense-by-the-optimistic-lord",
       "title": "Series ★ 7.8 Easygoing Territory Defense by the Optimistic Lord",
       "image": "https://image.tmdb.org/t/p/w500/2ctXv1LyyVad5VLToS1t2ZqSCQa.jpg",
       "link": "https://1xanimes.com/easygoing-territory-defense-by-the-optimistic-lord/",
+      "rating": "7.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "devil-may-cry",
       "title": "Series ★ 7.9 Devil May Cry",
       "image": "https://image.tmdb.org/t/p/original/q4jSFywnw4n8wnHWkrY1ZRLfys7.jpg",
       "link": "https://1xanimes.com/devil-may-cry/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "release-that-witch",
       "title": "Series ★ 8 Release that Witch",
       "image": "https://image.tmdb.org/t/p/w500/ygXvdkB7Ue9ELUUlQe7wFh5fdJa.jpg",
       "link": "https://1xanimes.com/release-that-witch/",
+      "rating": "8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "fairy-tail",
       "title": "Series ★ 7.9 Fairy Tail",
       "image": "https://image.tmdb.org/t/p/original/xchaeL4t3E77ulAhJJRore6rydw.jpg",
       "link": "https://1xanimes.com/fairy-tail/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "frieren-beyond-journeys-end",
       "title": "Series ★ 8.8 Frieren: Beyond Journey’s End",
       "image": "https://image.tmdb.org/t/p/original/6BWIH3PNss5lLf3y2gnHPbWYjgN.jpg",
       "link": "https://1xanimes.com/frieren-beyond-journeys-end/",
+      "rating": "8.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "tokyo-ghoul",
       "title": "Series ★ 8.3 Tokyo Ghoul",
       "image": "https://image.tmdb.org/t/p/original/9mAPuqFrlR3bTeX81ZppXGQkMEc.jpg",
       "link": "https://1xanimes.com/tokyo-ghoul/",
+      "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "welcome-to-demon-school-iruma-kun",
       "title": "Series ★ 8.2 Welcome to Demon School! Iruma-kun",
       "image": "https://image.tmdb.org/t/p/original/mrJBRwukMLOHTXZgPHxIvrRxef8.jpg",
       "link": "https://1xanimes.com/welcome-to-demon-school-iruma-kun/",
+      "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "a-misanthrope-teaches-a-class-for-demi-humans",
       "title": "Series ★ 8.5 A Misanthrope Teaches a Class for Demi-Humans",
       "image": "https://image.tmdb.org/t/p/w500/yOM6DxJblSheZwOeGwAzfIHxnCc.jpg",
       "link": "https://1xanimes.com/a-misanthrope-teaches-a-class-for-demi-humans/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "scarlet",
       "title": "Movie ★ 7.2 Scarlet",
       "image": "https://image.tmdb.org/t/p/original/6YWZ8HwZLhLb3D1qmtfBab2a2Bw.jpg",
       "link": "https://1xanimes.com/scarlet/",
+      "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "bofuri-i-dont-want-to-get-hurt-so-ill-max-out-my-defense",
       "title": "Series ★ 7.4 BOFURI: I Don’t Want to Get Hurt, so I’ll Max Out My Defense.",
       "image": "https://image.tmdb.org/t/p/original/3w7AGT6XAkrhyvTRqvIAdAwQwD1.jpg",
       "link": "https://1xanimes.com/bofuri-i-dont-want-to-get-hurt-so-ill-max-out-my-defense/",
+      "rating": "7.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "invincible",
       "title": "Series ★ 8.6 Invincible",
       "image": "https://image.tmdb.org/t/p/w500/4tblBrslcKSifMVZ3TmtT2ukMor.jpg",
       "link": "https://1xanimes.com/invincible/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "there-was-a-cute-girl-in-the-heros-party-so-i-tried-confessing-to-her",
       "title": "Series ★ 8.6 There Was a Cute Girl in the Hero’s Party, So I Tried Confessing to Her",
       "image": "https://image.tmdb.org/t/p/w500/lUIuuvxthqaK4euFHTNIsRmdf3s.jpg",
       "link": "https://1xanimes.com/there-was-a-cute-girl-in-the-heros-party-so-i-tried-confessing-to-her/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "attack-on-titan",
       "title": "Series ★ 8.7 Attack on Titan",
       "image": "https://image.tmdb.org/t/p/original/tNjk2yHB1iY0h2tbjee4dJJX6Oc.jpg",
       "link": "https://1xanimes.com/attack-on-titan/",
+      "rating": "8.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "kunon-the-sorcerer-can-see",
       "title": "Series ★ 8.7 Kunon the Sorcerer Can See",
       "image": "https://image.tmdb.org/t/p/w500/kGGdMa1fEwMiyyFB1AnUox5cshy.jpg",
       "link": "https://1xanimes.com/kunon-the-sorcerer-can-see/",
+      "rating": "8.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "high-school-dxd",
       "title": "Series ★ 8.5 High School DxD",
       "image": "https://image.tmdb.org/t/p/w500/5a9vaaLDAZTYjgfWIw7ZYhL1m1A.jpg",
       "link": "https://1xanimes.com/high-school-dxd/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "trigun-stargaze",
       "title": "Series ★ 7.3 TRIGUN STARGAZE",
       "image": "https://image.tmdb.org/t/p/original/nPQnCHcztTVyvadunN9qdS9pfX6.jpg",
       "link": "https://1xanimes.com/trigun-stargaze/",
+      "rating": "7.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "detective-conan",
       "title": "Series ★ 8 Detective Conan",
       "image": "https://image.tmdb.org/t/p/original/iHfA63x7rFaWbP2C832uCe2r0zy.jpg",
       "link": "https://1xanimes.com/detective-conan/",
+      "rating": "8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "jujutsu-kaisen",
       "title": "Series ★ 8.6 JUJUTSU KAISEN",
       "image": "https://image.tmdb.org/t/p/original/3Lgonmng80a7BpEHdQ2TIhuvMBv.jpg",
       "link": "https://1xanimes.com/jujutsu-kaisen/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "roll-over-and-die-i-will-fight-for-an-ordinary-life-with-my-love-and-cursed-sword",
       "title": "Series ★ 7.5 ROLL OVER AND DIE: I Will Fight for an Ordinary Life with My Love and Cursed Sword!",
       "image": "https://image.tmdb.org/t/p/w500/uzRpWknriZnd8fxkse5sfVaQwJn.jpg",
       "link": "https://1xanimes.com/roll-over-and-die-i-will-fight-for-an-ordinary-life-with-my-love-and-cursed-sword/",
+      "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "sentenced-to-be-a-hero",
       "title": "Series ★ 8.9 Sentenced to Be a Hero",
       "image": "https://image.tmdb.org/t/p/w500/kzyNxTZFcWjkYJU9T9aJ8vXTAFN.jpg",
       "link": "https://1xanimes.com/sentenced-to-be-a-hero/",
+      "rating": "8.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "dandelion",
       "title": "Series Dandelion",
       "image": "https://image.tmdb.org/t/p/w500/r5Cq5wax0sQ1ModcZXWKyXF1xpy.jpg",
       "link": "https://1xanimes.com/dandelion/",
+      "rating": "0",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "an-adventurers-daily-grind-at-age-29",
       "title": "Series ★ 9 An Adventurer’s Daily Grind at Age 29",
       "image": "https://image.tmdb.org/t/p/w500/tx6XZPOJ5UgVzvo8BXb2cNhFBq5.jpg",
       "link": "https://1xanimes.com/an-adventurers-daily-grind-at-age-29/",
+      "rating": "9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "you-and-i-are-polar-opposites",
       "title": "Series ★ 8.6 You and I Are Polar Opposites",
       "image": "https://image.tmdb.org/t/p/w500/9hRuMU33DBz4z1vaYBRqLLuFFbQ.jpg",
       "link": "https://1xanimes.com/you-and-i-are-polar-opposites/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "tojima-wants-to-be-a-kamen-rider",
       "title": "Series ★ 7.7 Tojima Wants to Be a Kamen Rider",
       "image": "https://image.tmdb.org/t/p/w500/oDHsngq989H1jY2ZsLB5KRUVIb.jpg",
       "link": "https://1xanimes.com/tojima-wants-to-be-a-kamen-rider/",
+      "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "fire-force",
       "title": "Series ★ 8.4 Fire Force",
       "image": "https://image.tmdb.org/t/p/original/5HNPSQGmmgX9Eyz0Tm0mbqwCvyR.jpg",
       "link": "https://1xanimes.com/fire-force/",
+      "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "jack-of-all-trades-party-of-none",
       "title": "Series ★ 8.5 Jack-of-All-Trades, Party of None",
       "image": "https://image.tmdb.org/t/p/w500/qRvICaz6LJXz96DaYcpTjQf6QN8.jpg",
       "link": "https://1xanimes.com/jack-of-all-trades-party-of-none/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "i-got-a-cheat-skill-in-another-world-and-became-unrivaled-in-the-real-world-too",
       "title": "Series ★ 8.2 I Got a Cheat Skill in Another World and Became Unrivaled in the Real World, Too",
       "image": "https://image.tmdb.org/t/p/w500/dXrUejdxJFgk6FGoB8V3VQhYsjJ.jpg",
       "link": "https://1xanimes.com/i-got-a-cheat-skill-in-another-world-and-became-unrivaled-in-the-real-world-too/",
+      "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-daily-life-of-the-immortal-king",
       "title": "Series ★ 8.3 The Daily Life of the Immortal King",
       "image": "https://image.tmdb.org/t/p/original/kznw9MNhBUh60Tt0bW4IiQORuiA.jpg",
       "link": "https://1xanimes.com/the-daily-life-of-the-immortal-king/",
+      "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "dark-moon-the-blood-altar",
       "title": "Series ★ 8.3 DARK MOON: THE BLOOD ALTAR",
       "image": "https://image.tmdb.org/t/p/w500/68HcRvCpiajsPhKn1MnV4hqeCAN.jpg",
       "link": "https://1xanimes.com/dark-moon-the-blood-altar/",
+      "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "jojos-bizarre-adventure",
       "title": "Series ★ 8.6 JoJo’s Bizarre Adventure",
       "image": "https://image.tmdb.org/t/p/original/mikiJEsBDWTcYNfLJ4mu5ZkqYfe.jpg",
       "link": "https://1xanimes.com/jojos-bizarre-adventure/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "classroom-of-the-elite",
       "title": "Series ★ 8.4 Classroom of the Elite",
       "image": "https://image.tmdb.org/t/p/original/wyATdDDS7T6hMwtI7AnMMjVwsGA.jpg",
       "link": "https://1xanimes.com/classroom-of-the-elite/",
+      "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "tottemo-luckyman",
       "title": "Series ★ 7.5 Tottemo! Luckyman",
       "image": "https://image.tmdb.org/t/p/original/iiVLYdbVCOv8aqH7WkA2butLYOk.jpg",
       "link": "https://1xanimes.com/tottemo-luckyman/",
+      "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "hana-kimi",
       "title": "Series ★ 7.6 Hana-Kimi",
       "image": "https://image.tmdb.org/t/p/w500/wCZn0Is62Tx4HC9WuFGYysjeHCx.jpg",
       "link": "https://1xanimes.com/hana-kimi/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "7.6",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "shin-chan",
       "title": "Series ★ 7.7 Shin Chan",
       "image": "https://image.tmdb.org/t/p/w500/zg19Paur3lVVSh8J4LJVO1wgBIg.jpg",
       "link": "https://1xanimes.com/shin-chan/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "7.7",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "my-hero-academia",
       "title": "Series ★ 8.6 My Hero Academia",
       "image": "https://image.tmdb.org/t/p/original/jVJoVN9i6eUopQfG2mnzfDR5CmF.jpg",
       "link": "https://1xanimes.com/my-hero-academia/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "8.6",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "gintama",
       "title": "Series ★ 8.1 Gintama",
       "image": "https://image.tmdb.org/t/p/w500/f7vK8pzZIqhyA8sYmBpWmp9Ae7.jpg",
       "link": "https://1xanimes.com/gintama/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "8.1",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "to-be-hero-x",
       "title": "Series ★ 8.8 TO BE HERO X",
       "image": "https://image.tmdb.org/t/p/w500/7ynNG9lYS9HIR8cYMgawO19VPkg.jpg",
       "link": "https://1xanimes.com/to-be-hero-x/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "8.8",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "one-punch-man",
       "title": "Series ★ 8.4 One-Punch Man",
       "image": "https://image.tmdb.org/t/p/original/y9M6bjEc1oI7B8RISowo5L8oq19.jpg",
       "link": "https://1xanimes.com/one-punch-man/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "8.4",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "baki-dou-the-invincible-samurai",
       "title": "Series BAKI-DOU: The Invincible Samurai",
       "image": "https://image.tmdb.org/t/p/w500/frtzbwANetYd0M4zdrZ5gx0E89q.jpg",
       "link": "https://1xanimes.com/baki-dou-the-invincible-samurai/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "0",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "theatre-of-darkness-yamishibai",
       "title": "Series ★ 7.4 Theatre of Darkness: Yamishibai",
       "image": "https://image.tmdb.org/t/p/w500/coYJ1i9QLlHZTanckLZ4iceptlj.jpg",
       "link": "https://1xanimes.com/theatre-of-darkness-yamishibai/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "7.4",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "spy-x-family",
       "title": "Series ★ 8.5 SPY x FAMILY",
       "image": "https://image.tmdb.org/t/p/original/cH9ASljQhRKGMsN8LG6Ldexz0I0.jpg",
       "link": "https://1xanimes.com/spy-x-family/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "8.5",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "campfire-cooking-in-another-world-with-my-absurd-skill",
       "title": "Series ★ 8.3 Campfire Cooking in Another World with My Absurd Skill",
       "image": "https://image.tmdb.org/t/p/original/rAfnEjWKCam13IFFIrzAzep4hIH.jpg",
       "link": "https://1xanimes.com/campfire-cooking-in-another-world-with-my-absurd-skill/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "8.3",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "im-standing-on-a-million-lives",
       "title": "Series ★ 6.5 I’m Standing on a Million Lives",
       "image": "https://image.tmdb.org/t/p/original/jGFtYSPzuQ4DJtAuIVmILlFYtR8.jpg",
       "link": "https://1xanimes.com/im-standing-on-a-million-lives/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "6.5",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "demon-slayer-kimetsu-no-yaiba",
       "title": "Series ★ 8.6 Demon Slayer: Kimetsu no Yaiba",
       "image": "https://image.tmdb.org/t/p/original/axI3BUZgTYz36IYtUtRhivtspUo.jpg",
       "link": "https://1xanimes.com/demon-slayer-kimetsu-no-yaiba/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "8.6",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "mf-ghost",
       "title": "Series ★ 8.2 MF GHOST",
       "image": "https://image.tmdb.org/t/p/original/63cDEEjJw1x7RXPi3DxKdQ2Q7oK.jpg",
       "link": "https://1xanimes.com/mf-ghost/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "8.2",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "yuri-on-ice",
       "title": "Series ★ 8.5 Yuri!!! on Ice",
       "image": "https://image.tmdb.org/t/p/w500/oxenakJNCj06JrWHENjvwaWGcSz.jpg",
       "link": "https://1xanimes.com/yuri-on-ice/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "8.5",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "terror-in-resonance",
       "title": "Series ★ 7.8 Terror in Resonance",
       "image": "https://image.tmdb.org/t/p/w500/wc1PaImHVXIESClpEDwNI1mlYuC.jpg",
       "link": "https://1xanimes.com/terror-in-resonance/",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "rating": "7.8",
+      "firstSeenAt": "2026-08-12T09:54:54.297Z",
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "a-gatherers-adventure-in-isekai",
       "title": "Series ★ 7.6 A Gatherer’s Adventure in Isekai",
       "image": "https://image.tmdb.org/t/p/w500/AtpIf9wnT6IaHoG31XsdqZEEf80.jpg",
       "link": "https://1xanimes.com/a-gatherers-adventure-in-isekai/",
+      "rating": "7.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "with-you-our-love-will-make-it-through",
       "title": "Series ★ 9 With You, Our Love Will Make It Through",
       "image": "https://image.tmdb.org/t/p/w500/uQb3NkDWEXQ9m1w49PzEy04uFn1.jpg",
       "link": "https://1xanimes.com/with-you-our-love-will-make-it-through/",
+      "rating": "9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "lets-play",
       "title": "Series ★ 7.3 Let’s Play",
       "image": "https://image.tmdb.org/t/p/w500/tJbyOYE4befDE7SgV03aJzxt8Ja.jpg",
       "link": "https://1xanimes.com/lets-play/",
+      "rating": "7.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "solo-leveling",
       "title": "Series ★ 8.6 Solo Leveling",
       "image": "https://image.tmdb.org/t/p/original/rzlv1VbH5grU3kncVlnbgf2nR9y.jpg",
       "link": "https://1xanimes.com/solo-leveling/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "a-wild-last-boss-appeared",
       "title": "Series ★ 7.5 A Wild Last Boss Appeared!",
       "image": "https://image.tmdb.org/t/p/w500/xh9lu8gDgzwMBiByTRtTsclluZf.jpg",
       "link": "https://1xanimes.com/a-wild-last-boss-appeared/",
+      "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "mechanical-marie",
       "title": "Series ★ 8.2 Mechanical Marie",
       "image": "https://image.tmdb.org/t/p/w500/vsH56qFI4GEjeIPcIFIBEF6aaT9.jpg",
       "link": "https://1xanimes.com/mechanical-marie/",
+      "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "gachiakuta",
       "title": "Series ★ 8.6 Gachiakuta",
       "image": "https://image.tmdb.org/t/p/w500/jH78nLFrTU6aP7hY7KO6DZHFLoX.jpg",
       "link": "https://1xanimes.com/gachiakuta/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "hunter-x-hunter",
       "title": "Series ★ 8.7 Hunter x Hunter",
       "image": "https://image.tmdb.org/t/p/w500/i2EEr2uBvRlAwJ8d8zTG2Y19mIa.jpg",
       "link": "https://1xanimes.com/hunter-x-hunter/",
+      "rating": "8.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "naruto-shippuden",
       "title": "Series ★ 8.5 Naruto Shippūden",
       "image": "https://image.tmdb.org/t/p/w500/71mASgFgSiPl9QUexVH8BubU0lD.jpg",
       "link": "https://1xanimes.com/naruto-shippuden/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "chainsaw-man-the-movie-reze-arc",
       "title": "Movie ★ 8.3 Chainsaw Man – The Movie: Reze Arc",
       "image": "https://image.tmdb.org/t/p/w500/pHyxb2RV5wLlboAwm9ZJ9qTVEDw.jpg",
       "link": "https://1xanimes.com/chainsaw-man-the-movie-reze-arc/",
+      "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "chainsaw-man",
       "title": "Series ★ 8.5 Chainsaw Man",
       "image": "https://image.tmdb.org/t/p/w500/yVtx7Xn9UxNJqvG2BkvhCcmed9S.jpg",
       "link": "https://1xanimes.com/chainsaw-man/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "if-my-favorite-pop-idol-made-it-to-the-budokan-i-would-die",
       "title": "Series ★ 7.9 If My Favorite Pop Idol Made It to the Budokan, I Would Die",
       "image": "https://image.tmdb.org/t/p/w500/n8tBDlRzWOA8ywyQNv3t9EokHVx.jpg",
       "link": "https://1xanimes.com/if-my-favorite-pop-idol-made-it-to-the-budokan-i-would-die/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "suicide-squad-isekai",
       "title": "Series ★ 7.4 Suicide Squad Isekai",
       "image": "https://image.tmdb.org/t/p/w500/AbVwsBJnLoqJzPJn8dlGFSGfygy.jpg",
       "link": "https://1xanimes.com/suicide-squad-isekai/",
+      "rating": "7.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-mighty-nein",
       "title": "Series ★ 7.9 The Mighty Nein",
       "image": "https://image.tmdb.org/t/p/w500/qJTZanXDiJKABLNGRM9LmSg8YT7.jpg",
       "link": "https://1xanimes.com/the-mighty-nein/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "your-lie-in-april",
       "title": "Series ★ 8.6 Your Lie in April",
       "image": "https://image.tmdb.org/t/p/w500/rRjfH3ckTYz8z8aSkJshFL4VyK9.jpg",
       "link": "https://1xanimes.com/your-lie-in-april/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "overlord",
       "title": "Series ★ 8.5 Overlord",
       "image": "https://image.tmdb.org/t/p/w500/K8ZUjxaj9F0t3AwJDz8ypzBynM.jpg",
       "link": "https://1xanimes.com/overlord/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "spy-x-family-code-white",
       "title": "Movie ★ 7.1 SPY x FAMILY CODE: White",
       "image": "https://image.tmdb.org/t/p/w500/xlIQf4y9eB14iYzNN142tROIWON.jpg",
       "link": "https://1xanimes.com/spy-x-family-code-white/",
+      "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "black-clover-sword-of-the-wizard-king",
       "title": "Movie ★ 8.1 Black Clover: Sword of the Wizard King",
       "image": "https://image.tmdb.org/t/p/w500/9YEGawvjaRgnyW6QVcUhFJPFDco.jpg",
       "link": "https://1xanimes.com/black-clover-sword-of-the-wizard-king/",
+      "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "black-clover",
       "title": "Series ★ 8.5 Black Clover",
       "image": "https://image.tmdb.org/t/p/w500/kaMisKeOoTBPxPkbC3OW7Wgt6ON.jpg",
       "link": "https://1xanimes.com/black-clover/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "your-name",
       "title": "Movie ★ 8.5 Your Name.",
       "image": "https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg",
       "link": "https://1xanimes.com/your-name/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "weathering-with-you",
       "title": "Movie ★ 8.5 Weathering with You",
       "image": "https://image.tmdb.org/t/p/w500/qgrk7r1fV4IjuoeiGS5HOhXNdLJ.jpg",
       "link": "https://1xanimes.com/weathering-with-you/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "suzume",
       "title": "Movie ★ 7.9 Suzume",
       "image": "https://image.tmdb.org/t/p/w500/yStW1TXF5s7Tbtu9KjIZEaWl6HL.jpg",
       "link": "https://1xanimes.com/suzume/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "may-i-ask-for-one-final-thing",
       "title": "Series ★ 7.7 May I Ask for One Final Thing?",
       "image": "https://image.tmdb.org/t/p/w500/6WUSl1NP5I66IGiI6n9BwOzZTbY.jpg",
       "link": "https://1xanimes.com/may-i-ask-for-one-final-thing/",
+      "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "my-status-as-an-assassin-obviously-exceeds-the-heros",
       "title": "Series ★ 7.1 My Status as an Assassin Obviously Exceeds the Hero’s",
       "image": "https://image.tmdb.org/t/p/w500/oQk3aXYEa4TMd9rAYgzDpAYTU8P.jpg",
       "link": "https://1xanimes.com/my-status-as-an-assassin-obviously-exceeds-the-heros/",
+      "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "let-this-grieving-soul-retire",
       "title": "Series ★ 6.8 Let This Grieving Soul Retire",
       "image": "https://image.tmdb.org/t/p/w500/egViTAdBqUyUFI2sIBsGbnH5Sun.jpg",
       "link": "https://1xanimes.com/let-this-grieving-soul-retire/",
+      "rating": "6.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "tsukimichi-moonlit-fantasy",
       "title": "Series ★ 8.4 TSUKIMICHI -Moonlit Fantasy-",
       "image": "https://image.tmdb.org/t/p/original/qSg01GHJOdWw8FqI6qjk6xgWqtT.jpg",
       "link": "https://1xanimes.com/tsukimichi-moonlit-fantasy/",
+      "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-summer-hikaru-died",
       "title": "Series ★ 8.3 The Summer Hikaru Died",
       "image": "https://image.tmdb.org/t/p/w500/dTgq553baOQYUmgjcSlVX0xd6ut.jpg",
       "link": "https://1xanimes.com/the-summer-hikaru-died/",
+      "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "remonster",
       "title": "Series ★ 8.1 Re:Monster",
       "image": "https://image.tmdb.org/t/p/w500/AmFrA0jX0p9twH1IKfxcGWVz2X3.jpg",
       "link": "https://1xanimes.com/remonster/",
+      "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "tatsuki-fujimoto-17-26",
       "title": "Series ★ 8 Tatsuki Fujimoto 17-26",
       "image": "https://image.tmdb.org/t/p/w500/rVBxMx1IrBdxbxbBuOWK8kiurMB.jpg",
       "link": "https://1xanimes.com/tatsuki-fujimoto-17-26/",
+      "rating": "8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "ragna-crimson",
       "title": "Series ★ 6.9 Ragna Crimson",
       "image": "https://image.tmdb.org/t/p/w500/oGmNWwV3wgp1DZXTOLSAYZZgh3X.jpg",
       "link": "https://1xanimes.com/ragna-crimson/",
+      "rating": "6.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "food-wars-shokugeki-no-soma",
       "title": "Series ★ 8.4 Food Wars! Shokugeki no Soma",
       "image": "https://image.tmdb.org/t/p/w500/eAQHqcJXP0FBzXvQkIV5g5ZueZb.jpg",
       "link": "https://1xanimes.com/food-wars-shokugeki-no-soma/",
+      "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "reborn-to-master-the-blade-from-hero-king-to-extraordinary-squire-%e2%99%80",
       "title": "Series ★ 6.8 Reborn to Master the Blade: From Hero-King to Extraordinary Squire ♀",
       "image": "https://image.tmdb.org/t/p/w500/zrnUnV0PFWnJ1G6wDvzkQL2HL9d.jpg",
       "link": "https://1xanimes.com/reborn-to-master-the-blade-from-hero-king-to-extraordinary-squire-%e2%99%80/",
+      "rating": "6.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "my-clueless-first-friend",
       "title": "Series ★ 6.5 My Clueless First Friend",
       "image": "https://image.tmdb.org/t/p/w500/vgUQaunqSLmTtU38VmRntz8aVsN.jpg",
       "link": "https://1xanimes.com/my-clueless-first-friend/",
+      "rating": "6.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "death-note",
       "title": "Series ★ 8.6 Death Note",
       "image": "https://image.tmdb.org/t/p/w500/tCZFfYTIwrR7n94J6G14Y4hAFU6.jpg",
       "link": "https://1xanimes.com/death-note/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "ranma1-2",
       "title": "Series ★ 8.2 Ranma1/2",
       "image": "https://image.tmdb.org/t/p/w500/cDThx8yRYbdPOSgHbjihS4q7GYc.jpg",
       "link": "https://1xanimes.com/ranma1-2/",
+      "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "i-was-reincarnated-as-the-7th-prince-so-i-can-take-my-time-perfecting-my-magical-ability",
       "title": "Series ★ 7.7 I Was Reincarnated as the 7th Prince so I Can Take My Time Perfecting My Magical Ability",
       "image": "https://image.tmdb.org/t/p/w500/ruLkQB8i1yazHgO0QCWpyJRRTs9.jpg",
       "link": "https://1xanimes.com/i-was-reincarnated-as-the-7th-prince-so-i-can-take-my-time-perfecting-my-magical-ability/",
+      "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "after-school-dice-club",
       "title": "Series ★ 6.3 After School Dice Club",
       "image": "https://image.tmdb.org/t/p/w500/nHVmPRqjGxMi4RNlwgflXA8mvev.jpg",
       "link": "https://1xanimes.com/after-school-dice-club/",
+      "rating": "6.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "kaiju-no-8",
       "title": "Series ★ 8.5 Kaiju No. 8",
       "image": "https://image.tmdb.org/t/p/w500/bJxGs0w5RAhaX4fIUQu511rvm0S.jpg",
       "link": "https://1xanimes.com/kaiju-no-8/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "i-left-my-a-rank-party-to-help-my-former-students-reach-the-dungeon-depths",
       "title": "Series ★ 6.5 I Left My A-Rank Party to Help My Former Students Reach the Dungeon Depths!",
       "image": "https://image.tmdb.org/t/p/w500/I0AU52dvJzQptvbmWfVnVBgm75.jpg",
       "link": "https://1xanimes.com/i-left-my-a-rank-party-to-help-my-former-students-reach-the-dungeon-depths/",
+      "rating": "6.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "lord-of-mysteries",
       "title": "Series ★ 8.7 Lord of Mysteries",
       "image": "https://image.tmdb.org/t/p/w500/c8fHePq3yTn3WvZd4hupkHwsjm5.jpg",
       "link": "https://1xanimes.com/lord-of-mysteries/",
+      "rating": "8.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "girls-frontline",
       "title": "Series ★ 6.7 Girls’ Frontline",
       "image": "https://image.tmdb.org/t/p/w500/ip5Zx3RWxzNuRUDYpPwPrjsPOo.jpg",
       "link": "https://1xanimes.com/girls-frontline/",
+      "rating": "6.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "new-saga",
       "title": "Series ★ 7.3 New Saga",
       "image": "https://image.tmdb.org/t/p/w500/dmZ74VyWi3I8ZqJ1m3Fmcc1etgp.jpg",
       "link": "https://1xanimes.com/new-saga/",
+      "rating": "7.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "dan-da-dan",
       "title": "Series ★ 8.6 Dan Da Dan",
       "image": "https://image.tmdb.org/t/p/w500/6qfZAOEUFIrbUH3JvePclx1nXzz.jpg",
       "link": "https://1xanimes.com/dan-da-dan/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "my-dress-up-darling",
       "title": "Series ★ 8.4 My Dress-Up Darling",
       "image": "https://image.tmdb.org/t/p/original/j5tZc3bbdxLQic4TmFATwSkTIPa.jpg",
       "link": "https://1xanimes.com/my-dress-up-darling/",
+      "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "toilet-bound-hanako-kun",
       "title": "Series ★ 8.6 Toilet-Bound Hanako-kun",
       "image": "https://image.tmdb.org/t/p/original/ls3cV7kP1p5OldWE01P5BDJLSNG.jpg",
       "link": "https://1xanimes.com/toilet-bound-hanako-kun/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "a-couple-of-cuckoos",
       "title": "Series ★ 7.1 A Couple of Cuckoos",
       "image": "https://image.tmdb.org/t/p/original/tdPYDpjvapdSdxroFidhiXvKY4B.jpg",
       "link": "https://1xanimes.com/a-couple-of-cuckoos/",
+      "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "cells-at-work",
       "title": "Series ★ 8.1 Cells at Work!",
       "image": "https://image.tmdb.org/t/p/w500/sgwwEGvNy7vCJN8IVnl44tuVlMZ.jpg",
       "link": "https://1xanimes.com/cells-at-work/",
+      "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "takopis-original-sin",
       "title": "Series ★ 8.8 Takopi’s Original Sin",
       "image": "https://image.tmdb.org/t/p/w500/xPXDVhVKt0XM34ihoUVMHtLYTw8.jpg",
       "link": "https://1xanimes.com/takopis-original-sin/",
+      "rating": "8.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "heroines-run-the-show",
       "title": "Series ★ 6.7 Heroines Run the Show",
       "image": "https://image.tmdb.org/t/p/w500/A5OlJA472GSc2S05bzAMaTw1o9w.jpg",
       "link": "https://1xanimes.com/heroines-run-the-show/",
+      "rating": "6.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "jujutsu-kaisen-0",
       "title": "Movie ★ 8.1 Jujutsu Kaisen 0",
       "image": "https://image.tmdb.org/t/p/original/yzkgx79vj1KsZBzxFBIsQBwBkPE.jpg",
       "link": "https://1xanimes.com/jujutsu-kaisen-0/",
+      "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "relife",
       "title": "Series ★ 7.6 ReLIFE",
       "image": "https://image.tmdb.org/t/p/w500/aRK64bB8hMsuZZnitebPyKqOR5d.jpg",
       "link": "https://1xanimes.com/relife/",
+      "rating": "7.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "rent-a-girlfriend",
       "title": "Series ★ 8.3 Rent-a-Girlfriend",
       "image": "https://image.tmdb.org/t/p/original/lHt3j91jV7Kh6MuRJ4w8KmK3Xav.jpg",
       "link": "https://1xanimes.com/rent-a-girlfriend/",
+      "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "goblin-slayer",
       "title": "Series ★ 8 Goblin Slayer",
       "image": "https://image.tmdb.org/t/p/w500/x8ZQyxAFjz9jtCGivbOMYUC4Tp3.jpg",
       "link": "https://1xanimes.com/goblin-slayer/",
+      "rating": "8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "kaguya-sama-love-is-war",
       "title": "Series ★ 8.5 Kaguya-sama: Love Is War",
       "image": "https://image.tmdb.org/t/p/w500/5khbC6AuNgnvnoDbjIMKCOhEtIc.jpg",
       "link": "https://1xanimes.com/kaguya-sama-love-is-war/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "sword-art-online",
       "title": "Series ★ 8.2 Sword Art Online",
       "image": "https://image.tmdb.org/t/p/original/mK9zGGk90VmHLOnK79sqlGFjZjW.jpg",
       "link": "https://1xanimes.com/sword-art-online/",
+      "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "mushoku-tensei-jobless-reincarnation",
       "title": "Series ★ 8.5 Mushoku Tensei: Jobless Reincarnation",
       "image": "https://image.tmdb.org/t/p/w500/gLKOYIMyKlUHW0SVdskhgf9C0yy.jpg",
       "link": "https://1xanimes.com/mushoku-tensei-jobless-reincarnation/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "one-piece-clockwork-island-adventure",
       "title": "Movie ★ 6.9 One Piece: Clockwork Island Adventure",
       "image": "https://image.tmdb.org/t/p/w500/phrVSY5cpUkybc0gU41crWi2XIP.jpg",
       "link": "https://1xanimes.com/one-piece-clockwork-island-adventure/",
+      "rating": "6.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "one-piece-the-movie",
       "title": "Movie ★ 7.1 One Piece: The Movie",
       "image": "https://image.tmdb.org/t/p/w500/aRqQNSuXpcE3dkJC43aEg9f2HXd.jpg",
       "link": "https://1xanimes.com/one-piece-the-movie/",
+      "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-maid-i-hired-recently-is-mysterious",
       "title": "Series ★ 8.2 The Maid I Hired Recently Is Mysterious",
       "image": "https://image.tmdb.org/t/p/w500/rShHNMmuKJNIxD2XBoPOLX2OGHT.jpg",
       "link": "https://1xanimes.com/the-maid-i-hired-recently-is-mysterious/",
+      "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "my-unique-skill-makes-me-op-even-at-level-1",
       "title": "Series ★ 7.4 My Unique Skill Makes Me OP Even at Level 1",
       "image": "https://image.tmdb.org/t/p/w500/cIrptxkpf3SNcPty3JaywvWRJ5w.jpg",
       "link": "https://1xanimes.com/my-unique-skill-makes-me-op-even-at-level-1/",
+      "rating": "7.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-great-cleric",
       "title": "Series ★ 6.9 The Great Cleric",
       "image": "https://image.tmdb.org/t/p/w500/zkzYTYdhaNqRaGyKsBunt3y5vs0.jpg",
       "link": "https://1xanimes.com/the-great-cleric/",
+      "rating": "6.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "wind-breaker",
       "title": "Series ★ 8.1 WIND BREAKER",
       "image": "https://image.tmdb.org/t/p/w500/3kTFL3PAeTyS8gGZAh0iYG6NNjt.jpg",
       "link": "https://1xanimes.com/wind-breaker/",
+      "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "even-given-the-worthless-appraiser-class-im-actually-the-strongest",
       "title": "Series ★ 6.9 Even Given the Worthless “Appraiser” Class, I’m Actually the Strongest",
       "image": "https://image.tmdb.org/t/p/w500/lUAGrruGGj2PB6CYkw6tGLQD41G.jpg",
       "link": "https://1xanimes.com/even-given-the-worthless-appraiser-class-im-actually-the-strongest/",
+      "rating": "6.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "haikyu-the-dumpster-battle",
       "title": "Movie ★ 7.7 HAIKYU!! The Dumpster Battle",
       "image": "https://image.tmdb.org/t/p/w500/ntRU0OA4etGGiMMmH1Yw0bnaMdW.jpg",
       "link": "https://1xanimes.com/haikyu-the-dumpster-battle/",
+      "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "welcome-to-the-outcasts-restaurant",
       "title": "Series ★ 7.5 Welcome to the Outcast’s Restaurant!",
       "image": "https://image.tmdb.org/t/p/w500/caWU2F1DSrrJgoJCSclpSoCWnge.jpg",
       "link": "https://1xanimes.com/welcome-to-the-outcasts-restaurant/",
+      "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "roboticsnotes",
       "title": "Series ★ 6.8 Robotics;Notes",
       "image": "https://image.tmdb.org/t/p/w500/iRD5fwcKNqCuu7q6LqwCZP2iHpc.jpg",
       "link": "https://1xanimes.com/roboticsnotes/",
+      "rating": "6.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "demon-lord-retry",
       "title": "Series ★ 7.6 Demon Lord, Retry!",
       "image": "https://image.tmdb.org/t/p/w500/d5hXGaqit05qhYP4cqZs0BUrLG.jpg",
       "link": "https://1xanimes.com/demon-lord-retry/",
+      "rating": "7.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "dekin-no-mogura-the-earthbound-mole",
       "title": "Series ★ 8.4 Dekin no Mogura: The Earthbound Mole",
       "image": "https://image.tmdb.org/t/p/w500/xnEForFiNATvYS4MUwYyFuPyiok.jpg",
       "link": "https://1xanimes.com/dekin-no-mogura-the-earthbound-mole/",
+      "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "assassination-classroom",
       "title": "Series ★ 8.4 Assassination Classroom",
       "image": "https://image.tmdb.org/t/p/w500/qf0l0nQ2t06Es3cSXflqx6l6vsJ.jpg",
       "link": "https://1xanimes.com/assassination-classroom/",
+      "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "sakamoto-days",
       "title": "Series ★ 8.1 SAKAMOTO DAYS",
       "image": "https://image.tmdb.org/t/p/w500/wRpCqsJFyKNuh5FMegNPrhzp2NF.jpg",
       "link": "https://1xanimes.com/sakamoto-days/",
+      "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "shoot-goal-to-the-future",
       "title": "Series ★ 6.9 Shoot! Goal to the Future",
       "image": "https://image.tmdb.org/t/p/w500/3jMImKHLU9zoB2K2hDEe6fu1Emn.jpg",
       "link": "https://1xanimes.com/shoot-goal-to-the-future/",
+      "rating": "6.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "sword-art-online-alternative-gun-gale-online",
       "title": "Series ★ 7.7 Sword Art Online Alternative: Gun Gale Online",
       "image": "https://image.tmdb.org/t/p/w500/1EBk96E3cVVOEVlx2z744oEuFQk.jpg",
       "link": "https://1xanimes.com/sword-art-online-alternative-gun-gale-online/",
+      "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "ill-become-a-villainess-who-goes-down-in-history",
       "title": "Series ★ 7.7 I’ll Become a Villainess Who Goes Down in History",
       "image": "https://image.tmdb.org/t/p/w500/lTDWs3IjKwiBz00c8bzVmrgLa3A.jpg",
       "link": "https://1xanimes.com/ill-become-a-villainess-who-goes-down-in-history/",
+      "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-apothecary-diaries",
       "title": "Series ★ 8.6 The Apothecary Diaries",
       "image": "https://image.tmdb.org/t/p/original/p6biowIL0kGP3ZlJqDoKvOYcidU.jpg",
       "link": "https://1xanimes.com/the-apothecary-diaries/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "ive-been-killing-slimes-for-300-years-and-maxed-out-my-level",
       "title": "Series ★ 7.9 I’ve Been Killing Slimes for 300 Years and Maxed Out My Level",
       "image": "https://image.tmdb.org/t/p/w500/iyTiJqrAs2YItyTYGI18PdqX65c.jpg",
       "link": "https://1xanimes.com/ive-been-killing-slimes-for-300-years-and-maxed-out-my-level/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "my-hero-academia-youre-next",
       "title": "Movie ★ 7.2 My Hero Academia: You’re Next",
       "image": "https://image.tmdb.org/t/p/w500/tTrI6PwqzxkgO3dvQ7BEKXM7SYR.jpg",
       "link": "https://1xanimes.com/my-hero-academia-youre-next/",
+      "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "my-hero-academia-world-heroes-mission",
       "title": "Movie ★ 7.6 My Hero Academia: World Heroes’ Mission",
       "image": "https://image.tmdb.org/t/p/w500/AsTlA7dj2ySGY1pzGSD0MoHFhEF.jpg",
       "link": "https://1xanimes.com/my-hero-academia-world-heroes-mission/",
+      "rating": "7.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "my-hero-academia-heroes-rising",
       "title": "Movie ★ 8.1 My Hero Academia: Heroes Rising",
       "image": "https://image.tmdb.org/t/p/w500/kpWsIkfXrnQ1pmR79qAHHq7DPxc.jpg",
       "link": "https://1xanimes.com/my-hero-academia-heroes-rising/",
+      "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "my-hero-academia-two-heroes",
       "title": "Movie ★ 7.9 My Hero Academia: Two Heroes",
       "image": "https://image.tmdb.org/t/p/w500/hC4nTxdhXqFWzgqynGvvXVMiMNp.jpg",
       "link": "https://1xanimes.com/my-hero-academia-two-heroes/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "fairy-tail-100-years-quest",
       "title": "Series ★ 7.9 FAIRY TAIL 100 YEARS QUEST",
       "image": "https://image.tmdb.org/t/p/w500/wj5i6YgZj7LltRE3yE6VTgfdbK0.jpg",
       "link": "https://1xanimes.com/fairy-tail-100-years-quest/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "black-butler",
       "title": "Series ★ 7.7 Black Butler",
       "image": "https://image.tmdb.org/t/p/w500/iXGs130TRoUplHf0o86zp9MqAYc.jpg",
       "link": "https://1xanimes.com/black-butler/",
+      "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "villainess-level-99-i-may-be-the-hidden-boss-but-im-not-the-demon-lord",
       "title": "Series ★ 7.1 Villainess Level 99: I May Be the Hidden Boss But I’m Not the Demon Lord",
       "image": "https://image.tmdb.org/t/p/w500/45KqPcfk6qrxl5XF7z9Wwtvo0vw.jpg",
       "link": "https://1xanimes.com/villainess-level-99-i-may-be-the-hidden-boss-but-im-not-the-demon-lord/",
+      "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "trillion-game",
       "title": "Series ★ 5.9 TRILLION GAME",
       "image": "https://image.tmdb.org/t/p/w500/pL4nFHx4lChRXLrJzRX0sAl8SfG.jpg",
       "link": "https://1xanimes.com/trillion-game/",
+      "rating": "5.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "my-happy-marriage",
       "title": "Series ★ 8.3 My Happy Marriage",
       "image": "https://image.tmdb.org/t/p/w500/5RZIBqSYHhpQF6s8Dgw2aXlA4ZS.jpg",
       "link": "https://1xanimes.com/my-happy-marriage/",
+      "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "dragon-ball-z-kai",
       "title": "Series ★ 7.5 Dragon Ball Z Kai",
       "image": "https://image.tmdb.org/t/p/w500/ojsPI8fNwcecKLhVC4rB4ZZhFMc.jpg",
       "link": "https://1xanimes.com/dragon-ball-z-kai/",
+      "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "bye-bye-earth",
       "title": "Series ★ 7.2 Bye Bye, Earth",
       "image": "https://image.tmdb.org/t/p/w500/iuo2jor1Hya3bT1imNxEScgoh5o.jpg",
       "link": "https://1xanimes.com/bye-bye-earth/",
+      "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "paradox-live-the-animation",
       "title": "Series ★ 5.5 Paradox Live THE ANIMATION",
       "image": "https://image.tmdb.org/t/p/w500/tlPG08mmtFPb6K0PpymddXvuzzt.jpg",
       "link": "https://1xanimes.com/paradox-live-the-animation/",
+      "rating": "5.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "lost-in-starlight",
       "title": "Movie ★ 7.3 Lost in Starlight",
       "image": "https://image.tmdb.org/t/p/w500/dXlUIfwejWa9YvugU9V773dUASY.jpg",
       "link": "https://1xanimes.com/lost-in-starlight/",
+      "rating": "7.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-unaware-atelier-meister",
       "title": "Series ★ 7.1 The Unaware Atelier Meister",
       "image": "https://image.tmdb.org/t/p/w500/OPJ7k6DMm1o3A0kIXysgrqVT5w.jpg",
       "link": "https://1xanimes.com/the-unaware-atelier-meister/",
+      "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "tower-of-god",
       "title": "Series ★ 8.2 Tower of God",
       "image": "https://image.tmdb.org/t/p/w500/9QXO4C0AwAuBa15nuDLZU2MyktB.jpg",
       "link": "https://1xanimes.com/tower-of-god/",
+      "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "sk8-the-infinity",
       "title": "Series ★ 8.4 SK8 the Infinity",
       "image": "https://image.tmdb.org/t/p/w500/kZHnqxP16mb2pVYthJfT4buYk4P.jpg",
       "link": "https://1xanimes.com/sk8-the-infinity/",
+      "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "mobile-suit-gundam-gquuuuuux",
       "title": "Series ★ 7.5 Mobile Suit Gundam GQuuuuuuX",
       "image": "https://image.tmdb.org/t/p/w500/jb5d4vqHmKSQh9rB2T394e3z5To.jpg",
       "link": "https://1xanimes.com/mobile-suit-gundam-gquuuuuux/",
+      "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "teogonia",
       "title": "Series ★ 6.5 Teogonia",
       "image": "https://image.tmdb.org/t/p/w500/zGHrnnFc0p5Pf25qUaAv95JpnJC.jpg",
       "link": "https://1xanimes.com/teogonia/",
+      "rating": "6.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "once-upon-a-witchs-death",
       "title": "Series ★ 7.4 Once Upon a Witch’s Death",
       "image": "https://image.tmdb.org/t/p/w500/5Gr2mDFSGHhiEYrNfP6vbYtuNrT.jpg",
       "link": "https://1xanimes.com/once-upon-a-witchs-death/",
+      "rating": "7.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "berserk-of-gluttony",
       "title": "Series ★ 7.1 Berserk of Gluttony",
       "image": "https://image.tmdb.org/t/p/w500/wQMcq5YUjMfoIEqLRzrNQVt4ROl.jpg",
       "link": "https://1xanimes.com/berserk-of-gluttony/",
+      "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "tying-the-knot-with-an-amagami-sister",
       "title": "Series ★ 6.9 Tying the Knot with an Amagami Sister",
       "image": "https://image.tmdb.org/t/p/w500/werwTXBFyhlhBqDkGQzUaDolHt9.jpg",
       "link": "https://1xanimes.com/tying-the-knot-with-an-amagami-sister/",
+      "rating": "6.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "catch-me-at-the-ballpark",
       "title": "Series ★ 7.9 Catch Me at the Ballpark!",
       "image": "https://image.tmdb.org/t/p/w500/jgfrsJiFJCOCRWD5OnKbKpTw92E.jpg",
       "link": "https://1xanimes.com/catch-me-at-the-ballpark/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "possibly-the-greatest-alchemist-of-all-time",
       "title": "Series ★ 7.6 Possibly the Greatest Alchemist of All Time",
       "image": "https://image.tmdb.org/t/p/w500/4TyTS9O7ECH3mXpazQ6GpJXCqNm.jpg",
       "link": "https://1xanimes.com/possibly-the-greatest-alchemist-of-all-time/",
+      "rating": "7.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-gorilla-gods-go-to-girl",
       "title": "Series ★ 7.6 The Gorilla God’s Go-To Girl",
       "image": "https://image.tmdb.org/t/p/w500/wsVUjE78BP7v2KayDnlAKbiY3Av.jpg",
       "link": "https://1xanimes.com/the-gorilla-gods-go-to-girl/",
+      "rating": "7.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-shiunji-family-children",
       "title": "Series ★ 7.7 The Shiunji Family Children",
       "image": "https://image.tmdb.org/t/p/w500/tvhXMejlXyOUo24we09pXSgKw5j.jpg",
       "link": "https://1xanimes.com/the-shiunji-family-children/",
+      "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "zenshu",
       "title": "Series ★ 7.9 ZENSHU",
       "image": "https://image.tmdb.org/t/p/w500/okRnvNLpduDKPUIyZbMxJkeek8D.jpg",
       "link": "https://1xanimes.com/zenshu/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "magic-maker-how-to-make-magic-in-another-world",
       "title": "Series ★ 7.5 Magic Maker: How to Make Magic in Another World",
       "image": "https://image.tmdb.org/t/p/w500/wKe1FmUAcSukpfEn5s6747pBwLD.jpg",
       "link": "https://1xanimes.com/magic-maker-how-to-make-magic-in-another-world/",
+      "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "code-geass-lelouch-of-the-rebellion",
       "title": "Series ★ 8.3 Code Geass: Lelouch of the Rebellion",
       "image": "https://image.tmdb.org/t/p/w500/x316WCogkeIwNY4JR8zTCHbI2nQ.jpg",
       "link": "https://1xanimes.com/code-geass-lelouch-of-the-rebellion/",
+      "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "miss-kuroitsu-from-the-monster-development-department",
       "title": "Series ★ 6.2 Miss Kuroitsu From the Monster Development Department",
       "image": "https://image.tmdb.org/t/p/w500/yP0gRkxo9puHGAc9PgwUj9Ym0h.jpg",
       "link": "https://1xanimes.com/miss-kuroitsu-from-the-monster-development-department/",
+      "rating": "6.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "im-getting-married-to-a-girl-i-hate-in-my-class",
       "title": "Series ★ 6.5 I’m Getting Married to a Girl I Hate in My Class",
       "image": "https://image.tmdb.org/t/p/w500/k0Yb8KjspVjNlmvHNgqRRbhZ6LA.jpg",
       "link": "https://1xanimes.com/im-getting-married-to-a-girl-i-hate-in-my-class/",
+      "rating": "6.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "vtuber-legend-how-i-went-viral-after-forgetting-to-turn-off-my-stream",
       "title": "Series ★ 5.3 VTuber Legend: How I Went Viral After Forgetting to Turn Off My Stream",
       "image": "https://image.tmdb.org/t/p/w500/c6eB42kmJWGZgKecme6jhDeNMQr.jpg",
       "link": "https://1xanimes.com/vtuber-legend-how-i-went-viral-after-forgetting-to-turn-off-my-stream/",
+      "rating": "5.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "no-longer-allowed-in-another-world",
       "title": "Series ★ 7.2 No Longer Allowed in Another World",
       "image": "https://image.tmdb.org/t/p/w500/bO39Vo712EVr7nxKi1X4xk4GxEm.jpg",
       "link": "https://1xanimes.com/no-longer-allowed-in-another-world/",
+      "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "horimiya-the-missing-pieces",
       "title": "Series ★ 7.6 Horimiya: The Missing Pieces",
       "image": "https://image.tmdb.org/t/p/w500/aEJVHbXaC94y6thJ3nA6lBBnHjs.jpg",
       "link": "https://1xanimes.com/horimiya-the-missing-pieces/",
+      "rating": "7.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "horimiya",
       "title": "Series ★ 8.5 Horimiya",
       "image": "https://image.tmdb.org/t/p/w500/iSOKGl5KIeOCAtigUDCfFZe2cOi.jpg",
       "link": "https://1xanimes.com/horimiya/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "my-tiny-senpai",
       "title": "Series ★ 7.1 My Tiny Senpai",
       "image": "https://image.tmdb.org/t/p/w500/7zSPXGCvXjkVCR7797UbRDPfV2B.jpg",
       "link": "https://1xanimes.com/my-tiny-senpai/",
+      "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "true-beauty",
       "title": "Series ★ 8.2 True Beauty",
       "image": "https://image.tmdb.org/t/p/w500/9gpc8kIhNEG7r0VTkyI9aVBxdO3.jpg",
       "link": "https://1xanimes.com/true-beauty/",
+      "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "im-in-love-with-the-villainess",
       "title": "Series ★ 7.2 I’m in Love with the Villainess",
       "image": "https://image.tmdb.org/t/p/w500/29jtBbv4eSk0QHdVMLwl8P4p6NX.jpg",
       "link": "https://1xanimes.com/im-in-love-with-the-villainess/",
+      "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "i-parry-everything",
       "title": "Series ★ 7.9 I Parry Everything",
       "image": "https://image.tmdb.org/t/p/w500/nVmc8K5J7SGMlE6tA5lVzVzAzQ9.jpg",
       "link": "https://1xanimes.com/i-parry-everything/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "shangri-la-frontier",
       "title": "Series ★ 8.1 Shangri-La Frontier",
       "image": "https://image.tmdb.org/t/p/w500/aCGdpgNkgz66R1winFkTFsMAhlC.jpg",
       "link": "https://1xanimes.com/shangri-la-frontier/",
+      "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-red-ranger-becomes-an-adventurer-in-another-world",
       "title": "Series ★ 7.9 The Red Ranger Becomes an Adventurer in Another World",
       "image": "https://image.tmdb.org/t/p/w500/ZkvF2ASZD3gLDnn2ZJ7L7RGSBc.jpg",
       "link": "https://1xanimes.com/the-red-ranger-becomes-an-adventurer-in-another-world/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "ameku-m-d-doctor-detective",
       "title": "Series ★ 7.2 Ameku M.D.: Doctor Detective",
       "image": "https://image.tmdb.org/t/p/w500/ukyIdEgqRKfovtFm9NzUfrIdm8y.jpg",
       "link": "https://1xanimes.com/ameku-m-d-doctor-detective/",
+      "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "alya-sometimes-hides-her-feelings-in-russian",
       "title": "Series ★ 7.9 Alya Sometimes Hides Her Feelings in Russian",
       "image": "https://image.tmdb.org/t/p/w500/hfnzByZIRj6rx8xaxzS2zDilei1.jpg",
       "link": "https://1xanimes.com/alya-sometimes-hides-her-feelings-in-russian/",
+      "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "the-strongest-magician-in-the-demon-lords-army-was-a-human",
       "title": "Series ★ 7.2 The Strongest Magician in the Demon Lord’s Army Was a Human",
       "image": "https://image.tmdb.org/t/p/w500/1ANATsXdWWJzsSI5GKp1cot6jRe.jpg",
       "link": "https://1xanimes.com/the-strongest-magician-in-the-demon-lords-army-was-a-human/",
+      "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "twilight-out-of-focus",
       "title": "Series ★ 7.5 Twilight Out of Focus",
       "image": "https://image.tmdb.org/t/p/w500/sk1YIuggnboOBXql6dpffAUBYFq.jpg",
       "link": "https://1xanimes.com/twilight-out-of-focus/",
+      "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "banished-from-the-heros-party-i-decided-to-live-a-quiet-life-in-the-countryside",
       "title": "Series ★ 7.1 Banished from the Hero’s Party, I Decided to Live a Quiet Life in the Countryside",
       "image": "https://image.tmdb.org/t/p/w500/hk5qqvJLRBDaPYBc8lKkSYQrR1c.jpg",
       "link": "https://1xanimes.com/banished-from-the-heros-party-i-decided-to-live-a-quiet-life-in-the-countryside/",
+      "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "365-days-to-the-wedding",
       "title": "Series ★ 7.4 365 Days to the Wedding",
       "image": "https://image.tmdb.org/t/p/w500/lMVkOrMaWEkHZLdPksKGcdi6hJg.jpg",
       "link": "https://1xanimes.com/365-days-to-the-wedding/",
+      "rating": "7.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "nina-the-starry-bride",
       "title": "Series ★ 8.5 Nina the Starry Bride",
       "image": "https://image.tmdb.org/t/p/w500/goE7QiiaRkzVLnwaODRNKarWljv.jpg",
       "link": "https://1xanimes.com/nina-the-starry-bride/",
+      "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "you-are-ms-servant",
       "title": "Series ★ 7.5 You are Ms. Servant",
       "image": "https://image.tmdb.org/t/p/w500/eyFOI6GkIN9JI1qaGLpEkrRlXdc.jpg",
       "link": "https://1xanimes.com/you-are-ms-servant/",
+      "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "leviathan",
       "title": "Series ★ 6.3 Leviathan",
       "image": "https://image.tmdb.org/t/p/w500/wIu0KWF2g2gWO482HXUQRM5ioOr.jpg",
       "link": "https://1xanimes.com/leviathan/",
+      "rating": "6.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "makeine-too-many-losing-heroines",
       "title": "Series ★ 8.2 Makeine: Too Many Losing Heroines!",
       "image": "https://image.tmdb.org/t/p/w500/nLBBhmzN6tPhxMy9aFzDqMbAc4V.jpg",
       "link": "https://1xanimes.com/makeine-too-many-losing-heroines/",
+      "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "tokyo-revengers",
       "title": "Series ★ 8.4 Tokyo Revengers",
       "image": "https://image.tmdb.org/t/p/w500/arB3L9pZZBSzUPSC8BEv8c3X0bF.jpg",
       "link": "https://1xanimes.com/tokyo-revengers/",
+      "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "quality-assurance-in-another-world",
       "title": "Series ★ 6 Quality Assurance in Another World",
       "image": "https://image.tmdb.org/t/p/w500/toNVPhr8BpCbJ4LUGdiOGJpcy80.jpg",
       "link": "https://1xanimes.com/quality-assurance-in-another-world/",
+      "rating": "6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "summer-time-rendering",
       "title": "Series ★ 8.1 Summer Time Rendering",
       "image": "https://image.tmdb.org/t/p/w500/m9e7chRW8Q8Go1Dv00RCUHbMoNe.jpg",
       "link": "https://1xanimes.com/summer-time-rendering/",
+      "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "aoashi",
       "title": "Series ★ 7.4 Aoashi",
       "image": "https://image.tmdb.org/t/p/w500/erwRgEPtUtyv3Vkmxt0MhjKi5kA.jpg",
       "link": "https://1xanimes.com/aoashi/",
+      "rating": "7.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "baki",
       "title": "Series ★ 8.1 BAKI",
       "image": "https://image.tmdb.org/t/p/w500/j4bL0G8h8k49MuXKYfZqhXqk2rI.jpg",
       "link": "https://1xanimes.com/baki/",
+      "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "yaiba-samurai-legend",
       "title": "Series ★ 7.2 YAIBA: Samurai Legend",
       "image": "https://image.tmdb.org/t/p/w500/cxD3FQP4hDU5hSABwdQCvGrrnz6.jpg",
       "link": "https://1xanimes.com/yaiba-samurai-legend/",
+      "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "dragon-ball",
       "title": "Series ★ 8.3 Dragon Ball",
       "image": "https://image.tmdb.org/t/p/w500/onCLyCOgszTIyyVs2XKYSkKPOPG.jpg",
       "link": "https://1xanimes.com/dragon-ball/",
+      "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "hazbin-hotel",
       "title": "Series ★ 8.6 Hazbin Hotel",
       "image": "https://image.tmdb.org/t/p/w500/aVYHMW8pdzJ9qG1OGRMKyGy9xor.jpg",
       "link": "https://1xanimes.com/hazbin-hotel/",
+      "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "days-with-my-stepsister",
       "title": "Series ★ 7.7 Days with My Stepsister",
       "image": "https://image.tmdb.org/t/p/w500/xzbatUmI1qlcLHqMmawGduqHh1X.jpg",
       "link": "https://1xanimes.com/days-with-my-stepsister/",
+      "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "an-archdemons-dilemma-how-to-love-your-elf-bride",
       "title": "Series ★ 7.2 An Archdemon’s Dilemma: How to Love Your Elf Bride",
       "image": "https://image.tmdb.org/t/p/w500/yrtmTLOnHWJxlqDHNyxm0eUHr1U.jpg",
       "link": "https://1xanimes.com/an-archdemons-dilemma-how-to-love-your-elf-bride/",
+      "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "a-condition-called-love",
       "title": "Series ★ 7.3 A Condition Called Love",
       "image": "https://image.tmdb.org/t/p/w500/aaYPPivWuebwIKQvFYuWkp9m0q5.jpg",
       "link": "https://1xanimes.com/a-condition-called-love/",
+      "rating": "7.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "naruto",
       "title": "Series ★ 8.4 Naruto",
       "image": "https://image.tmdb.org/t/p/original/xppeysfvDKVx775MFuH8Z9BlpMk.jpg",
       "link": "https://1xanimes.com/naruto/",
+      "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     },
     {
       "slug": "why-does-nobody-remember-me-in-this-world",
       "title": "Series ★ 6.5 Why Does Nobody Remember Me in This World?",
       "image": "https://image.tmdb.org/t/p/w500/vAezbCXT3h5TyWsNoF5CXIc5AhU.jpg",
       "link": "https://1xanimes.com/why-does-nobody-remember-me-in-this-world/",
+      "rating": "6.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-11T11:13:28.419Z"
+      "lastSeenAt": "2026-08-13T06:03:24.274Z"
     }
   ]
 }

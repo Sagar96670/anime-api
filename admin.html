@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AnimeVerse Admin</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  background:#0d0d12;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.box{
+  width:min(420px,92vw);
+  background:#17171e;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;
+  padding:25px;
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+
+h1{
+  margin:0 0 8px;
+  font-size:24px;
+}
+
+.sub{
+  color:#999;
+  font-size:13px;
+  margin-bottom:22px;
+}
+
+input{
+  width:100%;
+  padding:13px;
+  border-radius:10px;
+  border:1px solid #333;
+  background:#0f0f14;
+  color:#fff;
+  outline:none;
+}
+
+button{
+  width:100%;
+  margin-top:12px;
+  padding:13px;
+  border:0;
+  border-radius:10px;
+  background:#229ed9;
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+
+#error{
+  color:#ff6b6b;
+  font-size:13px;
+  margin-top:12px;
+}
+
+.dashboard{
+  width:min(900px,94vw);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:20px;
+}
+
+.stat{
+  background:#17171e;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  padding:18px;
+}
+
+.label{
+  color:#999;
+  font-size:12px;
+}
+
+.value{
+  font-size:28px;
+  font-weight:900;
+  margin-top:6px;
+}
+
+.logout{
+  margin-top:20px;
+  background:#292930;
+}
+
+@media(max-width:500px){
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="loginBox">
+  <h1>🔐 AnimeVerse Admin</h1>
+  <div class="sub">Administrator Login</div>
+
+  <input
+    id="password"
+    type="password"
+    placeholder="Admin password"
+    autocomplete="current-password"
+  >
+
+  <button onclick="login()">LOGIN</button>
+
+  <div id="error"></div>
+<div
+  style="
+    margin-top:12px;
+    text-align:center;
+  "
+>
+  <button
+    type="button"
+    onclick="showForgotPassword()"
+    style="
+      background:none;
+      border:0;
+      color:#229ed9;
+      cursor:pointer;
+      font-size:13px;
+    "
+  >
+    Forgot Password?
+  </button>
+</div>
+
+<div
+  id="forgotPasswordBox"
+  style="
+    display:none;
+    margin-top:16px;
+    padding:16px;
+    border-radius:12px;
+    background:#17171e;
+    border:1px solid rgba(255,255,255,.08);
+  "
+>
+  <h3 style="margin-top:0;">🔑 Password Recovery</h3>
+
+  <div
+    id="recoveryStatus"
+    style="color:#aaa;font-size:13px;margin-bottom:10px;"
+  ></div>
+
+  <input
+    id="recoveryOtp"
+    inputmode="numeric"
+    maxlength="6"
+    placeholder="6-digit OTP"
+    autocomplete="one-time-code"
+    style="
+      width:100%;
+      box-sizing:border-box;
+      padding:12px;
+      border-radius:10px;
+      border:1px solid #333;
+      background:#111;
+      color:#fff;
+      margin-bottom:10px;
+    "
+  >
+
+  <input
+    id="newAdminPassword"
+    type="password"
+    minlength="7"
+    placeholder="New admin password"
+    autocomplete="new-password"
+    style="
+      width:100%;
+      box-sizing:border-box;
+      padding:12px;
+      border-radius:10px;
+      border:1px solid #333;
+      background:#111;
+      color:#fff;
+      margin-bottom:10px;
+    "
+  >
+
+  <button
+    type="button"
+    onclick="sendRecoveryOtp()"
+    id="sendRecoveryOtpButton"
+  >
+    📧 SEND OTP
+  </button>
+
+  <button
+    type="button"
+    onclick="resetAdminPassword()"
+    id="resetAdminPasswordButton"
+    style="margin-top:8px;"
+  >
+    🔐 RESET PASSWORD
+  </button>
+</div>
+
+</div>
+
+<div class="dashboard" id="dashboard" style="display:none">
+
+  <h1>⚡ Admin Dashboard</h1>
+  <div class="sub">AnimeVerse website control panel</div>
+
+
+<section id="telegramSettings"
+  style="
+    margin-top:24px;
+    padding:18px;
+    background:#17171e;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:14px;
+  "
+>
+  <h2 style="margin:0 0 8px;">📱 Telegram Settings</h2>
+
+  <div style="color:#999;font-size:13px;margin-bottom:12px;">
+    Current Telegram link
+  </div>
+
+  <input
+    id="telegramLink"
+    type="url"
+    placeholder="https://t.me/your_channel"
+    autocomplete="off"
+    style="
+      width:100%;
+      box-sizing:border-box;
+      padding:12px;
+      border-radius:10px;
+      border:1px solid #333;
+      background:#111;
+      color:#fff;
+    "
+  >
+
+  <button
+    onclick="saveTelegramSettings()"
+    id="telegramSaveButton"
+    style="
+      margin-top:12px;
+      width:100%;
+      padding:13px;
+      border:0;
+      border-radius:10px;
+      background:#229ed9;
+      color:#fff;
+      font-weight:800;
+      cursor:pointer;
+    "
+  >
+    💾 SAVE TELEGRAM LINK
+  </button>
+
+  <div
+    id="telegramSettingsStatus"
+    style="
+      margin-top:10px;
+      color:#aaa;
+      font-size:13px;
+    "
+  ></div>
+
+</section>
+
+
+<section id="adManagement" style="margin-top:24px;">
+
+  <div
+    style="
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:14px 16px;
+      background:#17171e;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;
+    "
+  >
+    <div>
+      <h2 style="margin:0;">📢 Ad Management</h2>
+
+      <div
+        id="adManagementStatus"
+        style="
+          margin-top:5px;
+          color:#aaa;
+          font-size:13px;
+        "
+      >
+        Ads: OFF
+      </div>
+    </div>
+
+    <button
+      id="adToggleButton"
+      onclick="toggleAdManagement()"
+      style="
+        width:auto;
+        margin:0;
+        padding:9px 14px;
+        border:0;
+        border-radius:9px;
+        background:#292930;
+        color:#fff;
+        font-weight:700;
+        cursor:pointer;
+        white-space:nowrap;
+      "
+    >
+      ▼ SHOW AD SETTINGS
+    </button>
+  </div>
+
+  <div
+    id="adManagementContent"
+    style="
+      display:none;
+      margin-top:12px;
+      padding:16px;
+      background:#17171e;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;
+    "
+  >
+
+    <label
+      style="
+        display:block;
+        margin-bottom:7px;
+        color:#aaa;
+        font-size:13px;
+      "
+    >
+      Ad Provider
+    </label>
+
+    <input
+      id="adProvider"
+      type="text"
+      placeholder="Example: Google AdSense"
+      autocomplete="off"
+      style="
+        width:100%;
+        box-sizing:border-box;
+        padding:12px;
+        border-radius:10px;
+        border:1px solid #333;
+        background:#111;
+        color:#fff;
+        margin-bottom:14px;
+      "
+    >
+
+    <label style="display:block;margin-bottom:7px;color:#aaa;font-size:13px;">
+      🔐 Verification Code
+    </label>
+
+    <textarea
+      id="adVerificationCode"
+      placeholder="Paste provider verification code here..."
+      autocomplete="off"
+      style="
+        width:100%;
+        min-height:90px;
+        box-sizing:border-box;
+        padding:12px;
+        border-radius:10px;
+        border:1px solid #333;
+        background:#111;
+        color:#fff;
+        resize:vertical;
+        margin-bottom:14px;
+        font-family:monospace;
+        font-size:12px;
+      "
+    ></textarea>
+
+    <label
+      style="
+        display:flex;
+        align-items:center;
+        gap:10px;
+        margin-bottom:18px;
+        color:#fff;
+        font-weight:700;
+        cursor:pointer;
+      "
+    >
+      <input
+        id="adsEnabled"
+        type="checkbox"
+        style="width:20px;height:20px;"
+      >
+      ENABLE ADS
+    </label>
+
+    <label style="display:block;margin-bottom:7px;color:#aaa;font-size:13px;">
+      🏠 Home Ad Code
+    </label>
+
+    <textarea
+      id="homeAdCode"
+      placeholder="Paste approved ad code here..."
+      style="
+        width:100%;
+        min-height:120px;
+        box-sizing:border-box;
+        padding:12px;
+        border-radius:10px;
+        border:1px solid #333;
+        background:#111;
+        color:#fff;
+        resize:vertical;
+        margin-bottom:14px;
+        font-family:monospace;
+        font-size:12px;
+      "
+    ></textarea>
+
+    <label style="display:block;margin-bottom:7px;color:#aaa;font-size:13px;">
+      🎬 Anime Page Ad Code
+    </label>
+
+    <textarea
+      id="animeAdCode"
+      placeholder="Paste approved ad code here..."
+      style="
+        width:100%;
+        min-height:120px;
+        box-sizing:border-box;
+        padding:12px;
+        border-radius:10px;
+        border:1px solid #333;
+        background:#111;
+        color:#fff;
+        resize:vertical;
+        margin-bottom:14px;
+        font-family:monospace;
+        font-size:12px;
+      "
+    ></textarea>
+
+    <label style="display:block;margin-bottom:7px;color:#aaa;font-size:13px;">
+      📺 Episode Page Ad Code
+    </label>
+
+    <textarea
+      id="episodeAdCode"
+      placeholder="Paste approved ad code here..."
+      style="
+        width:100%;
+        min-height:120px;
+        box-sizing:border-box;
+        padding:12px;
+        border-radius:10px;
+        border:1px solid #333;
+        background:#111;
+        color:#fff;
+        resize:vertical;
+        margin-bottom:14px;
+        font-family:monospace;
+        font-size:12px;
+      "
+    ></textarea>
+
+    <button
+      id="saveAdSettingsButton"
+      onclick="saveAdSettings()"
+    >
+      💾 SAVE AD SETTINGS
+    </button>
+
+    <div
+      id="adSettingsStatus"
+      style="
+        margin-top:10px;
+        color:#aaa;
+        font-size:13px;
+        text-align:center;
+      "
+    ></div>
+
+  </div>
+
+</section>
+
+<section id="animeManagement" style="margin-top:24px;">
+
+  <div
+    style="
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:14px 16px;
+      background:#17171e;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;
+    "
+  >
+    <div>
+      <h2 style="margin:0;">🎬 Anime Management</h2>
+      <div
+        id="animeResultsCount"
+        style="margin-top:5px;color:#aaa;font-size:13px;"
+      >Loading...</div>
+    </div>
+
+    <button
+      id="animeToggleButton"
+      onclick="toggleAnimeManagement()"
+      style="
+        width:auto;
+        margin:0;
+        padding:9px 14px;
+        border:0;
+        border-radius:9px;
+        background:#292930;
+        color:#fff;
+        font-weight:700;
+        cursor:pointer;
+        white-space:nowrap;
+      "
+    >
+      ▼ SHOW ANIME
+    </button>
+  </div>
+
+  <div
+    id="animeManagementContent"
+    style="display:none;margin-top:12px;"
+  >
+
+    <input
+      id="animeSearch"
+      type="search"
+      placeholder="Search anime..."
+      autocomplete="off"
+      style="
+        width:100%;
+        box-sizing:border-box;
+        padding:12px;
+        border-radius:10px;
+        border:1px solid #333;
+        background:#111;
+        color:#fff;
+      "
+    >
+
+    <div id="animeManagementList"></div>
+
+    <div
+      id="animePagination"
+      style="
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:7px;
+        margin-top:16px;
+      "
+    ></div>
+
+  </div>
+
+  <div
+    id="animeDetails"
+    style="
+      display:none;
+      margin-top:18px;
+      padding:16px;
+      border-radius:14px;
+      background:#17171e;
+      border:1px solid rgba(255,255,255,.08);
+    "
+  ></div>
+
+</section>
+
+  <div class="grid">
+
+    <div class="stat">
+      <div class="label">TOTAL ANIME</div>
+      <div class="value" id="totalAnime">—</div>
+    </div>
+
+    <div class="stat">
+      <div class="label">RATINGS</div>
+      <div class="value" id="ratings">—</div>
+    </div>
+
+    <div class="stat">
+      <div class="label">RECENTLY UPDATED</div>
+      <div class="value" id="updated">—</div>
+    </div>
+
+    <div class="stat">
+      <div class="label">NEW RELEASES</div>
+      <div class="value" id="releases">—</div>
+    </div>
+
+  </div>
+
+  <button onclick="syncNow()" id="syncButton">
+    🔄 SYNC NOW
+  </button>
+
+  <div id="syncStatus"
+       style="margin-top:12px;color:#aaa;font-size:13px;text-align:center;">
+  </div>
+
+  <button class="logout" onclick="logout()">LOGOUT</button>
+
+</div>
+
+
+
+
+<script>
+
+async function loadTelegramSettings(){
+
+  const input =
+    document.getElementById("telegramLink");
+
+  const status =
+    document.getElementById("telegramSettingsStatus");
+
+  if(!input) return;
+
+  try{
+
+    const res =
+      await fetch("/admin/api/settings");
+
+    const data =
+      await res.json();
+
+    if(!res.ok || !data.success){
+      throw new Error(
+        data.message || "Failed to load settings"
+      );
+    }
+
+    input.value =
+      data.settings?.telegramLink || "";
+
+    status.textContent =
+      "✅ Current Telegram link loaded";
+
+  }catch(error){
+
+    status.textContent =
+      "❌ " + error.message;
+
+  }
+}
+
+
+async function saveTelegramSettings(){
+
+  const input =
+    document.getElementById("telegramLink");
+
+  const status =
+    document.getElementById("telegramSettingsStatus");
+
+  const button =
+    document.getElementById("telegramSaveButton");
+
+  if(!input || !status || !button) return;
+
+  const telegramLink =
+    input.value.trim();
+
+  if(!telegramLink){
+    status.textContent =
+      "❌ Telegram link is required";
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "⏳ SAVING...";
+  status.textContent = "Saving...";
+
+  try{
+
+    const res = await fetch(
+      "/admin/api/settings",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          telegramLink
+        })
+      }
+    );
+
+    const data =
+      await res.json();
+
+    if(!res.ok || !data.success){
+      throw new Error(
+        data.message || "Failed to save Telegram link"
+      );
+    }
+
+    input.value =
+      data.settings?.telegramLink || telegramLink;
+
+    status.textContent =
+      "✅ Telegram link saved successfully";
+
+  }catch(error){
+
+    status.textContent =
+      "❌ " + error.message;
+
+  }finally{
+
+    button.disabled = false;
+    button.textContent =
+      "💾 SAVE TELEGRAM LINK";
+
+  }
+}
+
+
+function showForgotPassword(){
+
+  const box =
+    document.getElementById("forgotPasswordBox");
+
+  const status =
+    document.getElementById("recoveryStatus");
+
+  if(box){
+    box.style.display = "block";
+  }
+
+  if(status){
+    status.textContent =
+      "Enter the OTP sent to your recovery Gmail.";
+  }
+}
+
+async function sendRecoveryOtp(){
+
+  const button =
+    document.getElementById("sendRecoveryOtpButton");
+
+  const status =
+    document.getElementById("recoveryStatus");
+
+  if(!button || !status) return;
+
+  button.disabled = true;
+  button.textContent = "📧 SENDING...";
+
+  try{
+
+    const res = await fetch(
+      "/admin/api/forgot-password",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:"{}"
+      }
+    );
+
+    const data = await res.json();
+
+    if(!res.ok || !data.success){
+      throw new Error(
+        data.message || "Failed to send OTP"
+      );
+    }
+
+    status.textContent =
+      "✅ OTP sent to your recovery Gmail. Check your inbox.";
+
+    button.style.display = "none";
+
+    let seconds = 60;
+
+    const oldTimer =
+      document.getElementById("otpTimer");
+
+    if(oldTimer) oldTimer.remove();
+
+    const timer = document.createElement("div");
+    timer.id = "otpTimer";
+    timer.style.cssText =
+      "margin-top:10px;text-align:center;color:#999;font-size:13px;";
+
+    button.parentNode.insertBefore(
+      timer,
+      button.nextSibling
+    );
+
+    const interval = setInterval(() => {
+
+      seconds--;
+
+      timer.textContent =
+        "Resend OTP in " + seconds + "s";
+
+      if(seconds <= 0){
+
+        clearInterval(interval);
+
+        timer.remove();
+
+        button.style.display = "";
+        button.disabled = false;
+        button.textContent = "📧 RESEND OTP";
+      }
+
+    }, 1000);
+
+  }catch(error){
+
+    status.textContent =
+      "❌ " + error.message;
+
+    button.disabled = false;
+    button.textContent = "📧 SEND OTP";
+
+  }
+}
+
+async function resetAdminPassword(){
+
+  const otp =
+    document.getElementById("recoveryOtp")?.value.trim();
+
+  const newPassword =
+    document.getElementById("newAdminPassword")?.value || "";
+
+  const status =
+    document.getElementById("recoveryStatus");
+
+  const button =
+    document.getElementById("resetAdminPasswordButton");
+
+  if(!otp || !newPassword){
+
+    if(status){
+      status.textContent =
+        "❌ Enter OTP and new password.";
+    }
+
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "🔐 RESETTING...";
+
+  try{
+
+    const res = await fetch(
+      "/admin/api/reset-password",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          otp,
+          newPassword
+        })
+      }
+    );
+
+    const data = await res.json();
+
+    if(!res.ok || !data.success){
+      throw new Error(
+        data.message || "Password reset failed"
+      );
+    }
+
+    status.textContent =
+      "✅ Password changed. Restart the server, then login with your new password.";
+
+    button.style.display = "none";
+
+    const sendButton =
+      document.getElementById("sendRecoveryOtpButton");
+
+    if(sendButton){
+      sendButton.style.display = "none";
+    }
+
+    const otpInput =
+      document.getElementById("recoveryOtp");
+
+    const passwordInput =
+      document.getElementById("newAdminPassword");
+
+    if(otpInput) otpInput.style.display = "none";
+    if(passwordInput) passwordInput.style.display = "none";
+
+    const timer =
+      document.getElementById("otpTimer");
+
+    if(timer) timer.remove();
+
+    setTimeout(() => {
+
+      const recoveryBox =
+        document.getElementById("forgotPasswordBox");
+
+      if(recoveryBox){
+        recoveryBox.style.display = "none";
+      }
+
+      const loginBox =
+        document.getElementById("loginBox");
+
+      if(loginBox){
+        loginBox.style.display = "block";
+      }
+
+      const password =
+        document.getElementById("password");
+
+      if(password){
+        password.value = "";
+        password.focus();
+      }
+
+    }, 1200);
+
+  }catch(error){
+
+    status.textContent =
+      "❌ " + error.message;
+
+  }finally{
+
+    button.disabled = false;
+    button.textContent = "🔐 RESET PASSWORD";
+
+  }
+}
+
+async function login(){
+
+  const password =
+    document.getElementById("password").value;
+
+  const error =
+    document.getElementById("error");
+
+  error.textContent = "";
+
+  try{
+
+    const res = await fetch(
+      "/admin/api/login",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({password})
+      }
+    );
+
+    const data = await res.json();
+
+    if(!data.success){
+      error.textContent =
+        data.message || "Login failed";
+      return;
+    }
+
+    showDashboard();
+
+  }catch(e){
+
+    error.textContent =
+      "Server connection failed";
+
+  }
+}
+
+async function showDashboard(){
+
+  const res =
+    await fetch("/admin/api/dashboard");
+
+  if(!res.ok){
+    document.getElementById("loginBox").style.display="block";
+    document.getElementById("dashboard").style.display="none";
+    return;
+  }
+
+  const data = await res.json();
+
+  if(!data.success) return;
+
+  document.getElementById("loginBox").style.display="none";
+  document.getElementById("dashboard").style.display="block";
+
+  loadTelegramSettings();
+  loadAdSettings();
+  loadAdminAnime();
+
+  document.getElementById("totalAnime").textContent =
+    data.stats.totalAnime;
+
+  document.getElementById("ratings").textContent =
+    data.stats.ratings;
+
+  document.getElementById("updated").textContent =
+    data.stats.recentlyUpdated;
+
+  document.getElementById("releases").textContent =
+    data.stats.newReleases;
+}
+
+
+function escapeHtml(value){
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+
+async function loadAdSettings(){
+
+  try{
+
+    const res =
+      await fetch("/admin/api/ads");
+
+    const data =
+      await res.json();
+
+    if(!res.ok || !data.success){
+      throw new Error(
+        data.message || "Failed to load ad settings"
+      );
+    }
+
+    const ads = data.ads || {};
+
+    document.getElementById("adsEnabled").checked =
+      Boolean(ads.enabled);
+
+    document.getElementById("adProvider").value =
+      ads.provider || "";
+
+    document.getElementById("homeAdCode").value =
+      ads.homeCode || "";
+
+    document.getElementById("animeAdCode").value =
+      ads.animeCode || "";
+
+    document.getElementById("episodeAdCode").value =
+      ads.episodeCode || "";
+
+    document.getElementById("adVerificationCode").value =
+      ads.verificationCode || "";
+
+    updateAdStatus();
+
+  }catch(error){
+
+    const status =
+      document.getElementById("adManagementStatus");
+
+    if(status){
+      status.textContent =
+        "❌ Failed to load ad settings";
+    }
+  }
+}
+
+
+function updateAdStatus(){
+
+  const enabled =
+    document.getElementById("adsEnabled")?.checked;
+
+  const provider =
+    document.getElementById("adProvider")?.value.trim();
+
+  const status =
+    document.getElementById("adManagementStatus");
+
+  if(!status) return;
+
+  status.textContent =
+    enabled
+      ? "Ads: ON" + (provider ? " • " + provider : "")
+      : "Ads: OFF";
+}
+
+
+function toggleAdManagement(){
+
+  const content =
+    document.getElementById("adManagementContent");
+
+  const button =
+    document.getElementById("adToggleButton");
+
+  if(!content || !button) return;
+
+  const hidden =
+    content.style.display === "none";
+
+  if(hidden){
+
+    content.style.display = "block";
+    button.textContent = "▲ HIDE AD SETTINGS";
+
+  }else{
+
+    content.style.display = "none";
+    button.textContent = "▼ SHOW AD SETTINGS";
+  }
+}
+
+
+async function saveAdSettings(){
+
+  const button =
+    document.getElementById("saveAdSettingsButton");
+
+  const status =
+    document.getElementById("adSettingsStatus");
+
+  if(!button || !status) return;
+
+  button.disabled = true;
+  button.textContent = "⏳ SAVING...";
+
+  try{
+
+    const payload = {
+      enabled:
+        Boolean(
+          document.getElementById("adsEnabled")?.checked
+        ),
+
+      provider:
+        document.getElementById("adProvider")?.value.trim() || "",
+
+      homeCode:
+        document.getElementById("homeAdCode")?.value || "",
+
+      animeCode:
+        document.getElementById("animeAdCode")?.value || "",
+
+      episodeCode:
+        document.getElementById("episodeAdCode")?.value || "",
+
+      verificationCode:
+        document.getElementById("adVerificationCode")?.value || ""
+    };
+
+    const res =
+      await fetch(
+        "/admin/api/ads",
+        {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify(payload)
+        }
+      );
+
+    const data =
+      await res.json();
+
+    if(!res.ok || !data.success){
+      throw new Error(
+        data.message || "Failed to save ad settings"
+      );
+    }
+
+    status.textContent =
+      "✅ Ad settings saved successfully.";
+
+    updateAdStatus();
+
+  }catch(error){
+
+    status.textContent =
+      "❌ " + error.message;
+
+  }finally{
+
+    button.disabled = false;
+    button.textContent = "💾 SAVE AD SETTINGS";
+  }
+}
+
+
+let adminAnimeList = [];
+let adminAnimePage = 1;
+const ADMIN_ANIME_PER_PAGE = 20;
+
+async function loadAdminAnime(){
+
+  const list =
+    document.getElementById("animeManagementList");
+
+  const count =
+    document.getElementById("animeResultsCount");
+
+  if(!list || !count) return;
+
+  list.innerHTML = "⏳ Loading anime...";
+
+  try{
+
+    const res = await fetch("/admin/api/anime");
+    const data = await res.json();
+
+    if(!res.ok || !data.success){
+      throw new Error(
+        data.message || "Failed to load anime"
+      );
+    }
+
+    adminAnimeList =
+      Array.isArray(data.results)
+        ? data.results
+        : [];
+
+    const countText =
+      adminAnimeList.length + " anime";
+
+    count.textContent = countText;
+
+  }catch(error){
+
+    list.innerHTML =
+      '<div style="color:#ff6b6b;">❌ ' +
+      error.message +
+      '</div>';
+
+    count.textContent = "";
+
+  }
+}
+
+
+function showAnimeDetails(item){
+
+  const panel =
+    document.getElementById("animeDetails");
+
+  if(!panel) return;
+
+  const title =
+    String(item.title || "Untitled");
+
+  const slug =
+    String(item.slug || "");
+
+  const rating =
+    String(item.rating || "Not available");
+
+  const image =
+    String(item.image || "");
+
+  const link =
+    String(item.link || "");
+
+  const firstSeen =
+    String(item.firstSeenAt || "Not available");
+
+  const lastSeen =
+    String(item.lastSeenAt || "Not available");
+
+  panel.style.display = "block";
+
+  panel.innerHTML = `
+    <div style="display:flex;gap:15px;align-items:flex-start;">
+
+      <img
+        src="${escapeHtml(image)}"
+        alt=""
+        style="
+          width:90px;
+          height:125px;
+          object-fit:cover;
+          border-radius:9px;
+          background:#222;
+        "
+      >
+
+      <div style="flex:1;min-width:0;">
+
+        <h3 style="margin:0 0 10px;">
+          ${escapeHtml(title)}
+        </h3>
+
+        <div style="color:#aaa;font-size:13px;line-height:1.8;">
+          <div>⭐ Rating: ${escapeHtml(rating)}</div>
+          <div>🔖 Slug: ${escapeHtml(slug)}</div>
+          <div>📅 First Seen: ${escapeHtml(firstSeen)}</div>
+          <div>🔄 Last Seen: ${escapeHtml(lastSeen)}</div>
+        </div>
+
+        ${
+          link
+            ? `<a
+                href="/?anime=${encodeURIComponent(slug)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="
+                  display:inline-block;
+                  margin-top:10px;
+                  color:#229ed9;
+                  font-weight:700;
+                  text-decoration:none;
+                "
+              >🔗 Open Anime</a>`
+            : ""
+        }
+
+      </div>
+
+    </div>
+  `;
+
+  panel.scrollIntoView({
+    behavior:"smooth",
+    block:"nearest"
+  });
+}
+
+function renderAdminAnime(items){
+
+  const list =
+    document.getElementById("animeManagementList");
+
+  const count =
+    document.getElementById("animeResultsCount");
+
+  const pagination =
+    document.getElementById("animePagination");
+
+  if(!list || !count) return;
+
+  count.textContent =
+    items.length + " anime";
+
+  if(!items.length){
+
+    list.innerHTML =
+      '<div style="color:#aaa;padding:15px 0;">No anime found.</div>';
+
+    if(pagination){
+      pagination.innerHTML = "";
+    }
+
+    return;
+  }
+
+  const totalPages =
+    Math.ceil(items.length / ADMIN_ANIME_PER_PAGE);
+
+  if(adminAnimePage > totalPages){
+    adminAnimePage = totalPages;
+  }
+
+  const startIndex =
+    (adminAnimePage - 1) * ADMIN_ANIME_PER_PAGE;
+
+  const pageItems =
+    items.slice(
+      startIndex,
+      startIndex + ADMIN_ANIME_PER_PAGE
+    );
+
+  list.innerHTML = pageItems.map(item => {
+
+    const title =
+      String(item.title || "Untitled");
+
+    const image =
+      String(item.image || "");
+
+    const rating =
+      item.rating
+        ? "⭐ " + String(item.rating)
+        : "No rating";
+
+    return `
+      <div
+        onclick='showAnimeDetails(${JSON.stringify(item).replace(/'/g, "&#39;")})'
+        style="
+          display:flex;
+          gap:12px;
+          align-items:center;
+          padding:10px 0;
+          border-bottom:1px solid rgba(255,255,255,.08);
+          cursor:pointer;
+        "
+      >
+
+        <img
+          src="${escapeHtml(image)}"
+          alt=""
+          loading="lazy"
+          style="
+            width:55px;
+            height:75px;
+            object-fit:cover;
+            border-radius:7px;
+            background:#222;
+          "
+        >
+
+        <div style="min-width:0;flex:1;">
+
+          <div style="
+            font-weight:700;
+            color:#fff;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+          ">
+            ${escapeHtml(title)}
+          </div>
+
+          <div style="
+            margin-top:5px;
+            color:#aaa;
+            font-size:12px;
+          ">
+            ${escapeHtml(rating)}
+          </div>
+
+          <div style="
+            margin-top:3px;
+            color:#777;
+            font-size:11px;
+          ">
+            ${escapeHtml(String(item.slug || ""))}
+          </div>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+  if(pagination){
+
+    pagination.innerHTML = "";
+
+    for(let i = 1; i <= totalPages; i++){
+
+      const pageButton =
+        document.createElement("button");
+
+      pageButton.textContent = i;
+
+      pageButton.style.cssText = `
+        width:auto;
+        margin:0;
+        padding:7px 11px;
+        border:0;
+        border-radius:8px;
+        background:${i === adminAnimePage ? "#229ed9" : "#292930"};
+        color:#fff;
+        font-weight:700;
+        cursor:pointer;
+      `;
+
+      pageButton.onclick = () => {
+
+        adminAnimePage = i;
+
+        renderAdminAnime(items);
+
+        document
+          .getElementById("animeManagementContent")
+          ?.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+          });
+      };
+
+      pagination.appendChild(pageButton);
+    }
+  }
+}
+
+
+function toggleAnimeManagement(){
+
+  const content =
+    document.getElementById("animeManagementContent");
+
+  const button =
+    document.getElementById("animeToggleButton");
+
+  if(!content || !button) return;
+
+  const isHidden =
+    content.style.display === "none";
+
+  if(isHidden){
+
+    content.style.display = "block";
+    button.textContent = "▲ HIDE ANIME";
+
+    renderAdminAnime(adminAnimeList);
+
+  }else{
+
+    content.style.display = "none";
+    button.textContent = "▼ SHOW ANIME";
+
+    const details =
+      document.getElementById("animeDetails");
+
+    if(details){
+      details.style.display = "none";
+    }
+  }
+}
+
+
+function filterAdminAnime(){
+
+  const input =
+    document.getElementById("animeSearch");
+
+  if(!input) return;
+
+  const query =
+    input.value.trim().toLowerCase();
+
+  adminAnimePage = 1;
+
+  if(!query){
+
+    renderAdminAnime(adminAnimeList);
+    return;
+  }
+
+  const filtered =
+    adminAnimeList.filter(item => {
+
+      const title =
+        String(item.title || "").toLowerCase();
+
+      const slug =
+        String(item.slug || "").toLowerCase();
+
+      return (
+        title.includes(query) ||
+        slug.includes(query)
+      );
+
+    });
+
+  renderAdminAnime(filtered);
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const search =
+    document.getElementById("animeSearch");
+
+  if(search){
+    search.addEventListener(
+      "input",
+      filterAdminAnime
+    );
+  }
+
+  loadAdminAnime();
+
+});
+
+async function syncNow(){
+
+  const button =
+    document.getElementById("syncButton");
+
+  const status =
+    document.getElementById("syncStatus");
+
+  button.disabled = true;
+  button.textContent = "⏳ SYNCING...";
+  status.textContent = "Sync started...";
+
+  try{
+
+    const res = await fetch(
+      "/admin/api/sync",
+      {
+        method:"POST"
+      }
+    );
+
+    const data = await res.json();
+
+    if(!res.ok || !data.success){
+      throw new Error(
+        data.message || "Sync failed"
+      );
+    }
+
+    status.textContent =
+      "✅ Sync complete — " +
+      data.count +
+      " anime processed.";
+
+    await showDashboard();
+
+  }catch(error){
+
+    status.textContent =
+      "❌ " + error.message;
+
+  }finally{
+
+    button.disabled = false;
+    button.textContent = "🔄 SYNC NOW";
+
+  }
+}
+
+async function logout(){
+
+  await fetch(
+    "/admin/api/logout",
+    {method:"POST"}
+  );
+
+  location.reload();
+}
+
+document
+  .getElementById("password")
+  .addEventListener("keydown", e => {
+    if(e.key === "Enter") login();
+  });
+</script>
+
+</body>
+</html>

@@ -1,18 +1,19 @@
 {
   "hanaori-san-still-wants-to-fight-in-the-next-life": {
-    "views": 4,
+    "views": 9,
     "episodes": {
-      "S1E1": 4
+      "S1E1": 7,
+      "S1E2": 2
     },
-    "lastWatchedAt": "2026-08-11T04:42:24.912Z"
+    "lastWatchedAt": "2026-08-12T08:11:16.718Z"
   },
   "liar-game": {
-    "views": 2,
+    "views": 5,
     "episodes": {
-      "S1E1": 1,
-      "S1E16": 1
+      "S1E1": 3,
+      "S1E16": 2
     },
-    "lastWatchedAt": "2026-08-11T09:46:13.463Z"
+    "lastWatchedAt": "2026-08-12T06:08:15.392Z"
   },
   "bleach": {
     "views": 1,
@@ -22,11 +23,11 @@
     "lastWatchedAt": "2026-08-11T02:51:26.083Z"
   },
   "tamons-b-side": {
-    "views": 1,
+    "views": 2,
     "episodes": {
-      "S1E1": 1
+      "S1E1": 2
     },
-    "lastWatchedAt": "2026-08-11T03:07:06.129Z"
+    "lastWatchedAt": "2026-08-12T05:18:01.268Z"
   },
   "i-became-a-legend-after-my-10-year-long-last-stand": {
     "views": 1,
@@ -48,10 +49,25 @@
     "lastWatchedAt": "2026-08-11T08:27:25.539Z"
   },
   "captain-tsubasa": {
+    "views": 2,
+    "episodes": {
+      "S2E13": 1,
+      "S1E1": 1
+    },
+    "lastWatchedAt": "2026-08-12T05:40:21.428Z"
+  },
+  "one-punch-man": {
     "views": 1,
     "episodes": {
-      "S2E13": 1
+      "S1E1": 1
     },
-    "lastWatchedAt": "2026-08-11T09:37:06.243Z"
+    "lastWatchedAt": "2026-08-12T11:33:20.761Z"
+  },
+  "tomb-raider-king": {
+    "views": 1,
+    "episodes": {
+      "S1E1": 1
+    },
+    "lastWatchedAt": "2026-08-12T17:37:12.308Z"
   }
 }

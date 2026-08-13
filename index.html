@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#08080d">
+<meta name="monetag" content="a6cb8f869d89dd1a1d7583ffffbe3ac7">
 <title>AnizenX</title>
 
 <style>
@@ -545,6 +546,83 @@ button{
   align-items:flex-start;
 }
 
+
+.az-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:4px;
+}
+
+.az-letter{
+  min-width:38px;
+  height:38px;
+  padding:0 10px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  background:rgba(255,255,255,.06);
+  color:inherit;
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+  transition:
+    transform .15s ease,
+    background .15s ease,
+    border-color .15s ease;
+}
+
+.az-letter:active{
+  transform:scale(.94);
+}
+
+.az-letter.active{
+  background:rgba(255,255,255,.16);
+  border-color:rgba(255,255,255,.3);
+}
+
+@media(max-width:500px){
+  .az-list{
+    gap:6px;
+  }
+
+  .az-letter{
+    min-width:34px;
+    height:34px;
+    padding:0 7px;
+    border-radius:9px;
+    font-size:12px;
+  }
+}
+
+.latest-pagination{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  margin:24px 0 30px;
+}
+
+.latest-pagination button{
+  border:0;
+  border-radius:12px;
+  padding:10px 16px;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.latest-pagination button:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+#latestPageInfo{
+  min-width:75px;
+  text-align:center;
+  font-size:14px;
+  font-weight:700;
+}
+
 .anime-poster-placeholder{
   flex:0 0 105px;
   width:105px;
@@ -947,9 +1025,31 @@ button{
 
 .card-rating-badge{
   right:9px;
+  top:9px;
+  bottom:auto;
+  background:#f4b400;
+  color:#111;
+  border:0;
+  min-width:48px;
+  text-align:center;
+  z-index:3;
+}
+
+.movie-rating-box{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:30px;
+  margin-bottom:6px;
+  padding:6px 10px;
+  border-radius:9px;
   background:rgba(20,20,26,.88);
   border:1px solid rgba(255,255,255,.14);
   color:#fff;
+  font-size:11px;
+  font-weight:850;
+  line-height:1;
+  box-shadow:0 4px 12px rgba(0,0,0,.22);
 }
 
 .card-title{
@@ -1207,6 +1307,30 @@ button.active{
   opacity:.8;
 }
 
+.player-episode-active{
+  background:linear-gradient(135deg,var(--accent),var(--accent2)) !important;
+  color:#fff !important;
+  border-color:transparent !important;
+}
+
+.episode-navigation{
+  display:flex;
+  gap:8px;
+  margin:0 0 12px;
+}
+
+.episode-navigation button{
+  flex:1;
+  min-height:42px;
+}
+
+.episode-navigation button:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+  transform:none !important;
+}
+
+
 
 /* ---------- PREMIUM HERO SLIDER ---------- */
 
@@ -1443,9 +1567,164 @@ button.active{
 }
 
 </style>
+
+<style id="telegram-popup-css">
+.telegram-popup-overlay{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.38);
+  backdrop-filter:blur(3px);
+}
+
+.telegram-popup{
+  position:relative;
+  width:min(380px,92vw);
+  padding:28px 22px 24px;
+  text-align:center;
+  border-radius:18px;
+  background:#17171d;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 20px 60px rgba(0,0,0,.55);
+}
+
+.telegram-popup-icon{
+  width:58px;
+  height:58px;
+  margin:0 auto 12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#229ed9;
+}
+
+.telegram-popup-icon svg{
+  width:34px;
+  height:34px;
+  display:block;
+  fill:#fff;
+  transform:rotate(-10deg);
+}
+
+.telegram-popup h2{
+  margin:0 0 8px;
+  font-size:22px;
+  color:#fff;
+}
+
+.telegram-popup p{
+  margin:0 0 20px;
+  color:rgba(255,255,255,.72);
+  font-size:13px;
+  line-height:1.5;
+}
+
+.telegram-popup-close{
+  position:absolute;
+  top:8px;
+  right:10px;
+  width:32px;
+  height:32px;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.1);
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.telegram-join-button{
+  display:block;
+  padding:13px 18px;
+  border-radius:10px;
+  background:#229ed9;
+  color:#fff;
+  font-weight:800;
+  font-size:14px;
+  text-decoration:none;
+}
+
+.telegram-corner-button{
+  position:fixed;
+  top:14px;
+  right:14px;
+  z-index:9998;
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#229ed9;
+  color:#fff;
+  text-decoration:none;
+  font-size:20px;
+  box-shadow:0 5px 18px rgba(0,0,0,.35);
+}
+
+.telegram-popup-overlay.telegram-hidden{
+  display:none;
+}
+
+@media(max-width:600px){
+  .telegram-corner-button{
+    top:10px;
+    right:10px;
+    width:38px;
+    height:38px;
+    font-size:18px;
+  }
+}
+</style>
+
 </head>
 
 <body>
+
+<!-- TELEGRAM JOIN POPUP -->
+<div id="telegramJoinPopup" class="telegram-popup-overlay">
+  <div class="telegram-popup">
+    <button id="telegramPopupClose" class="telegram-popup-close" aria-label="Close">×</button>
+
+    <div class="telegram-popup-icon">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M21.5 3.5 18.2 20c-.25 1.15-.9 1.43-1.83.9l-5.05-3.72-2.44 2.35c-.27.27-.5.5-1.03.5l.37-5.15 9.38-8.48c.41-.37-.09-.57-.64-.2L5.36 13.48.38 11.92c-1.08-.34-1.1-1.08.23-1.57L20.06 2.9c.9-.33 1.68.2 1.44.6Z"/>
+  </svg>
+</div>
+
+    <h2>Join Our Telegram</h2>
+    <p>Anime updates aur naye releases ke liye hamare Telegram channel ko join karein.</p>
+
+    <a
+      id="telegramJoinButton"
+      class="telegram-join-button"
+      href="https://t.me/AnimeVerse_Hindi_HD"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      JOIN TELEGRAM
+    </a>
+  </div>
+</div>
+
+<!-- TELEGRAM CORNER BUTTON -->
+<a
+  class="telegram-corner-button"
+  href="https://t.me/AnimeVerse_Hindi_HD"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Join Telegram"
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M21.5 3.5 18.2 20c-.25 1.15-.9 1.43-1.83.9l-5.05-3.72-2.44 2.35c-.27.27-.5.5-1.03.5l.37-5.15 9.38-8.48c.41-.37-.09-.57-.64-.2L5.36 13.48.38 11.92c-1.08-.34-1.1-1.08.23-1.57L20.06 2.9c.9-.33 1.68.2 1.44.6Z"/>
+  </svg>
+</a>
+
 
 <header class="topbar">
   <div class="topbar-inner">
@@ -1508,11 +1787,6 @@ button.active{
       </div>
 
       <div class="quick-actions">
-        <button class="quick-action" onclick="focusSearch()">
-          <strong>⌕</strong>
-          <span>Search</span>
-        </button>
-
         <button class="quick-action" onclick="scrollToLatest()">
           <strong>🔥</strong>
           <span>Latest</span>
@@ -1521,6 +1795,11 @@ button.active{
         <button class="quick-action" onclick="showContinueWatching()">
           <strong>▶</strong>
           <span>Continue</span>
+        </button>
+
+        <button class="quick-action" onclick="showMovies()">
+          <strong>🎬</strong>
+          <span>Movies</span>
         </button>
       </div>
     </div>
@@ -1534,8 +1813,46 @@ button.active{
       <div id="continueList"></div>
     </div>
 
-    <div id="latestSection" class="home-section">
+    <div id="azListSection" class="home-section">
       <div class="home-section-head">
+        <h2>A–Z List</h2>
+        <span>Search anime by name</span>
+      </div>
+
+      <div id="azList" class="az-list">
+        <button type="button" class="az-letter active" data-letter="ALL">All</button>
+        <button type="button" class="az-letter" data-letter="#">#</button>
+        <button type="button" class="az-letter" data-letter="A">A</button>
+        <button type="button" class="az-letter" data-letter="B">B</button>
+        <button type="button" class="az-letter" data-letter="C">C</button>
+        <button type="button" class="az-letter" data-letter="D">D</button>
+        <button type="button" class="az-letter" data-letter="E">E</button>
+        <button type="button" class="az-letter" data-letter="F">F</button>
+        <button type="button" class="az-letter" data-letter="G">G</button>
+        <button type="button" class="az-letter" data-letter="H">H</button>
+        <button type="button" class="az-letter" data-letter="I">I</button>
+        <button type="button" class="az-letter" data-letter="J">J</button>
+        <button type="button" class="az-letter" data-letter="K">K</button>
+        <button type="button" class="az-letter" data-letter="L">L</button>
+        <button type="button" class="az-letter" data-letter="M">M</button>
+        <button type="button" class="az-letter" data-letter="N">N</button>
+        <button type="button" class="az-letter" data-letter="O">O</button>
+        <button type="button" class="az-letter" data-letter="P">P</button>
+        <button type="button" class="az-letter" data-letter="Q">Q</button>
+        <button type="button" class="az-letter" data-letter="R">R</button>
+        <button type="button" class="az-letter" data-letter="S">S</button>
+        <button type="button" class="az-letter" data-letter="T">T</button>
+        <button type="button" class="az-letter" data-letter="U">U</button>
+        <button type="button" class="az-letter" data-letter="V">V</button>
+        <button type="button" class="az-letter" data-letter="W">W</button>
+        <button type="button" class="az-letter" data-letter="X">X</button>
+        <button type="button" class="az-letter" data-letter="Y">Y</button>
+        <button type="button" class="az-letter" data-letter="Z">Z</button>
+      </div>
+    </div>
+
+    <div id="latestSection" class="home-section">
+      <div id="latestAnimeHeader" class="home-section-head">
         <h2>Latest Anime</h2>
         <span id="catalogCount">Loading...</span>
       </div>
@@ -1575,6 +1892,12 @@ button.active{
 </div>
 
 <div id="animeGrid" class="grid"></div>
+
+<div id="latestPagination" class="latest-pagination hidden">
+  <button id="latestPrevBtn" type="button">← Previous</button>
+  <span id="latestPageInfo">Page 1</span>
+  <button id="latestNextBtn" type="button">Next →</button>
+</div>
 
   </section>
 
@@ -1686,6 +2009,16 @@ button.active{
       <h2>Episodes</h2>
     </div>
 
+    <div class="episode-navigation">
+      <button id="prevEpisodeBtn" type="button">
+        ← Previous
+      </button>
+
+      <button id="nextEpisodeBtn" type="button">
+        Next →
+      </button>
+    </div>
+
     <div id="playerEpisodes"></div>
 
   </section>
@@ -1698,11 +2031,6 @@ button.active{
     <button class="nav-item" type="button" onclick="showHome()">
       <strong>⌂</strong>
       Home
-    </button>
-
-    <button class="nav-item" type="button" onclick="showSearch()">
-      <strong>⌕</strong>
-      Search
     </button>
 
     <button class="nav-item" type="button" onclick="showWatch()">
@@ -1857,6 +2185,7 @@ function resumeContinueWatching(item){
     }
 
     currentServer = serverIndex;
+currentEpisodeKey = getEpisodeKey(found);
 
     document.getElementById("animePage")
       .classList.add("hidden");
@@ -1982,10 +2311,11 @@ function renderContinueWatching(){
 
 function cleanTitle(title){
 
-  return title
-    .replace(/SERIES\s*/i,"")
-    .replace(/MOVIE\s*/i,"")
-    .replace(/\s+/g," ")
+  return String(title || "")
+    .replace(/^(SERIES|MOVIE)\s*/i, "")
+    .replace(/^★\s*\d+(?:\.\d+)?\s*/i, "")
+    .replace(/^\d+(?:\.\d+)?\s*★\s*/i, "")
+    .replace(/\s+/g, " ")
     .trim();
 }
 
@@ -2058,6 +2388,14 @@ function renderRecentlyUpdated(list){
       <div class="card-title">
         ${escapeHtml(cleanTitle(item.title || "Anime"))}
       </div>
+
+      ${
+        item.rating
+          ? `<span class="card-rating-badge">
+               ★ ${escapeHtml(String(item.rating))}
+             </span>`
+          : ''
+      }
     `;
 
     card.onclick = () => openAnime(slug);
@@ -2115,7 +2453,15 @@ function renderNewReleases(list){
       <div class="card-title">
         ${escapeHtml(cleanTitle(item.title || "Anime"))}
       </div>
+
     `;
+
+    if(item.rating){
+      const rating = document.createElement("span");
+      rating.className = "card-rating-badge";
+      rating.textContent = "★ " + String(item.rating);
+      card.appendChild(rating);
+    }
 
     card.onclick = () => openAnime(slug);
 
@@ -2124,22 +2470,311 @@ function renderNewReleases(list){
 }
 
 
+let azActiveLetter = "ALL";
+let azFilteredAnimeList = null;
+let moviesMode = false;
+
+function showMovies(){
+
+  moviesMode = true;
+  azActiveLetter = "ALL";
+  azFilteredAnimeList = null;
+  latestAnimePage = 1;
+
+  const movies = Array.isArray(homeData)
+    ? homeData.filter(item => {
+        const title = String(item?.title || "").trim();
+        return /^MOVIE\b/i.test(title);
+      })
+    : [];
+
+  renderHome(movies);
+
+  const latestHeader =
+    document.getElementById("latestAnimeHeader");
+
+  const azSection =
+    document.getElementById("azListSection");
+
+  const trendingSection =
+    document.querySelector(".trending-section");
+
+  const recentlyUpdatedSection =
+    document.getElementById("recentlyUpdatedSection");
+
+  const newReleasesSection =
+    document.getElementById("newReleasesSection");
+
+  if(latestHeader){
+    latestHeader.classList.remove("hidden");
+
+    const title = latestHeader.querySelector("h2");
+    if(title){
+      title.textContent = "Movies";
+    }
+  }
+
+  [
+    trendingSection,
+    recentlyUpdatedSection,
+    newReleasesSection
+  ].forEach(section => {
+    if(section){
+      section.classList.add("hidden");
+    }
+  });
+
+  if(azSection){
+    azSection.classList.remove("hidden");
+  }
+
+  document.getElementById("latestSection")
+    ?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+}
+
+
+function filterAnimeByLetter(letter){
+
+  azActiveLetter = letter;
+
+  document.querySelectorAll(".az-letter").forEach(btn => {
+    btn.classList.toggle(
+      "active",
+      btn.dataset.letter === letter
+    );
+  });
+
+  const latestHeader =
+    document.getElementById("latestAnimeHeader");
+
+  const trendingSection =
+    document.querySelector(".trending-section");
+
+  const recentlyUpdatedSection =
+    document.getElementById("recentlyUpdatedSection");
+
+  const newReleasesSection =
+    document.getElementById("newReleasesSection");
+
+  const hideHomeCategories =
+    letter !== "ALL";
+
+  if(latestHeader){
+    latestHeader.classList.toggle(
+      "hidden",
+      hideHomeCategories
+    );
+  }
+
+  if(trendingSection){
+    trendingSection.classList.toggle(
+      "hidden",
+      hideHomeCategories
+    );
+  }
+
+  if(recentlyUpdatedSection){
+    recentlyUpdatedSection.classList.toggle(
+      "hidden",
+      hideHomeCategories
+    );
+  }
+
+  if(newReleasesSection){
+    newReleasesSection.classList.toggle(
+      "hidden",
+      hideHomeCategories
+    );
+  }
+
+  if(letter === "ALL"){
+    moviesMode = false;
+    azFilteredAnimeList = null;
+    latestAnimePage = 1;
+
+    const azSection =
+      document.getElementById("azListSection");
+
+    if(azSection){
+      azSection.classList.remove("hidden");
+    }
+
+    renderHome(homeData);
+    return;
+  }
+
+  const source = Array.isArray(homeData)
+    ? (
+        moviesMode
+          ? homeData.filter(item => {
+              const title = String(item?.title || "").trim();
+              return /^MOVIE\b/i.test(title);
+            })
+          : homeData
+      )
+    : [];
+
+  azFilteredAnimeList = source.filter(item => {
+
+    let title = cleanTitle(
+      item?.title || ""
+    ).trim();
+
+    title = title.replace(
+      /^(SERIES|MOVIE)\s+/i,
+      ""
+    ).trim();
+
+    if(!title){
+      return false;
+    }
+
+    const first = title
+      .charAt(0)
+      .toUpperCase();
+
+    if(letter === "#"){
+      return !/[A-Z]/.test(first);
+    }
+
+    return first === letter;
+  });
+
+  latestAnimePage = 1;
+
+  renderHome(azFilteredAnimeList);
+}
+
+document.querySelectorAll(".az-letter").forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    const letter =
+      btn.dataset.letter || "ALL";
+
+    filterAnimeByLetter(letter);
+
+  });
+
+});
+
+let latestAnimeList = [];
+let latestAnimePage = 1;
+const LATEST_ANIME_PER_PAGE = 24;
+
 function renderHome(list){
 
   const grid = document.getElementById("animeGrid");
   const status = document.getElementById("status");
 
-  grid.innerHTML = "";
+  if(!grid || !status) return;
 
-  if(!list.length){
+  latestAnimeList = Array.isArray(list) ? list : [];
 
+  const totalPages = Math.max(
+    1,
+    Math.ceil(
+      latestAnimeList.length / LATEST_ANIME_PER_PAGE
+    )
+  );
+
+  if(latestAnimePage > totalPages){
+    latestAnimePage = totalPages;
+  }
+
+  renderLatestAnimePage();
+
+  if(!latestAnimeList.length){
     status.textContent = "No anime found";
     return;
   }
 
   status.textContent = "";
+}
 
-  list.forEach(item => {
+
+function renderLatestAnimePage(){
+
+  const latestHeader =
+    document.getElementById("latestAnimeHeader");
+
+  const trendingSection =
+    document.querySelector(".trending-section");
+
+  const recentlyUpdatedSection =
+    document.getElementById("recentlyUpdatedSection");
+
+  const newReleasesSection =
+    document.getElementById("newReleasesSection");
+
+  const showHomeSections =
+    latestAnimePage === 1 &&
+    azActiveLetter === "ALL" &&
+    !moviesMode;
+
+  if(latestHeader){
+    latestHeader.classList.toggle(
+      "hidden",
+      !showHomeSections
+    );
+  }
+
+  if(trendingSection){
+    trendingSection.classList.toggle(
+      "hidden",
+      !showHomeSections
+    );
+  }
+
+  if(recentlyUpdatedSection){
+    recentlyUpdatedSection.classList.toggle(
+      "hidden",
+      !showHomeSections
+    );
+  }
+
+  if(newReleasesSection){
+    newReleasesSection.classList.toggle(
+      "hidden",
+      !showHomeSections
+    );
+  }
+
+  const grid = document.getElementById("animeGrid");
+  const pagination =
+    document.getElementById("latestPagination");
+  const prevBtn =
+    document.getElementById("latestPrevBtn");
+  const nextBtn =
+    document.getElementById("latestNextBtn");
+  const pageInfo =
+    document.getElementById("latestPageInfo");
+
+  if(!grid) return;
+
+  grid.innerHTML = "";
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(
+      latestAnimeList.length / LATEST_ANIME_PER_PAGE
+    )
+  );
+
+  const start =
+    (latestAnimePage - 1) *
+    LATEST_ANIME_PER_PAGE;
+
+  const end =
+    start + LATEST_ANIME_PER_PAGE;
+
+  const pageItems =
+    latestAnimeList.slice(start, end);
+
+  pageItems.forEach(item => {
 
     const slug = getSlug(item.link);
 
@@ -2154,27 +2789,43 @@ function renderHome(list){
       (Date.now() - new Date(item.firstSeenAt).getTime()) <
       (48 * 60 * 60 * 1000);
 
+    const isMovie =
+      /^MOVIE\b/i.test(
+        String(item?.title || "").trim()
+      );
+
+    const rating =
+      item.rating ||
+      item.score ||
+      item.malScore ||
+      "—";
+
     card.innerHTML = `
+      ${''}
+
       <div class="card-image-wrap">
 
         <img
-          src="${escapeHtml(item.image)}"
+          src="${escapeHtml(item.image || "")}"
           loading="lazy"
           alt=""
         >
 
-        <span class="card-type-badge">
-          SERIES
-        </span>
+        ${
+          !isMovie
+            ? `<span class="card-type-badge">
+                 SERIES
+               </span>`
+            : ''
+        }
 
-        <span class="card-rating-badge">
-          ★ ${escapeHtml(
-            item.rating ||
-            item.score ||
-            item.malScore ||
-            "—"
-          )}
-        </span>
+        ${
+          rating
+            ? `<span class="card-rating-badge">
+                 ★ ${escapeHtml(rating)}
+               </span>`
+            : ''
+        }
 
         ${
           isNew
@@ -2185,8 +2836,10 @@ function renderHome(list){
       </div>
 
       <div class="card-title">
-        ${escapeHtml(cleanTitle(item.title))}
+        ${escapeHtml(cleanTitle(item.title || "Anime"))}
       </div>
+
+
     `;
 
     card.onclick = () => openAnime(slug);
@@ -2194,9 +2847,83 @@ function renderHome(list){
     grid.appendChild(card);
 
   });
+
+  if(pagination){
+
+    pagination.classList.toggle(
+      "hidden",
+      latestAnimeList.length <= LATEST_ANIME_PER_PAGE
+    );
+
+  }
+
+  if(pageInfo){
+    pageInfo.textContent =
+      "Page " +
+      latestAnimePage +
+      " / " +
+      totalPages;
+  }
+
+  if(prevBtn){
+    prevBtn.disabled =
+      latestAnimePage <= 1;
+  }
+
+  if(nextBtn){
+    nextBtn.disabled =
+      latestAnimePage >= totalPages;
+  }
+
 }
 
 
+document.getElementById("latestPrevBtn")?.addEventListener(
+  "click",
+  () => {
+
+    if(latestAnimePage <= 1) return;
+
+    latestAnimePage--;
+
+    renderLatestAnimePage();
+
+    document.getElementById("latestSection")
+      ?.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+  }
+);
+
+
+document.getElementById("latestNextBtn")?.addEventListener(
+  "click",
+  () => {
+
+    const totalPages = Math.max(
+      1,
+      Math.ceil(
+        latestAnimeList.length /
+        LATEST_ANIME_PER_PAGE
+      )
+    );
+
+    if(latestAnimePage >= totalPages) return;
+
+    latestAnimePage++;
+
+    renderLatestAnimePage();
+
+    document.getElementById("latestSection")
+      ?.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+  }
+);
 
 
 /* ---------- PREMIUM HERO SLIDER LOGIC ---------- */
@@ -2546,6 +3273,14 @@ async function renderTrending(list){
         <div class="trending-views">
           ${Number(item.views || 0)} VIEWS
         </div>
+
+        ${
+          item.rating
+            ? `<span class="card-rating-badge">
+                 ★ ${escapeHtml(String(item.rating))}
+               </span>`
+            : ''
+        }
 
       `;
 
@@ -3225,6 +3960,8 @@ function playEpisodeFromData(ep){
   if(serverIndex === -1) return;
 
   currentServer = serverIndex;
+  currentEpisodeKey = getEpisodeKey(ep);
+  updateEpisodeNavigation();
 
   document.getElementById("animePage")
     .classList.add("hidden");
@@ -3272,8 +4009,15 @@ function renderServers(){
       const server = streamData.servers[currentServer];
 
       if(server && server.episodes && server.episodes.length){
-        loadPlayer(server.episodes[0]);
-      }
+const [season, episode] =
+  (currentEpisodeKey || "").split("-");
+
+const currentEpisode =
+  findEpisode(currentServer, season, episode);
+
+if(currentEpisode && currentEpisode.url){
+  loadPlayer(currentEpisode);
+}      }
 
     };
 
@@ -3306,6 +4050,12 @@ function renderPlayerEpisodes(){
       "S" + ep.season +
       " • E" + ep.episode;
 
+    if(
+      currentEpisodeKey === getEpisodeKey(ep)
+    ){
+      btn.classList.add("player-episode-active");
+    }
+
     btn.onclick = () => {
 
       if(!ep.url) return;
@@ -3315,6 +4065,9 @@ function renderPlayerEpisodes(){
           "Season " + ep.season +
           " • Episode " + ep.episode;
 
+      currentEpisodeKey = getEpisodeKey(ep);
+  updateEpisodeNavigation();
+      renderPlayerEpisodes();
       loadPlayer(ep);
 
     };
@@ -3326,6 +4079,72 @@ function renderPlayerEpisodes(){
 }
 
 
+function navigateEpisode(direction){
+
+  const server = streamData?.servers?.[currentServer];
+
+  if(!server || !Array.isArray(server.episodes)){
+    return;
+  }
+
+  const episodes = server.episodes.filter(ep =>
+    ep && ep.url && ep.season != null && ep.episode != null
+  );
+
+  const currentIndex = episodes.findIndex(ep =>
+    getEpisodeKey(ep) === currentEpisodeKey
+  );
+
+  if(currentIndex === -1){
+    return;
+  }
+
+  const nextIndex = currentIndex + direction;
+
+  if(nextIndex < 0 || nextIndex >= episodes.length){
+    return;
+  }
+
+  const nextEpisode = episodes[nextIndex];
+
+  currentEpisodeKey = getEpisodeKey(nextEpisode);
+
+  document.getElementById("playerTitle")
+    .textContent =
+      "Season " + nextEpisode.season +
+      " • Episode " + nextEpisode.episode;
+
+  renderPlayerEpisodes();
+  loadPlayer(nextEpisode);
+}
+
+
+function updateEpisodeNavigation(){
+
+  const server = streamData?.servers?.[currentServer];
+  const prevBtn = document.getElementById("prevEpisodeBtn");
+  const nextBtn = document.getElementById("nextEpisodeBtn");
+
+  if(!server || !Array.isArray(server.episodes)){
+    if(prevBtn) prevBtn.disabled = true;
+    if(nextBtn) nextBtn.disabled = true;
+    return;
+  }
+
+  const episodes = server.episodes.filter(ep =>
+    ep && ep.url && ep.season != null && ep.episode != null
+  );
+
+  const currentIndex = episodes.findIndex(ep =>
+    getEpisodeKey(ep) === currentEpisodeKey
+  );
+
+  if(prevBtn) prevBtn.disabled = currentIndex <= 0;
+  if(nextBtn) nextBtn.disabled =
+    currentIndex === -1 || currentIndex + 1 >= episodes.length;
+
+}
+
 function loadPlayer(ep){
 
   const player = document.getElementById("player");
@@ -3333,6 +4152,9 @@ function loadPlayer(ep){
   if(!player || !ep || !ep.url){
     return;
   }
+
+  currentEpisodeKey = getEpisodeKey(ep);
+  updateEpisodeNavigation();
 
   /*
    * Force iframe reload when changing episode.
@@ -3348,6 +4170,13 @@ function loadPlayer(ep){
 
 }
 
+document.getElementById("prevEpisodeBtn").onclick = () =>
+  navigateEpisode(-1);
+
+document.getElementById("nextEpisodeBtn").onclick = () =>
+  navigateEpisode(1);
+
+
 /* ---------------- NAVIGATION ---------------- */
 
 function showHome(){
@@ -3361,6 +4190,32 @@ function showHome(){
   document.getElementById("home")
     .classList.remove("hidden");
 
+  moviesMode = false;
+  azActiveLetter = "ALL";
+  azFilteredAnimeList = null;
+  latestAnimePage = 1;
+
+  const azSection =
+    document.getElementById("azListSection");
+
+  if(azSection){
+    azSection.classList.remove("hidden");
+  }
+
+  const latestHeader =
+    document.getElementById("latestAnimeHeader");
+
+  if(latestHeader){
+    const title = latestHeader.querySelector("h2");
+
+    if(title){
+      title.textContent = "Latest Anime";
+    }
+
+    latestHeader.classList.remove("hidden");
+  }
+
+  renderHome(homeData);
 }
 
 
@@ -3558,6 +4413,242 @@ loadHome().then(() => {
   startHomeAutoRefresh();
 });
 
+/* ---------------- ADMIN ANIME LINK ---------------- */
+
+(function(){
+
+  const params = new URLSearchParams(
+    window.location.search
+  );
+
+  const slug = params.get("anime");
+
+  if(!slug) return;
+
+  loadHome().then(() => {
+    openAnime(slug);
+  });
+
+})();
+
+
+</script>
+
+
+<script id="telegram-popup-js">
+(async function(){
+
+  const popup =
+    document.getElementById("telegramJoinPopup");
+
+  const joinButton =
+    document.getElementById("telegramJoinButton");
+
+  const closeButton =
+    document.getElementById("telegramPopupClose");
+
+  const cornerButton =
+    document.querySelector(".telegram-corner-button");
+
+  if(!popup) return;
+
+  try{
+
+    const res =
+      await fetch("/api/settings");
+
+    const data =
+      await res.json();
+
+    const telegramLink =
+      data?.settings?.telegramLink;
+
+    if(
+      data?.success &&
+      telegramLink
+    ){
+
+      if(joinButton){
+        joinButton.href = telegramLink;
+      }
+
+      if(cornerButton){
+        cornerButton.href = telegramLink;
+      }
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "TELEGRAM SETTINGS LOAD ERROR:",
+      error
+    );
+
+  }
+
+  const STORAGE_KEY =
+    "animeverse_telegram_joined";
+
+  if(
+    localStorage.getItem(STORAGE_KEY) === "1"
+  ){
+    popup.classList.add("telegram-hidden");
+  }
+
+  if(joinButton){
+    joinButton.addEventListener(
+      "click",
+      function(){
+        localStorage.setItem(
+          STORAGE_KEY,
+          "1"
+        );
+        popup.classList.add(
+          "telegram-hidden"
+        );
+      }
+    );
+  }
+
+  if(closeButton){
+    closeButton.addEventListener(
+      "click",
+      function(){
+        popup.classList.add(
+          "telegram-hidden"
+        );
+      }
+    );
+  }
+
+  popup.addEventListener(
+    "click",
+    function(e){
+      if(e.target === popup){
+        popup.classList.add(
+          "telegram-hidden"
+        );
+      }
+    }
+  );
+
+})();
+</script>
+
+
+<script>
+async function loadPublicAdSettings(){
+
+  try{
+
+    const res =
+      await fetch("/api/settings");
+
+    const data =
+      await res.json();
+
+    if(!res.ok || !data.success) return;
+
+    const ads =
+      data.settings?.ads;
+
+    if(!ads?.enabled) return;
+
+    console.log(
+      "ADS ENABLED:",
+      ads.provider || "unknown"
+    );
+
+  }catch(error){
+
+    console.error(
+      "PUBLIC ADS SETTINGS ERROR:",
+      error.message
+    );
+
+  }
+}
+
+document.addEventListener(
+  "DOMContentLoaded",
+  loadPublicAdSettings
+);
+</script>
+
+
+<div
+  id="homeAdContainer"
+  style="
+    display:none;
+    width:100%;
+    max-width:100%;
+    margin:18px 0;
+    box-sizing:border-box;
+    overflow:hidden;
+  "
+></div>
+
+<script>
+async function loadHomeAd(){
+
+  const container =
+    document.getElementById("homeAdContainer");
+
+  if(!container) return;
+
+  try{
+
+    const res =
+      await fetch("/api/settings");
+
+    const data =
+      await res.json();
+
+    const ads =
+      data.settings?.ads;
+
+    if(
+      !res.ok ||
+      !data.success ||
+      !ads?.enabled
+    ){
+      container.style.display = "none";
+      return;
+    }
+
+    container.style.display = "block";
+
+    if(ads.provider === "TEST"){
+      container.innerHTML = `
+        <div style="
+          padding:18px;
+          text-align:center;
+          border:1px dashed rgba(255,255,255,.2);
+          border-radius:12px;
+          color:#aaa;
+          background:#17171e;
+        ">
+          📢 TEST AD AREA
+        </div>
+      `;
+    }
+
+  }catch(error){
+
+    container.style.display = "none";
+
+    console.error(
+      "HOME AD ERROR:",
+      error.message
+    );
+  }
+}
+
+document.addEventListener(
+  "DOMContentLoaded",
+  loadHomeAd
+);
 </script>
 
 </body>

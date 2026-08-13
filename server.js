@@ -1,3 +1,4 @@
+require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 const express = require("express");
@@ -5,6 +6,8 @@ const cron = require("node-cron");
 const axios = require("axios");
 const cheerio = require("cheerio");
 const cors = require("cors");
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
 
 const app = express();
 
@@ -54,7 +57,684 @@ const client = axios.create({
 
 const streamCache = new Map();
 
-const { startAutoSync } = require("./sync");
+
+
+// --------------------------------------------------
+// ADMIN PANEL
+// --------------------------------------------------
+
+const adminSessions = new Map();
+
+function adminPasswordValid(password) {
+  const actual = String(process.env.ADMIN_PASSWORD || "");
+  const supplied = String(password || "");
+
+  if (!actual || !supplied) return false;
+
+  const a = Buffer.from(actual);
+  const b = Buffer.from(supplied);
+
+  if (a.length !== b.length) return false;
+
+  return crypto.timingSafeEqual(a, b);
+}
+
+function requireAdmin(req, res, next) {
+  const token = req.headers.cookie
+    ?.split(";")
+    .map(x => x.trim())
+    .find(x => x.startsWith("anime_admin="))
+    ?.split("=")[1];
+
+  if (!token || !adminSessions.has(token)) {
+    return res.status(401).json({
+      success: false,
+      message: "Admin login required"
+    });
+  }
+
+  next();
+}
+
+app.post("/admin/api/login", (req, res) => {
+  const password = req.body?.password;
+
+  if (!adminPasswordValid(password)) {
+    return res.status(401).json({
+      success: false,
+      message: "Invalid password"
+    });
+  }
+
+  const token = crypto.randomBytes(32).toString("hex");
+
+  adminSessions.set(token, {
+    createdAt: Date.now()
+  });
+
+  res.setHeader(
+    "Set-Cookie",
+    `anime_admin=${token}; HttpOnly; SameSite=Strict; Path=/`
+  );
+
+  res.json({
+    success: true
+  });
+});
+
+
+// --------------------------------------------------
+// ADMIN PASSWORD RECOVERY
+// --------------------------------------------------
+
+const recoveryFile = path.join(
+  __dirname,
+  "data",
+  "admin-recovery.json"
+);
+
+function readRecoveryData(){
+  try{
+    if(!fs.existsSync(recoveryFile)) return null;
+
+    return JSON.parse(
+      fs.readFileSync(recoveryFile, "utf8")
+    );
+  }catch{
+    return null;
+  }
+}
+
+function writeRecoveryData(data){
+  fs.mkdirSync(
+    path.dirname(recoveryFile),
+    { recursive: true }
+  );
+
+  fs.writeFileSync(
+    recoveryFile,
+    JSON.stringify(data, null, 2),
+    {
+      encoding: "utf8",
+      mode: 0o600
+    }
+  );
+}
+
+function clearRecoveryData(){
+  try{
+    if(fs.existsSync(recoveryFile)){
+      fs.unlinkSync(recoveryFile);
+    }
+  }catch(error){
+    console.error(
+      "RECOVERY FILE CLEANUP ERROR:",
+      error.message
+    );
+  }
+}
+
+const recoveryTransporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.RECOVERY_GMAIL,
+    pass: process.env.GMAIL_APP_PASSWORD
+  }
+});
+
+app.post("/admin/api/forgot-password", async (req, res) => {
+  try{
+    const recoveryEmail =
+      String(process.env.RECOVERY_GMAIL || "").trim();
+
+    if(!recoveryEmail){
+      return res.status(500).json({
+        success:false,
+        message:"Recovery Gmail is not configured"
+      });
+    }
+
+    const otp =
+      String(crypto.randomInt(100000, 1000000));
+
+    const otpHash =
+      crypto
+        .createHash("sha256")
+        .update(otp)
+        .digest("hex");
+
+    writeRecoveryData({
+      otpHash,
+      expiresAt: Date.now() + 10 * 60 * 1000,
+      attempts: 0
+    });
+
+    await recoveryTransporter.sendMail({
+      from: recoveryEmail,
+      to: recoveryEmail,
+      subject: "AnimeVerse Admin Password Recovery",
+      text:
+        `Your AnimeVerse admin password recovery OTP is: ${otp}\n\n` +
+        "This OTP expires in 10 minutes.\n" +
+        "If you did not request this, ignore this email."
+    });
+
+    res.json({
+      success:true,
+      message:"Recovery OTP sent to Gmail"
+    });
+
+  }catch(error){
+
+    console.error(
+      "PASSWORD RECOVERY EMAIL ERROR:",
+      error.message
+    );
+
+    res.status(500).json({
+      success:false,
+      message:"Failed to send recovery OTP"
+    });
+  }
+});
+
+app.post("/admin/api/reset-password", (req, res) => {
+  try{
+    const otp =
+      String(req.body?.otp || "").trim();
+
+    const newPassword =
+      String(req.body?.newPassword || "");
+
+    const recoveryData =
+      readRecoveryData();
+
+    if(!recoveryData){
+      return res.status(400).json({
+        success:false,
+        message:"Recovery OTP not requested"
+      });
+    }
+
+    if(Date.now() > recoveryData.expiresAt){
+      clearRecoveryData();
+
+      return res.status(400).json({
+        success:false,
+        message:"OTP expired"
+      });
+    }
+
+    if(!/^\d{6}$/.test(otp)){
+      return res.status(400).json({
+        success:false,
+        message:"Invalid OTP"
+      });
+    }
+
+    recoveryData.attempts =
+      Number(recoveryData.attempts || 0) + 1;
+
+    if(recoveryData.attempts > 5){
+      clearRecoveryData();
+
+      return res.status(400).json({
+        success:false,
+        message:"Too many invalid OTP attempts"
+      });
+    }
+
+    writeRecoveryData(recoveryData);
+
+    const otpHash =
+      crypto
+        .createHash("sha256")
+        .update(otp)
+        .digest("hex");
+
+    const expected =
+      Buffer.from(recoveryData.otpHash);
+
+    const supplied =
+      Buffer.from(otpHash);
+
+    if(
+      expected.length !== supplied.length ||
+      !crypto.timingSafeEqual(expected, supplied)
+    ){
+      return res.status(400).json({
+        success:false,
+        message:"Invalid OTP"
+      });
+    }
+
+    if(newPassword.length < 7){
+      return res.status(400).json({
+        success:false,
+        message:"Password must be at least 7 characters"
+      });
+    }
+
+    const envFile =
+      path.join(__dirname, ".env");
+
+    let env =
+      fs.readFileSync(envFile, "utf8");
+
+    if(/^ADMIN_PASSWORD=/m.test(env)){
+      env = env.replace(
+        /^ADMIN_PASSWORD=.*$/m,
+        `ADMIN_PASSWORD=${newPassword}`
+      );
+    }else{
+      env += `\nADMIN_PASSWORD=${newPassword}\n`;
+    }
+
+    fs.writeFileSync(
+      envFile,
+      env,
+      {
+        encoding:"utf8",
+        mode:0o600
+      }
+    );
+
+    clearRecoveryData();
+
+    adminSessions.clear();
+
+    res.json({
+      success:true,
+      message:
+        "Admin password changed successfully. Restart server before login."
+    });
+
+  }catch(error){
+
+    console.error(
+      "PASSWORD RESET ERROR:",
+      error.message
+    );
+
+    res.status(500).json({
+      success:false,
+      message:"Failed to reset password"
+    });
+  }
+});
+
+app.post("/admin/api/logout", requireAdmin, (req, res) => {
+  const token = req.headers.cookie
+    ?.split(";")
+    .map(x => x.trim())
+    .find(x => x.startsWith("anime_admin="))
+    ?.split("=")[1];
+
+  if (token) adminSessions.delete(token);
+
+  res.setHeader(
+    "Set-Cookie",
+    "anime_admin=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0"
+  );
+
+  res.json({
+    success: true
+  });
+});
+
+app.get("/api/settings", (req, res) => {
+  try {
+    const settingsFile = path.join(
+      __dirname,
+      "data",
+      "site-settings.json"
+    );
+
+    if (!fs.existsSync(settingsFile)) {
+      return res.status(404).json({
+        success: false,
+        message: "Settings file not found"
+      });
+    }
+
+    const settings = JSON.parse(
+      fs.readFileSync(settingsFile, "utf-8")
+    );
+
+    res.json({
+      success: true,
+      settings: {
+        telegramLink:
+          String(settings.telegramLink || ""),
+
+        ads: {
+          enabled:
+            Boolean(settings.ads?.enabled),
+
+          provider:
+            String(settings.ads?.provider || "")
+        }
+      }
+    });
+
+  } catch (error) {
+    console.error(
+      "PUBLIC SETTINGS READ ERROR:",
+      error.message
+    );
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to read settings"
+    });
+  }
+});
+
+app.get("/admin/api/settings", requireAdmin, (req, res) => {
+  try {
+    const settingsFile = path.join(
+      __dirname,
+      "data",
+      "site-settings.json"
+    );
+
+    if (!fs.existsSync(settingsFile)) {
+      return res.status(404).json({
+        success: false,
+        message: "Settings file not found"
+      });
+    }
+
+    const settings = JSON.parse(
+      fs.readFileSync(settingsFile, "utf-8")
+    );
+
+    res.json({
+      success: true,
+      settings: {
+        telegramLink:
+          String(settings.telegramLink || "")
+      }
+    });
+
+  } catch (error) {
+    console.error("ADMIN SETTINGS READ ERROR:", error.message);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to read settings"
+    });
+  }
+});
+
+app.post("/admin/api/settings", requireAdmin, (req, res) => {
+  try {
+    const settingsFile = path.join(
+      __dirname,
+      "data",
+      "site-settings.json"
+    );
+
+    let telegramLink =
+      String(req.body?.telegramLink || "").trim();
+
+    if (!telegramLink) {
+      return res.status(400).json({
+        success: false,
+        message: "Telegram link is required"
+      });
+    }
+
+    if (!/^https:\/\/t\.me\/[A-Za-z0-9_]+\/?$/.test(telegramLink)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid Telegram link"
+      });
+    }
+
+    const settings = {
+      telegramLink
+    };
+
+    fs.writeFileSync(
+      settingsFile,
+      JSON.stringify(settings, null, 2),
+      "utf-8"
+    );
+
+    res.json({
+      success: true,
+      message: "Telegram link saved",
+      settings
+    });
+
+  } catch (error) {
+    console.error("ADMIN SETTINGS SAVE ERROR:", error.message);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to save settings"
+    });
+  }
+});
+
+
+// --------------------------------------------------
+// ADMIN AD MANAGEMENT
+// --------------------------------------------------
+
+app.get("/admin/api/ads", requireAdmin, (req, res) => {
+  try {
+    const settingsFile = path.join(
+      __dirname,
+      "data",
+      "site-settings.json"
+    );
+
+    const settings = fs.existsSync(settingsFile)
+      ? JSON.parse(fs.readFileSync(settingsFile, "utf8"))
+      : {};
+
+    res.json({
+      success: true,
+      ads: {
+        enabled: Boolean(settings.ads?.enabled),
+        provider: String(settings.ads?.provider || ""),
+        homeCode: String(settings.ads?.homeCode || ""),
+        animeCode: String(settings.ads?.animeCode || ""),
+        episodeCode: String(settings.ads?.episodeCode || ""),
+        verificationCode: String(settings.ads?.verificationCode || "")
+      }
+    });
+
+  } catch (error) {
+    console.error("ADMIN ADS READ ERROR:", error.message);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to read ad settings"
+    });
+  }
+});
+
+
+app.post("/admin/api/ads", requireAdmin, (req, res) => {
+  try {
+    const settingsFile = path.join(
+      __dirname,
+      "data",
+      "site-settings.json"
+    );
+
+    const settings = fs.existsSync(settingsFile)
+      ? JSON.parse(fs.readFileSync(settingsFile, "utf8"))
+      : {};
+
+    const enabled =
+      Boolean(req.body?.enabled);
+
+    const provider =
+      String(req.body?.provider || "").trim();
+
+    const homeCode =
+      String(req.body?.homeCode || "");
+
+    const animeCode =
+      String(req.body?.animeCode || "");
+
+    const episodeCode =
+      String(req.body?.episodeCode || "");
+
+    const verificationCode =
+      String(req.body?.verificationCode || "");
+
+    settings.ads = {
+      enabled,
+      provider,
+      homeCode,
+      animeCode,
+      episodeCode,
+      verificationCode
+    };
+
+    fs.writeFileSync(
+      settingsFile,
+      JSON.stringify(settings, null, 2),
+      {
+        encoding: "utf8",
+        mode: 0o600
+      }
+    );
+
+    res.json({
+      success: true,
+      message: "Ad settings saved",
+      ads: settings.ads
+    });
+
+  } catch (error) {
+    console.error("ADMIN ADS SAVE ERROR:", error.message);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to save ad settings"
+    });
+  }
+});
+
+app.get("/admin/api/anime", requireAdmin, (req, res) => {
+  try {
+    const catalogFile = path.join(
+      __dirname,
+      "data",
+      "catalog.json"
+    );
+
+    if (!fs.existsSync(catalogFile)) {
+      return res.status(404).json({
+        success: false,
+        message: "Catalog not found"
+      });
+    }
+
+    const catalog = JSON.parse(
+      fs.readFileSync(catalogFile, "utf-8")
+    );
+
+    const items = Array.isArray(catalog.results)
+      ? catalog.results
+      : [];
+
+    res.json({
+      success: true,
+      count: items.length,
+      results: items
+    });
+
+  } catch (error) {
+    console.error("ADMIN ANIME API ERROR:", error);
+
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+});
+
+app.post("/admin/api/sync", requireAdmin, async (req, res) => {
+  try {
+    const results = await syncCatalog();
+
+    res.json({
+      success: true,
+      count: Array.isArray(results) ? results.length : 0
+    });
+
+  } catch (error) {
+    console.error("ADMIN MANUAL SYNC ERROR:", error);
+
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+});
+
+app.get("/admin/api/dashboard", requireAdmin, (req, res) => {
+  try {
+    const catalogFile = path.join(
+      __dirname,
+      "data",
+      "catalog.json"
+    );
+
+    const catalog = fs.existsSync(catalogFile)
+      ? JSON.parse(fs.readFileSync(catalogFile, "utf8"))
+      : { results: [] };
+
+    const items = Array.isArray(catalog.results)
+      ? catalog.results
+      : [];
+
+    const ratings = items.filter(
+      item => item && item.rating
+    ).length;
+
+    const updated = items.filter(
+      item => item && item.lastSeenAt
+    ).length;
+
+    const releases = items.filter(
+      item => item && item.firstSeenAt
+    ).length;
+
+    res.json({
+      success: true,
+      stats: {
+        totalAnime: items.length,
+        ratings,
+        recentlyUpdated: updated,
+        newReleases: releases,
+        uptime: Math.floor(process.uptime()),
+        serverTime: new Date().toISOString()
+      }
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+});
+
+app.get("/admin", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "admin.html")
+  );
+});
+
+const { startAutoSync, syncCatalog } = require("./sync");
 const STREAM_CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 
 // --------------------------------------------------
@@ -511,7 +1191,6 @@ app.get("/api/anime/:slug", async (req, res) => {
       $('meta[property="og:image"]').attr("content") ||
       "";
 
-    const servers = await scrapeEpisodeServers(slug);
 
     res.json({
       success: true,
@@ -520,7 +1199,6 @@ app.get("/api/anime/:slug", async (req, res) => {
         title,
         description,
         image,
-        servers,
       },
     });
   } catch (error) {
