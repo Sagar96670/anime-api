@@ -1170,7 +1170,10 @@ app.get("/api/anime/:slug", async (req, res) => {
     const { data } = await client.get(`/${slug}/`);
     const $ = cheerio.load(data);
 
+    const info = $(".nf-info").first();
+
     const title =
+      info.find("h1").first().text().trim() ||
       $(".post-title").first().text().trim() ||
       $(".entry-title").first().text().trim() ||
       $("h1").first().text().trim() ||
@@ -1183,12 +1186,137 @@ app.get("/api/anime/:slug", async (req, res) => {
       "";
 
     const image =
+      info.find(".nf-poster img").first().attr("src") ||
       $("img").map((i, el) => $(el).attr("src") || "").get()
         .find(src => src.includes("image.tmdb.org")) ||
       $("img").first().attr("src") ||
       $('meta[property="og:image"]').attr("content") ||
       "";
 
+    const metaText =
+      info.find(".nf-meta-row").first().text().replace(/\s+/g, " ").trim();
+
+    const type =
+      info.find(".nf-q-tag").first().text().trim() || "";
+
+    const ratingMatch =
+      metaText.match(/★\s*([0-9.]+)/);
+
+    const rating =
+      ratingMatch ? ratingMatch[1] : "";
+
+    const seasonsMatch =
+      metaText.match(/\|\s*(\d+)\s+Seasons?/i);
+
+    const seasons =
+      seasonsMatch ? Number(seasonsMatch[1]) : null;
+
+    const episodesMatch =
+      metaText.match(/\|\s*(\d+)\s+Episodes?/i);
+
+    const episodes =
+      episodesMatch ? Number(episodesMatch[1]) : null;
+
+    const genres = info
+      .find(".nf-meta-row a.nf-link")
+      .map((i, el) => $(el).text().trim())
+      .get();
+
+    const audio = [];
+
+    $(".nf-player-body").each((_, el) => {
+      const text = $(el).text().replace(/\s+/g, " ").trim();
+
+      const match = text.match(
+        /S\d+\s*:\s*Audio\s+([a-z0-9-]+)/i
+      );
+
+      if (match) {
+        match[1]
+          .split("-")
+          .map(x => x.trim().toLowerCase())
+          .filter(Boolean)
+          .forEach(x => {
+            if (!audio.includes(x)) audio.push(x);
+          });
+      }
+    });
+
+    const languageMap = {
+      hin: "Hindi",
+      eng: "English",
+      jap: "Japanese",
+      tam: "Tamil",
+      telu: "Telugu"
+    };
+
+    const languages = audio.map(
+      code => languageMap[code] || code
+    );
+
+    // ------------------------------------------
+    // Extra metadata from authorized metadata source
+    // ------------------------------------------
+
+    let quality = "";
+    let status = "";
+    let released = "";
+    let duration = "";
+
+    try {
+      const rareUrl =
+        `https://www.rareanimes.mov/${encodeURIComponent(slug)}/`;
+
+      const rareRes = await axios.get(rareUrl, {
+        headers,
+        maxRedirects: 5,
+        timeout: 10000
+      });
+
+      const rareHtml = String(rareRes.data || "");
+
+      // Status: completed category
+      if (/category-completed/i.test(rareHtml)) {
+        status = "Completed";
+      }
+
+      // Convert relevant HTML to readable text
+      const rare$ = cheerio.load(rareHtml);
+      const rareText = rare$("body")
+        .text()
+        .replace(/\s+/g, " ")
+        .trim();
+
+      // Duration
+      const durationMatch =
+        rareText.match(/RunTime\s*:\s*([^🎞]+)/i);
+
+      if (durationMatch) {
+        duration = durationMatch[1].trim();
+      }
+
+      // Released / Year
+      const releasedMatch =
+        rareText.match(/Year\s*:\s*([^🔊]+)/i);
+
+      if (releasedMatch) {
+        released = releasedMatch[1].trim();
+      }
+
+      // Quality
+      const qualityMatch =
+        rareText.match(/Quality\s*:\s*\(([^)]+)\)/i);
+
+      if (qualityMatch) {
+        quality = qualityMatch[1].trim();
+      }
+
+    } catch (metadataError) {
+      console.log(
+        "EXTRA METADATA unavailable:",
+        metadataError.message
+      );
+    }
 
     res.json({
       success: true,
@@ -1197,8 +1325,20 @@ app.get("/api/anime/:slug", async (req, res) => {
         title,
         description,
         image,
-      },
+        type,
+        rating,
+        seasons,
+        episodes,
+        genres,
+        audio,
+        languages,
+        quality,
+        status,
+        released,
+        duration
+      }
     });
+
   } catch (error) {
     console.error("ANIME ERROR:", error.message);
 
@@ -1478,6 +1618,18 @@ app.delete("/api/cache/:slug", (req, res) => {
     deleted,
     animeSlug: slug,
   });
+});
+
+// --------------------------------------------------
+// FRONTEND ROUTES
+// --------------------------------------------------
+
+app.get("/anime/:slug", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/watch/:slug/:episode", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // --------------------------------------------------

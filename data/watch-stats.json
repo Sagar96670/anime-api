@@ -8,12 +8,12 @@
     "lastWatchedAt": "2026-08-12T08:11:16.718Z"
   },
   "liar-game": {
-    "views": 5,
+    "views": 6,
     "episodes": {
-      "S1E1": 3,
+      "S1E1": 4,
       "S1E16": 2
     },
-    "lastWatchedAt": "2026-08-12T06:08:15.392Z"
+    "lastWatchedAt": "2026-08-14T04:03:53.760Z"
   },
   "bleach": {
     "views": 1,
@@ -69,5 +69,20 @@
       "S1E1": 1
     },
     "lastWatchedAt": "2026-08-12T17:37:12.308Z"
+  },
+  "my-hero-academia": {
+    "views": 2,
+    "episodes": {
+      "S1E1": 2
+    },
+    "lastWatchedAt": "2026-08-14T05:13:42.785Z"
+  },
+  "shin-chan": {
+    "views": 3,
+    "episodes": {
+      "S12E1": 2,
+      "S1E1": 1
+    },
+    "lastWatchedAt": "2026-08-14T06:29:19.495Z"
   }
 }

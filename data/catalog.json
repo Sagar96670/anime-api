@@ -1,7 +1,34 @@
 {
-  "updatedAt": "2026-08-13T06:03:24.274Z",
-  "count": 243,
+  "updatedAt": "2026-08-14T07:33:19.591Z",
+  "count": 244,
   "results": [
+    {
+      "slug": "cinderella-chef",
+      "title": "SERIES Cinderella Chef",
+      "image": "https://image.tmdb.org/t/p/original/bEUu44XUH1cVbyGejb70PR5ozF.jpg",
+      "link": "https://1xanimes.com/cinderella-chef/",
+      "rating": "6.6",
+      "firstSeenAt": "2026-08-14T04:03:08.832Z",
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
+    },
+    {
+      "slug": "thunder-3",
+      "title": "SERIES Thunder 3",
+      "image": "https://image.tmdb.org/t/p/w1280/ho6FHjF1JlzAJ8YGdbqwuxaElDj.jpg",
+      "link": "https://1xanimes.com/thunder-3/",
+      "rating": "0",
+      "firstSeenAt": "2026-08-10T11:30:25.627Z",
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
+    },
+    {
+      "slug": "tomb-raider-king",
+      "title": "SERIES Tomb Raider King",
+      "image": "https://image.tmdb.org/t/p/w1280/wK1SL5EUJ6Bq2UhDCRtT1FA1HdN.jpg",
+      "link": "https://1xanimes.com/tomb-raider-king/",
+      "rating": "8.7",
+      "firstSeenAt": "2026-08-11T04:30:24.761Z",
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
+    },
     {
       "slug": "trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-for-mobs",
       "title": "SERIES Trapped in a Dating Sim: The World of Otome Games Is Tough for Mobs",
@@ -9,7 +36,7 @@
       "link": "https://1xanimes.com/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-for-mobs/",
       "rating": "7.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "rezero-starting-life-in-another-world",
@@ -18,7 +45,7 @@
       "link": "https://1xanimes.com/rezero-starting-life-in-another-world/",
       "rating": "7.8",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "clevatess",
@@ -27,7 +54,7 @@
       "link": "https://1xanimes.com/clevatess/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "scum-of-the-brave",
@@ -36,7 +63,7 @@
       "link": "https://1xanimes.com/scum-of-the-brave/",
       "rating": "8",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "captain-tsubasa",
@@ -45,7 +72,7 @@
       "link": "https://1xanimes.com/captain-tsubasa/",
       "rating": "8.2",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "yowayowa-sensei",
@@ -54,7 +81,7 @@
       "link": "https://1xanimes.com/yowayowa-sensei/",
       "rating": "5.4",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "tamons-b-side",
@@ -63,7 +90,7 @@
       "link": "https://1xanimes.com/tamons-b-side/",
       "rating": "7.7",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "liar-game",
@@ -72,7 +99,8 @@
       "link": "https://1xanimes.com/liar-game/",
       "rating": "9",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z",
+      "latestEpisodeCount": 16
     },
     {
       "slug": "bleach",
@@ -81,7 +109,7 @@
       "link": "https://1xanimes.com/bleach/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "sparks-of-tomorrow",
@@ -90,7 +118,7 @@
       "link": "https://1xanimes.com/sparks-of-tomorrow/",
       "rating": "7.7",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "hanaori-san-still-wants-to-fight-in-the-next-life",
@@ -99,7 +127,7 @@
       "link": "https://1xanimes.com/hanaori-san-still-wants-to-fight-in-the-next-life/",
       "rating": "6.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "daemons-of-the-shadow-realm",
@@ -108,34 +136,34 @@
       "link": "https://1xanimes.com/daemons-of-the-shadow-realm/",
       "rating": "10",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-elusive-samurai",
-      "title": "SERIES The Elusive Samurai",
-      "image": "https://image.tmdb.org/t/p/original/rOliKet6nTuZ1ViTFgGsTudhHbR.jpg",
+      "title": "Series ★ 7.9 The Elusive Samurai",
+      "image": "https://image.tmdb.org/t/p/original/p0s5ymGzfM4zGQCVaU9MJOSaAWu.jpg",
       "link": "https://1xanimes.com/the-elusive-samurai/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-ribbon-hero",
-      "title": "MOVIE THE RIBBON HERO",
-      "image": "https://image.tmdb.org/t/p/w1280/8SEb8rEZ9DYqBT7U3FI5nBOS1lV.jpg",
+      "title": "Movie THE RIBBON HERO",
+      "image": "https://image.tmdb.org/t/p/w500/nUCkV0iODxbULZQ5vRN1sDjPrpk.jpg",
       "link": "https://1xanimes.com/the-ribbon-hero/",
       "rating": "0",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "that-time-i-got-reincarnated-as-a-slime",
-      "title": "SERIES That Time I Got Reincarnated as a Slime",
-      "image": "https://image.tmdb.org/t/p/original/8njJS6M1EdciIPUsBBT6n5NuC9t.jpg",
+      "title": "Series ★ 8.4 That Time I Got Reincarnated as a Slime",
+      "image": "https://image.tmdb.org/t/p/original/fqN8GboG7D6wfW8WFFdesgSnwOA.jpg",
       "link": "https://1xanimes.com/that-time-i-got-reincarnated-as-a-slime/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "i-became-a-legend-after-my-10-year-long-last-stand",
@@ -144,7 +172,7 @@
       "link": "https://1xanimes.com/i-became-a-legend-after-my-10-year-long-last-stand/",
       "rating": "4.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "chainsmoker-cat",
@@ -153,7 +181,7 @@
       "link": "https://1xanimes.com/chainsmoker-cat/",
       "rating": "8.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "smoking-behind-the-supermarket-with-you",
@@ -162,7 +190,7 @@
       "link": "https://1xanimes.com/smoking-behind-the-supermarket-with-you/",
       "rating": "9.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "a-mortals-journey-to-immortality",
@@ -171,16 +199,7 @@
       "link": "https://1xanimes.com/a-mortals-journey-to-immortality/",
       "rating": "0",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
-    },
-    {
-      "slug": "thunder-3",
-      "title": "Series Thunder 3",
-      "image": "https://image.tmdb.org/t/p/w500/EwgegTmDUuf71tjZCswhJGo79F.jpg",
-      "link": "https://1xanimes.com/thunder-3/",
-      "rating": "0",
-      "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "arifureta-from-commonplace-to-worlds-strongest",
@@ -189,7 +208,7 @@
       "link": "https://1xanimes.com/arifureta-from-commonplace-to-worlds-strongest/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "baki-hanma",
@@ -198,16 +217,7 @@
       "link": "https://1xanimes.com/baki-hanma/",
       "rating": "8.1",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
-    },
-    {
-      "slug": "tomb-raider-king",
-      "title": "Series ★ 8.7 Tomb Raider King",
-      "image": "https://image.tmdb.org/t/p/w500/xDW6cor12UD0b2IqboQWnrIn0UO.jpg",
-      "link": "https://1xanimes.com/tomb-raider-king/",
-      "rating": "8.7",
-      "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "oshi-no-ko",
@@ -216,7 +226,7 @@
       "link": "https://1xanimes.com/oshi-no-ko/",
       "rating": "8.3",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "fullmetal-alchemist-brotherhood",
@@ -225,7 +235,7 @@
       "link": "https://1xanimes.com/fullmetal-alchemist-brotherhood/",
       "rating": "8.7",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "demon-slayer-kimetsu-no-yaiba-infinity-castle",
@@ -234,7 +244,7 @@
       "link": "https://1xanimes.com/demon-slayer-kimetsu-no-yaiba-infinity-castle/",
       "rating": "7.7",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "karna-the-guardian",
@@ -243,7 +253,7 @@
       "link": "https://1xanimes.com/karna-the-guardian/",
       "rating": "0",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "sword-of-the-demon-hunter",
@@ -252,7 +262,7 @@
       "link": "https://1xanimes.com/sword-of-the-demon-hunter/",
       "rating": "7.3",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "eren-the-southpaw",
@@ -261,7 +271,7 @@
       "link": "https://1xanimes.com/eren-the-southpaw/",
       "rating": "8",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "marriage-toxin",
@@ -270,7 +280,7 @@
       "link": "https://1xanimes.com/marriage-toxin/",
       "rating": "8.2",
       "firstSeenAt": "2026-08-11T04:30:24.761Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "farming-life-in-another-world",
@@ -279,7 +289,7 @@
       "link": "https://1xanimes.com/farming-life-in-another-world/",
       "rating": "7.6",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "agents-of-the-four-seasons-dance-of-spring",
@@ -288,7 +298,7 @@
       "link": "https://1xanimes.com/agents-of-the-four-seasons-dance-of-spring/",
       "rating": "7.2",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "snowball-earth",
@@ -297,7 +307,7 @@
       "link": "https://1xanimes.com/snowball-earth/",
       "rating": "7",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "heaven-officials-blessing",
@@ -306,7 +316,7 @@
       "link": "https://1xanimes.com/heaven-officials-blessing/",
       "rating": "8.1",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "haikyu",
@@ -315,7 +325,7 @@
       "link": "https://1xanimes.com/haikyu/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "wistoria-wand-and-sword",
@@ -324,7 +334,7 @@
       "link": "https://1xanimes.com/wistoria-wand-and-sword/",
       "rating": "7.6",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "witch-hat-atelier",
@@ -333,7 +343,7 @@
       "link": "https://1xanimes.com/witch-hat-atelier/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "reborn-as-a-vending-machine-i-now-wander-the-dungeon",
@@ -342,7 +352,7 @@
       "link": "https://1xanimes.com/reborn-as-a-vending-machine-i-now-wander-the-dungeon/",
       "rating": "6.9",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "kurokos-basketball",
@@ -351,7 +361,7 @@
       "link": "https://1xanimes.com/kurokos-basketball/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-warrior-princess-and-the-barbaric-king",
@@ -360,7 +370,7 @@
       "link": "https://1xanimes.com/the-warrior-princess-and-the-barbaric-king/",
       "rating": "6.6",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-beginning-after-the-end",
@@ -369,7 +379,7 @@
       "link": "https://1xanimes.com/the-beginning-after-the-end/",
       "rating": "6.7",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "my-hero-academia-vigilantes",
@@ -378,7 +388,7 @@
       "link": "https://1xanimes.com/my-hero-academia-vigilantes/",
       "rating": "7.8",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-angel-next-door-spoils-me-rotten",
@@ -387,7 +397,7 @@
       "link": "https://1xanimes.com/the-angel-next-door-spoils-me-rotten/",
       "rating": "7.7",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "an-observation-log-of-my-fiancee-who-calls-herself-a-villainess",
@@ -396,7 +406,7 @@
       "link": "https://1xanimes.com/an-observation-log-of-my-fiancee-who-calls-herself-a-villainess/",
       "rating": "7.5",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-ramparts-of-ice",
@@ -405,7 +415,7 @@
       "link": "https://1xanimes.com/the-ramparts-of-ice/",
       "rating": "0",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "gantz",
@@ -414,7 +424,7 @@
       "link": "https://1xanimes.com/gantz/",
       "rating": "7.3",
       "firstSeenAt": "2026-08-10T12:42:01.466Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "blue-box",
@@ -423,7 +433,7 @@
       "link": "https://1xanimes.com/blue-box/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "dr-stone",
@@ -432,7 +442,7 @@
       "link": "https://1xanimes.com/dr-stone/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "nippon-sangoku-the-three-nations-of-the-crimson-sun",
@@ -441,7 +451,7 @@
       "link": "https://1xanimes.com/nippon-sangoku-the-three-nations-of-the-crimson-sun/",
       "rating": "0",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "watari-kuns-is-about-to-collapse",
@@ -450,7 +460,7 @@
       "link": "https://1xanimes.com/watari-kuns-is-about-to-collapse/",
       "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-rising-of-the-shield-hero",
@@ -459,7 +469,7 @@
       "link": "https://1xanimes.com/the-rising-of-the-shield-hero/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "skeleton-knight-in-another-world",
@@ -468,7 +478,7 @@
       "link": "https://1xanimes.com/skeleton-knight-in-another-world/",
       "rating": "7.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "grand-blue-dreaming",
@@ -477,7 +487,7 @@
       "link": "https://1xanimes.com/grand-blue-dreaming/",
       "rating": "7.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "rezero-starting-life-in-another-world-the-frozen-bond",
@@ -486,7 +496,7 @@
       "link": "https://1xanimes.com/rezero-starting-life-in-another-world-the-frozen-bond/",
       "rating": "7.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "rezero-starting-life-in-another-world-memory-snow",
@@ -495,7 +505,7 @@
       "link": "https://1xanimes.com/rezero-starting-life-in-another-world-memory-snow/",
       "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "dorohedoro",
@@ -504,7 +514,7 @@
       "link": "https://1xanimes.com/dorohedoro/",
       "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "one-piece",
@@ -513,7 +523,7 @@
       "link": "https://1xanimes.com/one-piece/",
       "rating": "8.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "mob-psycho-100",
@@ -522,7 +532,7 @@
       "link": "https://1xanimes.com/mob-psycho-100/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "easygoing-territory-defense-by-the-optimistic-lord",
@@ -531,7 +541,7 @@
       "link": "https://1xanimes.com/easygoing-territory-defense-by-the-optimistic-lord/",
       "rating": "7.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "devil-may-cry",
@@ -540,7 +550,7 @@
       "link": "https://1xanimes.com/devil-may-cry/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "release-that-witch",
@@ -549,7 +559,7 @@
       "link": "https://1xanimes.com/release-that-witch/",
       "rating": "8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "fairy-tail",
@@ -558,7 +568,7 @@
       "link": "https://1xanimes.com/fairy-tail/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "frieren-beyond-journeys-end",
@@ -567,7 +577,7 @@
       "link": "https://1xanimes.com/frieren-beyond-journeys-end/",
       "rating": "8.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "tokyo-ghoul",
@@ -576,7 +586,7 @@
       "link": "https://1xanimes.com/tokyo-ghoul/",
       "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "welcome-to-demon-school-iruma-kun",
@@ -585,7 +595,7 @@
       "link": "https://1xanimes.com/welcome-to-demon-school-iruma-kun/",
       "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "a-misanthrope-teaches-a-class-for-demi-humans",
@@ -594,7 +604,7 @@
       "link": "https://1xanimes.com/a-misanthrope-teaches-a-class-for-demi-humans/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "scarlet",
@@ -603,7 +613,7 @@
       "link": "https://1xanimes.com/scarlet/",
       "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "bofuri-i-dont-want-to-get-hurt-so-ill-max-out-my-defense",
@@ -612,7 +622,7 @@
       "link": "https://1xanimes.com/bofuri-i-dont-want-to-get-hurt-so-ill-max-out-my-defense/",
       "rating": "7.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "invincible",
@@ -621,7 +631,7 @@
       "link": "https://1xanimes.com/invincible/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "there-was-a-cute-girl-in-the-heros-party-so-i-tried-confessing-to-her",
@@ -630,7 +640,7 @@
       "link": "https://1xanimes.com/there-was-a-cute-girl-in-the-heros-party-so-i-tried-confessing-to-her/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "attack-on-titan",
@@ -639,7 +649,7 @@
       "link": "https://1xanimes.com/attack-on-titan/",
       "rating": "8.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "kunon-the-sorcerer-can-see",
@@ -648,7 +658,7 @@
       "link": "https://1xanimes.com/kunon-the-sorcerer-can-see/",
       "rating": "8.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "high-school-dxd",
@@ -657,7 +667,7 @@
       "link": "https://1xanimes.com/high-school-dxd/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "trigun-stargaze",
@@ -666,7 +676,7 @@
       "link": "https://1xanimes.com/trigun-stargaze/",
       "rating": "7.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "detective-conan",
@@ -675,7 +685,7 @@
       "link": "https://1xanimes.com/detective-conan/",
       "rating": "8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "jujutsu-kaisen",
@@ -684,7 +694,7 @@
       "link": "https://1xanimes.com/jujutsu-kaisen/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "roll-over-and-die-i-will-fight-for-an-ordinary-life-with-my-love-and-cursed-sword",
@@ -693,7 +703,7 @@
       "link": "https://1xanimes.com/roll-over-and-die-i-will-fight-for-an-ordinary-life-with-my-love-and-cursed-sword/",
       "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "sentenced-to-be-a-hero",
@@ -702,7 +712,7 @@
       "link": "https://1xanimes.com/sentenced-to-be-a-hero/",
       "rating": "8.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "dandelion",
@@ -711,7 +721,7 @@
       "link": "https://1xanimes.com/dandelion/",
       "rating": "0",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "an-adventurers-daily-grind-at-age-29",
@@ -720,7 +730,7 @@
       "link": "https://1xanimes.com/an-adventurers-daily-grind-at-age-29/",
       "rating": "9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "you-and-i-are-polar-opposites",
@@ -729,7 +739,7 @@
       "link": "https://1xanimes.com/you-and-i-are-polar-opposites/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "tojima-wants-to-be-a-kamen-rider",
@@ -738,7 +748,7 @@
       "link": "https://1xanimes.com/tojima-wants-to-be-a-kamen-rider/",
       "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "fire-force",
@@ -747,7 +757,7 @@
       "link": "https://1xanimes.com/fire-force/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "jack-of-all-trades-party-of-none",
@@ -756,7 +766,7 @@
       "link": "https://1xanimes.com/jack-of-all-trades-party-of-none/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "i-got-a-cheat-skill-in-another-world-and-became-unrivaled-in-the-real-world-too",
@@ -765,7 +775,7 @@
       "link": "https://1xanimes.com/i-got-a-cheat-skill-in-another-world-and-became-unrivaled-in-the-real-world-too/",
       "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-daily-life-of-the-immortal-king",
@@ -774,7 +784,7 @@
       "link": "https://1xanimes.com/the-daily-life-of-the-immortal-king/",
       "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "dark-moon-the-blood-altar",
@@ -783,7 +793,7 @@
       "link": "https://1xanimes.com/dark-moon-the-blood-altar/",
       "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "jojos-bizarre-adventure",
@@ -792,7 +802,7 @@
       "link": "https://1xanimes.com/jojos-bizarre-adventure/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "classroom-of-the-elite",
@@ -801,7 +811,7 @@
       "link": "https://1xanimes.com/classroom-of-the-elite/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "tottemo-luckyman",
@@ -810,7 +820,7 @@
       "link": "https://1xanimes.com/tottemo-luckyman/",
       "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "hana-kimi",
@@ -819,7 +829,7 @@
       "link": "https://1xanimes.com/hana-kimi/",
       "rating": "7.6",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "shin-chan",
@@ -828,7 +838,8 @@
       "link": "https://1xanimes.com/shin-chan/",
       "rating": "7.7",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z",
+      "latestEpisodeCount": 612
     },
     {
       "slug": "my-hero-academia",
@@ -837,7 +848,7 @@
       "link": "https://1xanimes.com/my-hero-academia/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "gintama",
@@ -846,7 +857,7 @@
       "link": "https://1xanimes.com/gintama/",
       "rating": "8.1",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "to-be-hero-x",
@@ -855,7 +866,7 @@
       "link": "https://1xanimes.com/to-be-hero-x/",
       "rating": "8.8",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "one-punch-man",
@@ -864,7 +875,7 @@
       "link": "https://1xanimes.com/one-punch-man/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "baki-dou-the-invincible-samurai",
@@ -873,7 +884,7 @@
       "link": "https://1xanimes.com/baki-dou-the-invincible-samurai/",
       "rating": "0",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "theatre-of-darkness-yamishibai",
@@ -882,7 +893,7 @@
       "link": "https://1xanimes.com/theatre-of-darkness-yamishibai/",
       "rating": "7.4",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "spy-x-family",
@@ -891,7 +902,7 @@
       "link": "https://1xanimes.com/spy-x-family/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "campfire-cooking-in-another-world-with-my-absurd-skill",
@@ -900,7 +911,7 @@
       "link": "https://1xanimes.com/campfire-cooking-in-another-world-with-my-absurd-skill/",
       "rating": "8.3",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "im-standing-on-a-million-lives",
@@ -909,7 +920,7 @@
       "link": "https://1xanimes.com/im-standing-on-a-million-lives/",
       "rating": "6.5",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "demon-slayer-kimetsu-no-yaiba",
@@ -918,7 +929,7 @@
       "link": "https://1xanimes.com/demon-slayer-kimetsu-no-yaiba/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "mf-ghost",
@@ -927,7 +938,7 @@
       "link": "https://1xanimes.com/mf-ghost/",
       "rating": "8.2",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "yuri-on-ice",
@@ -936,7 +947,7 @@
       "link": "https://1xanimes.com/yuri-on-ice/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "terror-in-resonance",
@@ -945,7 +956,7 @@
       "link": "https://1xanimes.com/terror-in-resonance/",
       "rating": "7.8",
       "firstSeenAt": "2026-08-12T09:54:54.297Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "a-gatherers-adventure-in-isekai",
@@ -954,7 +965,7 @@
       "link": "https://1xanimes.com/a-gatherers-adventure-in-isekai/",
       "rating": "7.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "with-you-our-love-will-make-it-through",
@@ -963,7 +974,7 @@
       "link": "https://1xanimes.com/with-you-our-love-will-make-it-through/",
       "rating": "9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "lets-play",
@@ -972,7 +983,7 @@
       "link": "https://1xanimes.com/lets-play/",
       "rating": "7.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "solo-leveling",
@@ -981,7 +992,7 @@
       "link": "https://1xanimes.com/solo-leveling/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "a-wild-last-boss-appeared",
@@ -990,7 +1001,7 @@
       "link": "https://1xanimes.com/a-wild-last-boss-appeared/",
       "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "mechanical-marie",
@@ -999,7 +1010,7 @@
       "link": "https://1xanimes.com/mechanical-marie/",
       "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "gachiakuta",
@@ -1008,7 +1019,7 @@
       "link": "https://1xanimes.com/gachiakuta/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "hunter-x-hunter",
@@ -1017,7 +1028,7 @@
       "link": "https://1xanimes.com/hunter-x-hunter/",
       "rating": "8.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "naruto-shippuden",
@@ -1026,7 +1037,7 @@
       "link": "https://1xanimes.com/naruto-shippuden/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "chainsaw-man-the-movie-reze-arc",
@@ -1035,7 +1046,7 @@
       "link": "https://1xanimes.com/chainsaw-man-the-movie-reze-arc/",
       "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "chainsaw-man",
@@ -1044,7 +1055,7 @@
       "link": "https://1xanimes.com/chainsaw-man/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "if-my-favorite-pop-idol-made-it-to-the-budokan-i-would-die",
@@ -1053,7 +1064,7 @@
       "link": "https://1xanimes.com/if-my-favorite-pop-idol-made-it-to-the-budokan-i-would-die/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "suicide-squad-isekai",
@@ -1062,7 +1073,7 @@
       "link": "https://1xanimes.com/suicide-squad-isekai/",
       "rating": "7.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-mighty-nein",
@@ -1071,7 +1082,7 @@
       "link": "https://1xanimes.com/the-mighty-nein/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "your-lie-in-april",
@@ -1080,7 +1091,7 @@
       "link": "https://1xanimes.com/your-lie-in-april/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "overlord",
@@ -1089,7 +1100,7 @@
       "link": "https://1xanimes.com/overlord/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "spy-x-family-code-white",
@@ -1098,7 +1109,7 @@
       "link": "https://1xanimes.com/spy-x-family-code-white/",
       "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "black-clover-sword-of-the-wizard-king",
@@ -1107,7 +1118,7 @@
       "link": "https://1xanimes.com/black-clover-sword-of-the-wizard-king/",
       "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "black-clover",
@@ -1116,7 +1127,7 @@
       "link": "https://1xanimes.com/black-clover/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "your-name",
@@ -1125,7 +1136,7 @@
       "link": "https://1xanimes.com/your-name/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "weathering-with-you",
@@ -1134,7 +1145,7 @@
       "link": "https://1xanimes.com/weathering-with-you/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "suzume",
@@ -1143,7 +1154,7 @@
       "link": "https://1xanimes.com/suzume/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "may-i-ask-for-one-final-thing",
@@ -1152,7 +1163,7 @@
       "link": "https://1xanimes.com/may-i-ask-for-one-final-thing/",
       "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "my-status-as-an-assassin-obviously-exceeds-the-heros",
@@ -1161,7 +1172,7 @@
       "link": "https://1xanimes.com/my-status-as-an-assassin-obviously-exceeds-the-heros/",
       "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "let-this-grieving-soul-retire",
@@ -1170,7 +1181,7 @@
       "link": "https://1xanimes.com/let-this-grieving-soul-retire/",
       "rating": "6.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "tsukimichi-moonlit-fantasy",
@@ -1179,7 +1190,7 @@
       "link": "https://1xanimes.com/tsukimichi-moonlit-fantasy/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-summer-hikaru-died",
@@ -1188,7 +1199,7 @@
       "link": "https://1xanimes.com/the-summer-hikaru-died/",
       "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "remonster",
@@ -1197,7 +1208,7 @@
       "link": "https://1xanimes.com/remonster/",
       "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "tatsuki-fujimoto-17-26",
@@ -1206,7 +1217,7 @@
       "link": "https://1xanimes.com/tatsuki-fujimoto-17-26/",
       "rating": "8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "ragna-crimson",
@@ -1215,7 +1226,7 @@
       "link": "https://1xanimes.com/ragna-crimson/",
       "rating": "6.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "food-wars-shokugeki-no-soma",
@@ -1224,7 +1235,7 @@
       "link": "https://1xanimes.com/food-wars-shokugeki-no-soma/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "reborn-to-master-the-blade-from-hero-king-to-extraordinary-squire-%e2%99%80",
@@ -1233,7 +1244,7 @@
       "link": "https://1xanimes.com/reborn-to-master-the-blade-from-hero-king-to-extraordinary-squire-%e2%99%80/",
       "rating": "6.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "my-clueless-first-friend",
@@ -1242,7 +1253,7 @@
       "link": "https://1xanimes.com/my-clueless-first-friend/",
       "rating": "6.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "death-note",
@@ -1251,7 +1262,7 @@
       "link": "https://1xanimes.com/death-note/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "ranma1-2",
@@ -1260,7 +1271,7 @@
       "link": "https://1xanimes.com/ranma1-2/",
       "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "i-was-reincarnated-as-the-7th-prince-so-i-can-take-my-time-perfecting-my-magical-ability",
@@ -1269,7 +1280,7 @@
       "link": "https://1xanimes.com/i-was-reincarnated-as-the-7th-prince-so-i-can-take-my-time-perfecting-my-magical-ability/",
       "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "after-school-dice-club",
@@ -1278,7 +1289,7 @@
       "link": "https://1xanimes.com/after-school-dice-club/",
       "rating": "6.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "kaiju-no-8",
@@ -1287,7 +1298,7 @@
       "link": "https://1xanimes.com/kaiju-no-8/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "i-left-my-a-rank-party-to-help-my-former-students-reach-the-dungeon-depths",
@@ -1296,7 +1307,7 @@
       "link": "https://1xanimes.com/i-left-my-a-rank-party-to-help-my-former-students-reach-the-dungeon-depths/",
       "rating": "6.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "lord-of-mysteries",
@@ -1305,7 +1316,7 @@
       "link": "https://1xanimes.com/lord-of-mysteries/",
       "rating": "8.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "girls-frontline",
@@ -1314,7 +1325,7 @@
       "link": "https://1xanimes.com/girls-frontline/",
       "rating": "6.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "new-saga",
@@ -1323,7 +1334,7 @@
       "link": "https://1xanimes.com/new-saga/",
       "rating": "7.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "dan-da-dan",
@@ -1332,7 +1343,7 @@
       "link": "https://1xanimes.com/dan-da-dan/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "my-dress-up-darling",
@@ -1341,7 +1352,7 @@
       "link": "https://1xanimes.com/my-dress-up-darling/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "toilet-bound-hanako-kun",
@@ -1350,7 +1361,7 @@
       "link": "https://1xanimes.com/toilet-bound-hanako-kun/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "a-couple-of-cuckoos",
@@ -1359,7 +1370,7 @@
       "link": "https://1xanimes.com/a-couple-of-cuckoos/",
       "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "cells-at-work",
@@ -1368,7 +1379,7 @@
       "link": "https://1xanimes.com/cells-at-work/",
       "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "takopis-original-sin",
@@ -1377,7 +1388,7 @@
       "link": "https://1xanimes.com/takopis-original-sin/",
       "rating": "8.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "heroines-run-the-show",
@@ -1386,7 +1397,7 @@
       "link": "https://1xanimes.com/heroines-run-the-show/",
       "rating": "6.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "jujutsu-kaisen-0",
@@ -1395,7 +1406,7 @@
       "link": "https://1xanimes.com/jujutsu-kaisen-0/",
       "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "relife",
@@ -1404,7 +1415,7 @@
       "link": "https://1xanimes.com/relife/",
       "rating": "7.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "rent-a-girlfriend",
@@ -1413,7 +1424,7 @@
       "link": "https://1xanimes.com/rent-a-girlfriend/",
       "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "goblin-slayer",
@@ -1422,7 +1433,7 @@
       "link": "https://1xanimes.com/goblin-slayer/",
       "rating": "8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "kaguya-sama-love-is-war",
@@ -1431,7 +1442,7 @@
       "link": "https://1xanimes.com/kaguya-sama-love-is-war/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "sword-art-online",
@@ -1440,7 +1451,7 @@
       "link": "https://1xanimes.com/sword-art-online/",
       "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "mushoku-tensei-jobless-reincarnation",
@@ -1449,7 +1460,7 @@
       "link": "https://1xanimes.com/mushoku-tensei-jobless-reincarnation/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "one-piece-clockwork-island-adventure",
@@ -1458,7 +1469,7 @@
       "link": "https://1xanimes.com/one-piece-clockwork-island-adventure/",
       "rating": "6.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "one-piece-the-movie",
@@ -1467,7 +1478,7 @@
       "link": "https://1xanimes.com/one-piece-the-movie/",
       "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-maid-i-hired-recently-is-mysterious",
@@ -1476,7 +1487,7 @@
       "link": "https://1xanimes.com/the-maid-i-hired-recently-is-mysterious/",
       "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "my-unique-skill-makes-me-op-even-at-level-1",
@@ -1485,7 +1496,7 @@
       "link": "https://1xanimes.com/my-unique-skill-makes-me-op-even-at-level-1/",
       "rating": "7.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-great-cleric",
@@ -1494,7 +1505,7 @@
       "link": "https://1xanimes.com/the-great-cleric/",
       "rating": "6.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "wind-breaker",
@@ -1503,7 +1514,7 @@
       "link": "https://1xanimes.com/wind-breaker/",
       "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "even-given-the-worthless-appraiser-class-im-actually-the-strongest",
@@ -1512,7 +1523,7 @@
       "link": "https://1xanimes.com/even-given-the-worthless-appraiser-class-im-actually-the-strongest/",
       "rating": "6.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "haikyu-the-dumpster-battle",
@@ -1521,7 +1532,7 @@
       "link": "https://1xanimes.com/haikyu-the-dumpster-battle/",
       "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "welcome-to-the-outcasts-restaurant",
@@ -1530,7 +1541,7 @@
       "link": "https://1xanimes.com/welcome-to-the-outcasts-restaurant/",
       "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "roboticsnotes",
@@ -1539,7 +1550,7 @@
       "link": "https://1xanimes.com/roboticsnotes/",
       "rating": "6.8",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "demon-lord-retry",
@@ -1548,7 +1559,7 @@
       "link": "https://1xanimes.com/demon-lord-retry/",
       "rating": "7.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "dekin-no-mogura-the-earthbound-mole",
@@ -1557,7 +1568,7 @@
       "link": "https://1xanimes.com/dekin-no-mogura-the-earthbound-mole/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "assassination-classroom",
@@ -1566,7 +1577,7 @@
       "link": "https://1xanimes.com/assassination-classroom/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "sakamoto-days",
@@ -1575,7 +1586,7 @@
       "link": "https://1xanimes.com/sakamoto-days/",
       "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "shoot-goal-to-the-future",
@@ -1584,7 +1595,7 @@
       "link": "https://1xanimes.com/shoot-goal-to-the-future/",
       "rating": "6.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "sword-art-online-alternative-gun-gale-online",
@@ -1593,7 +1604,7 @@
       "link": "https://1xanimes.com/sword-art-online-alternative-gun-gale-online/",
       "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "ill-become-a-villainess-who-goes-down-in-history",
@@ -1602,7 +1613,7 @@
       "link": "https://1xanimes.com/ill-become-a-villainess-who-goes-down-in-history/",
       "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-apothecary-diaries",
@@ -1611,7 +1622,7 @@
       "link": "https://1xanimes.com/the-apothecary-diaries/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "ive-been-killing-slimes-for-300-years-and-maxed-out-my-level",
@@ -1620,7 +1631,7 @@
       "link": "https://1xanimes.com/ive-been-killing-slimes-for-300-years-and-maxed-out-my-level/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "my-hero-academia-youre-next",
@@ -1629,7 +1640,7 @@
       "link": "https://1xanimes.com/my-hero-academia-youre-next/",
       "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "my-hero-academia-world-heroes-mission",
@@ -1638,7 +1649,7 @@
       "link": "https://1xanimes.com/my-hero-academia-world-heroes-mission/",
       "rating": "7.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "my-hero-academia-heroes-rising",
@@ -1647,7 +1658,7 @@
       "link": "https://1xanimes.com/my-hero-academia-heroes-rising/",
       "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "my-hero-academia-two-heroes",
@@ -1656,7 +1667,7 @@
       "link": "https://1xanimes.com/my-hero-academia-two-heroes/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "fairy-tail-100-years-quest",
@@ -1665,7 +1676,7 @@
       "link": "https://1xanimes.com/fairy-tail-100-years-quest/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "black-butler",
@@ -1674,7 +1685,7 @@
       "link": "https://1xanimes.com/black-butler/",
       "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "villainess-level-99-i-may-be-the-hidden-boss-but-im-not-the-demon-lord",
@@ -1683,7 +1694,7 @@
       "link": "https://1xanimes.com/villainess-level-99-i-may-be-the-hidden-boss-but-im-not-the-demon-lord/",
       "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "trillion-game",
@@ -1692,7 +1703,7 @@
       "link": "https://1xanimes.com/trillion-game/",
       "rating": "5.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "my-happy-marriage",
@@ -1701,7 +1712,7 @@
       "link": "https://1xanimes.com/my-happy-marriage/",
       "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "dragon-ball-z-kai",
@@ -1710,7 +1721,7 @@
       "link": "https://1xanimes.com/dragon-ball-z-kai/",
       "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "bye-bye-earth",
@@ -1719,7 +1730,7 @@
       "link": "https://1xanimes.com/bye-bye-earth/",
       "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "paradox-live-the-animation",
@@ -1728,7 +1739,7 @@
       "link": "https://1xanimes.com/paradox-live-the-animation/",
       "rating": "5.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "lost-in-starlight",
@@ -1737,7 +1748,7 @@
       "link": "https://1xanimes.com/lost-in-starlight/",
       "rating": "7.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-unaware-atelier-meister",
@@ -1746,7 +1757,7 @@
       "link": "https://1xanimes.com/the-unaware-atelier-meister/",
       "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "tower-of-god",
@@ -1755,7 +1766,7 @@
       "link": "https://1xanimes.com/tower-of-god/",
       "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "sk8-the-infinity",
@@ -1764,7 +1775,7 @@
       "link": "https://1xanimes.com/sk8-the-infinity/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "mobile-suit-gundam-gquuuuuux",
@@ -1773,7 +1784,7 @@
       "link": "https://1xanimes.com/mobile-suit-gundam-gquuuuuux/",
       "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "teogonia",
@@ -1782,7 +1793,7 @@
       "link": "https://1xanimes.com/teogonia/",
       "rating": "6.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "once-upon-a-witchs-death",
@@ -1791,7 +1802,7 @@
       "link": "https://1xanimes.com/once-upon-a-witchs-death/",
       "rating": "7.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "berserk-of-gluttony",
@@ -1800,7 +1811,7 @@
       "link": "https://1xanimes.com/berserk-of-gluttony/",
       "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "tying-the-knot-with-an-amagami-sister",
@@ -1809,7 +1820,7 @@
       "link": "https://1xanimes.com/tying-the-knot-with-an-amagami-sister/",
       "rating": "6.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "catch-me-at-the-ballpark",
@@ -1818,7 +1829,7 @@
       "link": "https://1xanimes.com/catch-me-at-the-ballpark/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "possibly-the-greatest-alchemist-of-all-time",
@@ -1827,7 +1838,7 @@
       "link": "https://1xanimes.com/possibly-the-greatest-alchemist-of-all-time/",
       "rating": "7.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-gorilla-gods-go-to-girl",
@@ -1836,7 +1847,7 @@
       "link": "https://1xanimes.com/the-gorilla-gods-go-to-girl/",
       "rating": "7.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-shiunji-family-children",
@@ -1845,7 +1856,7 @@
       "link": "https://1xanimes.com/the-shiunji-family-children/",
       "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "zenshu",
@@ -1854,7 +1865,7 @@
       "link": "https://1xanimes.com/zenshu/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "magic-maker-how-to-make-magic-in-another-world",
@@ -1863,7 +1874,7 @@
       "link": "https://1xanimes.com/magic-maker-how-to-make-magic-in-another-world/",
       "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "code-geass-lelouch-of-the-rebellion",
@@ -1872,7 +1883,7 @@
       "link": "https://1xanimes.com/code-geass-lelouch-of-the-rebellion/",
       "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "miss-kuroitsu-from-the-monster-development-department",
@@ -1881,7 +1892,7 @@
       "link": "https://1xanimes.com/miss-kuroitsu-from-the-monster-development-department/",
       "rating": "6.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "im-getting-married-to-a-girl-i-hate-in-my-class",
@@ -1890,7 +1901,7 @@
       "link": "https://1xanimes.com/im-getting-married-to-a-girl-i-hate-in-my-class/",
       "rating": "6.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "vtuber-legend-how-i-went-viral-after-forgetting-to-turn-off-my-stream",
@@ -1899,7 +1910,7 @@
       "link": "https://1xanimes.com/vtuber-legend-how-i-went-viral-after-forgetting-to-turn-off-my-stream/",
       "rating": "5.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "no-longer-allowed-in-another-world",
@@ -1908,7 +1919,7 @@
       "link": "https://1xanimes.com/no-longer-allowed-in-another-world/",
       "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "horimiya-the-missing-pieces",
@@ -1917,7 +1928,7 @@
       "link": "https://1xanimes.com/horimiya-the-missing-pieces/",
       "rating": "7.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "horimiya",
@@ -1926,7 +1937,7 @@
       "link": "https://1xanimes.com/horimiya/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "my-tiny-senpai",
@@ -1935,7 +1946,7 @@
       "link": "https://1xanimes.com/my-tiny-senpai/",
       "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "true-beauty",
@@ -1944,7 +1955,7 @@
       "link": "https://1xanimes.com/true-beauty/",
       "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "im-in-love-with-the-villainess",
@@ -1953,7 +1964,7 @@
       "link": "https://1xanimes.com/im-in-love-with-the-villainess/",
       "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "i-parry-everything",
@@ -1962,7 +1973,7 @@
       "link": "https://1xanimes.com/i-parry-everything/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "shangri-la-frontier",
@@ -1971,7 +1982,7 @@
       "link": "https://1xanimes.com/shangri-la-frontier/",
       "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-red-ranger-becomes-an-adventurer-in-another-world",
@@ -1980,7 +1991,7 @@
       "link": "https://1xanimes.com/the-red-ranger-becomes-an-adventurer-in-another-world/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "ameku-m-d-doctor-detective",
@@ -1989,7 +2000,7 @@
       "link": "https://1xanimes.com/ameku-m-d-doctor-detective/",
       "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "alya-sometimes-hides-her-feelings-in-russian",
@@ -1998,7 +2009,7 @@
       "link": "https://1xanimes.com/alya-sometimes-hides-her-feelings-in-russian/",
       "rating": "7.9",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "the-strongest-magician-in-the-demon-lords-army-was-a-human",
@@ -2007,7 +2018,7 @@
       "link": "https://1xanimes.com/the-strongest-magician-in-the-demon-lords-army-was-a-human/",
       "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "twilight-out-of-focus",
@@ -2016,7 +2027,7 @@
       "link": "https://1xanimes.com/twilight-out-of-focus/",
       "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "banished-from-the-heros-party-i-decided-to-live-a-quiet-life-in-the-countryside",
@@ -2025,7 +2036,7 @@
       "link": "https://1xanimes.com/banished-from-the-heros-party-i-decided-to-live-a-quiet-life-in-the-countryside/",
       "rating": "7.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "365-days-to-the-wedding",
@@ -2034,7 +2045,7 @@
       "link": "https://1xanimes.com/365-days-to-the-wedding/",
       "rating": "7.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "nina-the-starry-bride",
@@ -2043,7 +2054,7 @@
       "link": "https://1xanimes.com/nina-the-starry-bride/",
       "rating": "8.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "you-are-ms-servant",
@@ -2052,7 +2063,7 @@
       "link": "https://1xanimes.com/you-are-ms-servant/",
       "rating": "7.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "leviathan",
@@ -2061,7 +2072,7 @@
       "link": "https://1xanimes.com/leviathan/",
       "rating": "6.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "makeine-too-many-losing-heroines",
@@ -2070,7 +2081,7 @@
       "link": "https://1xanimes.com/makeine-too-many-losing-heroines/",
       "rating": "8.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "tokyo-revengers",
@@ -2079,7 +2090,7 @@
       "link": "https://1xanimes.com/tokyo-revengers/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "quality-assurance-in-another-world",
@@ -2088,7 +2099,7 @@
       "link": "https://1xanimes.com/quality-assurance-in-another-world/",
       "rating": "6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "summer-time-rendering",
@@ -2097,7 +2108,7 @@
       "link": "https://1xanimes.com/summer-time-rendering/",
       "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "aoashi",
@@ -2106,7 +2117,7 @@
       "link": "https://1xanimes.com/aoashi/",
       "rating": "7.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "baki",
@@ -2115,7 +2126,7 @@
       "link": "https://1xanimes.com/baki/",
       "rating": "8.1",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "yaiba-samurai-legend",
@@ -2124,7 +2135,7 @@
       "link": "https://1xanimes.com/yaiba-samurai-legend/",
       "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "dragon-ball",
@@ -2133,7 +2144,7 @@
       "link": "https://1xanimes.com/dragon-ball/",
       "rating": "8.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "hazbin-hotel",
@@ -2142,7 +2153,7 @@
       "link": "https://1xanimes.com/hazbin-hotel/",
       "rating": "8.6",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "days-with-my-stepsister",
@@ -2151,7 +2162,7 @@
       "link": "https://1xanimes.com/days-with-my-stepsister/",
       "rating": "7.7",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "an-archdemons-dilemma-how-to-love-your-elf-bride",
@@ -2160,7 +2171,7 @@
       "link": "https://1xanimes.com/an-archdemons-dilemma-how-to-love-your-elf-bride/",
       "rating": "7.2",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "a-condition-called-love",
@@ -2169,7 +2180,7 @@
       "link": "https://1xanimes.com/a-condition-called-love/",
       "rating": "7.3",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "naruto",
@@ -2178,7 +2189,7 @@
       "link": "https://1xanimes.com/naruto/",
       "rating": "8.4",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     },
     {
       "slug": "why-does-nobody-remember-me-in-this-world",
@@ -2187,7 +2198,7 @@
       "link": "https://1xanimes.com/why-does-nobody-remember-me-in-this-world/",
       "rating": "6.5",
       "firstSeenAt": "2026-08-10T11:30:25.627Z",
-      "lastSeenAt": "2026-08-13T06:03:24.274Z"
+      "lastSeenAt": "2026-08-14T07:33:19.591Z"
     }
   ]
 }
