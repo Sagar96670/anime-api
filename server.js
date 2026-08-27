@@ -1672,59 +1672,119 @@ async function scrapeAnimeSaltEpisode(episodeUrl, season, episode) {
 async function scrapeAnimeSaltEpisodes(slug) {
   try {
     const seriesUrl = `${ANIMESALT_BASE_URL}/series/${slug}/`;
-
     console.log(`ANIMESALT SERIES: ${seriesUrl}`);
 
-    const { data } = await axios.get(seriesUrl, {
+    const { data: html } = await axios.get(seriesUrl, {
       headers,
       timeout: 15000,
-      maxRedirects: 5
+      maxRedirects: 5,
+      httpsAgent: animeSaltHttpsAgent
     });
 
-    const $ = cheerio.load(data);
+    const $ = cheerio.load(html);
+
+    // AnimeSalt exposes all seasons through its season buttons.
+    const seasons = [];
+
+    $('a.season-btn[data-season][data-post]').each((_, el) => {
+      const season = Number($(el).attr('data-season'));
+      const post = String($(el).attr('data-post') || '').trim();
+
+      if (Number.isFinite(season) && post) {
+        seasons.push({ season, post });
+      }
+    });
+
+    const uniqueSeasons = [
+      ...new Map(seasons.map(x => [x.season, x])).values()
+    ].sort((a, b) => a.season - b.season);
+
+    console.log(
+      `ANIMESALT SEASONS FOUND: ${slug} (${uniqueSeasons.map(x => x.season).join(", ")})`
+    );
+
+    if (!uniqueSeasons.length) {
+      return [];
+    }
 
     const episodeLinks = new Map();
 
-    $("a[href]").each((_, el) => {
-      const href = $(el).attr("href");
-      if (!href) return;
+    // Get the complete episode list for EVERY season through AnimeSalt AJAX.
+    for (const { season, post } of uniqueSeasons) {
+      try {
+        const ajaxUrl =
+          `${ANIMESALT_BASE_URL}/wp-admin/admin-ajax.php` +
+          `?action=action_select_season&season=${season}&post=${post}`;
 
-      const match = href.match(
-        /\/episode\/[^/]+-(\d+)x(\d+)\/?$/i
-      );
+        const { data: seasonHtml } = await axios.get(ajaxUrl, {
+          headers: {
+            ...headers,
+            "Referer": seriesUrl,
+            "X-Requested-With": "XMLHttpRequest"
+          },
+          timeout: 15000,
+          maxRedirects: 5,
+          httpsAgent: animeSaltHttpsAgent
+        });
 
-      if (!match) return;
+        const $$ = cheerio.load(seasonHtml);
+        let foundCount = 0;
 
-      const season = Number(match[1]);
-      const episode = Number(match[2]);
+        $$('a[href]').each((_, el) => {
+          const href = $$(el).attr('href');
+          if (!href) return;
 
-      if (!Number.isFinite(season) || !Number.isFinite(episode)) {
-        return;
+          const match = href.match(
+            /\/episode\/[^/]+-(\d+)x(\d+)\/?$/i
+          );
+
+          if (!match) return;
+
+          const epSeason = Number(match[1]);
+          const episode = Number(match[2]);
+
+          if (
+            !Number.isFinite(epSeason) ||
+            !Number.isFinite(episode) ||
+            epSeason !== season
+          ) {
+            return;
+          }
+
+          const url = new URL(href, ANIMESALT_BASE_URL).href;
+
+          episodeLinks.set(
+            `${epSeason}-${episode}`,
+            {
+              url,
+              season: epSeason,
+              episode
+            }
+          );
+
+          foundCount++;
+        });
+
+        console.log(
+          `ANIMESALT AJAX SEASON ${season}: ${foundCount} episode links`
+        );
+      } catch (error) {
+        console.error(
+          `ANIMESALT AJAX SEASON ERROR S${season}:`,
+          error.message
+        );
       }
+    }
 
-      const url = new URL(href, ANIMESALT_BASE_URL).href;
-
-      episodeLinks.set(
-        `${season}-${episode}`,
-        {
-          url,
-          season,
-          episode
-        }
-      );
+    const links = [...episodeLinks.values()].sort((a, b) => {
+      if (a.season !== b.season) {
+        return a.season - b.season;
+      }
+      return a.episode - b.episode;
     });
 
-    const links = [...episodeLinks.values()]
-      .sort((a, b) => {
-        if (a.season !== b.season) {
-          return a.season - b.season;
-        }
-
-        return a.episode - b.episode;
-      });
-
     console.log(
-      `ANIMESALT EPISODE LINKS FOUND: ${slug} (${links.length})`
+      `ANIMESALT COMPLETE EPISODE LINKS: ${slug} (${links.length})`
     );
 
     if (!links.length) {
@@ -1752,7 +1812,10 @@ async function scrapeAnimeSaltEpisodes(slug) {
       }
 
       console.log(
-        `ANIMESALT EPISODE BATCH: ${Math.min(i + BATCH_SIZE, links.length)}/${links.length}`
+        `ANIMESALT EPISODE BATCH: ${Math.min(
+          i + BATCH_SIZE,
+          links.length
+        )}/${links.length}`
       );
     }
 
@@ -1768,10 +1831,6 @@ async function scrapeAnimeSaltEpisodes(slug) {
     console.log(
       `ANIMESALT EPISODES FOUND: ${slug} (${unique.length} language entries)`
     );
-
-    if (!unique.length) {
-      return [];
-    }
 
     const cdnEpisodes = unique.filter(ep =>
       /^https?:\/\/as-cdn26\.top\/video\//i.test(ep.url)
@@ -1792,13 +1851,11 @@ async function scrapeAnimeSaltEpisodes(slug) {
     );
 
     return servers;
-
   } catch (error) {
     console.error(
       `ANIMESALT ERROR [${slug}]:`,
       error.message
     );
-
     return [];
   }
 }
