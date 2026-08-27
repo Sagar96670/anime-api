@@ -1196,10 +1196,21 @@ iframe{
 
 #servers,
 #playerEpisodes,
-#episodeList{
+#episodeList,
+#playerLanguages{
   display:flex;
   flex-wrap:wrap;
   gap:7px;
+}
+
+#playerLanguages{
+  margin-bottom:12px;
+}
+
+#playerLanguages button.active{
+  color:#fff;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-color:transparent;
 }
 
 button{
@@ -1985,7 +1996,6 @@ button.active{
               id="animePoster"
               src=""
               alt=""
-              loading="lazy"
             >
           </div>
 
@@ -2129,6 +2139,12 @@ button.active{
 
     <div id="servers"></div>
 
+    <div class="section-head" id="playerLanguagesHead">
+      <h2>Languages</h2>
+    </div>
+
+    <div id="playerLanguages"></div>
+
     <div class="section-head">
       <h2>Episodes</h2>
     </div>
@@ -2171,6 +2187,8 @@ let homeData = [];
 let currentAnime = null;
 let currentAnimeTitle = "";
 let currentAnimeImage = "";
+let currentAnimeTmdbId = null;
+let currentAnimeTmdbType = "";
 let streamData = null;
 let currentServer = 0;
 
@@ -3746,6 +3764,12 @@ async function openAnime(slug, updateHistory = true){
       currentAnimeImage =
         image;
 
+      currentAnimeTmdbId =
+        details.tmdbId != null ? Number(details.tmdbId) : null;
+
+      currentAnimeTmdbType =
+        details.tmdbType || "";
+
       const poster =
         document.getElementById("animePoster");
 
@@ -3767,16 +3791,102 @@ async function openAnime(slug, updateHistory = true){
       if(watchBtn){
         watchBtn.onclick = () => {
 
-          const firstEpisode =
-            getFirstAvailableEpisode(streamData);
+  // ---------------- MOVIE ----------------
+  if(
+    streamData &&
+    streamData.success &&
+    streamData.type === "movie"
+  ){
+    const movieServer =
+      Array.isArray(streamData.servers)
+        ? streamData.servers.find(
+            server => server && server.url
+          )
+        : null;
 
-          if(firstEpisode){
-            playEpisodeFromData(firstEpisode);
-          }else{
-            alert("No episode available yet.");
-          }
+    if(!movieServer){
+      alert("No movie server available yet.");
+      return;
+    }
 
-        };
+    document.getElementById("animePage")
+      .classList.add("hidden");
+
+    document.getElementById("playerPage")
+      .classList.remove("hidden");
+
+    const player =
+      document.getElementById("player");
+
+    if(player){
+      player.src = "about:blank";
+
+      setTimeout(() => {
+        player.src = movieServer.url;
+      }, 50);
+    }
+
+    const playerTitle =
+      document.getElementById("playerTitle");
+
+    if(playerTitle){
+      playerTitle.textContent =
+        currentAnimeTitle || slug;
+    }
+
+    currentServer =
+      streamData.servers.indexOf(movieServer);
+
+    currentEpisodeKey = null;
+
+    const playerEpisodes =
+      document.getElementById("playerEpisodes");
+
+    if(playerEpisodes){
+      playerEpisodes.innerHTML = "";
+    }
+
+    const playerLanguages =
+      document.getElementById("playerLanguages");
+
+    if(playerLanguages){
+      playerLanguages.innerHTML = "";
+    }
+
+    const playerLanguagesHead =
+      document.getElementById("playerLanguagesHead");
+
+    if(playerLanguagesHead){
+      playerLanguagesHead.style.display = "none";
+    }
+
+    const prevBtn =
+      document.getElementById("prevEpisodeBtn");
+
+    const nextBtn =
+      document.getElementById("nextEpisodeBtn");
+
+    if(prevBtn){
+      prevBtn.disabled = true;
+    }
+
+    if(nextBtn){
+      nextBtn.disabled = true;
+    }
+
+    return;
+  }
+
+  // ---------------- SERIES ----------------
+  const firstEpisode =
+    getFirstAvailableEpisode(streamData);
+
+  if(firstEpisode){
+    playEpisodeFromData(firstEpisode);
+  }else{
+    alert("No episode available yet.");
+  }
+};
       }
 
     }else{
@@ -4160,6 +4270,8 @@ function saveContinueWatching(ep){
     slug: currentAnime,
     title: currentAnimeTitle || currentAnime,
     image: currentAnimeImage || "",
+    tmdbId: currentAnimeTmdbId,
+    tmdbType: currentAnimeTmdbType || "",
     season: Number(ep.season) || 1,
     episode: Number(ep.episode) || 1,
     progress: 0,
@@ -4346,13 +4458,199 @@ if(currentEpisode && currentEpisode.url){
 }
 
 
+function getUniquePlayerEpisodes(server){
+  if(!server || !Array.isArray(server.episodes)){
+    return [];
+  }
+
+  const map = new Map();
+
+  for(const ep of server.episodes){
+    if(
+      !ep ||
+      !ep.url ||
+      ep.season == null ||
+      ep.episode == null
+    ){
+      continue;
+    }
+
+    const key = getEpisodeKey(ep);
+
+    if(!map.has(key)){
+      map.set(key, ep);
+    }
+  }
+
+  return [...map.values()].sort((a,b) => {
+    if(Number(a.season) !== Number(b.season)){
+      return Number(a.season) - Number(b.season);
+    }
+
+    return Number(a.episode) - Number(b.episode);
+  });
+}
+
+
+function getEpisodeLanguages(server, season, episode){
+  if(!server || !Array.isArray(server.episodes)){
+    return [];
+  }
+
+  const entries = server.episodes.filter(ep =>
+    ep &&
+    ep.url &&
+    String(ep.season) === String(season) &&
+    String(ep.episode) === String(episode)
+  );
+
+  return [
+    ...new Map(
+      entries.map(ep => [
+        String(ep.language || "Default"),
+        ep
+      ])
+    ).values()
+  ];
+}
+
+
+function getCurrentLanguageEpisode(){
+  const server = streamData?.servers?.[currentServer];
+
+  if(!server || !currentEpisodeKey){
+    return null;
+  }
+
+  const [season, episode] = String(currentEpisodeKey).split("-");
+
+  const languages = getEpisodeLanguages(
+    server,
+    season,
+    episode
+  );
+
+  if(!languages.length){
+    return null;
+  }
+
+  const selectedLanguage =
+    window.currentPlayerLanguage || "";
+
+  if(selectedLanguage){
+    const selected = languages.find(ep =>
+      String(ep.language || "Default") === selectedLanguage
+    );
+
+    if(selected){
+      return selected;
+    }
+  }
+
+  return languages[0];
+}
+
+
+function renderPlayerLanguages(){
+
+  const box = document.getElementById("playerLanguages");
+  const head = document.getElementById("playerLanguagesHead");
+
+  if(!box){
+    return;
+  }
+
+  box.innerHTML = "";
+
+  const server = streamData?.servers?.[currentServer];
+
+  if(!server || !Array.isArray(server.episodes)){
+    if(head) head.style.display = "none";
+    return;
+  }
+
+  const [season, episode] =
+    String(currentEpisodeKey || "").split("-");
+
+  if(!season || !episode){
+    if(head) head.style.display = "none";
+    return;
+  }
+
+  const languages = getEpisodeLanguages(
+    server,
+    season,
+    episode
+  );
+
+  /*
+   * If this source has no language field, don't show
+   * an unnecessary language section.
+   */
+  const hasRealLanguages = languages.some(ep =>
+    ep.language
+  );
+
+  if(!hasRealLanguages || languages.length <= 1){
+    if(head) head.style.display = "none";
+    return;
+  }
+
+  if(head) head.style.display = "";
+
+  for(const ep of languages){
+
+    const language =
+      String(ep.language || "Default");
+
+    const btn = document.createElement("button");
+
+    btn.type = "button";
+    btn.textContent = language;
+
+    if(
+      String(window.currentPlayerLanguage || "") === language
+    ){
+      btn.classList.add("active");
+    }
+
+    btn.onclick = () => {
+
+      if(!ep.url){
+        return;
+      }
+
+      window.currentPlayerLanguage = language;
+
+      document.getElementById("playerTitle")
+        .textContent =
+          "Season " + ep.season +
+          " • Episode " + ep.episode +
+          " • " + language;
+
+      renderPlayerLanguages();
+      renderPlayerEpisodes();
+      loadPlayer(ep);
+    };
+
+    box.appendChild(btn);
+  }
+}
+
+
 function renderPlayerEpisodes(){
 
   const box = document.getElementById("playerEpisodes");
 
+  if(!box){
+    return;
+  }
+
   box.innerHTML = "";
 
-  if(!streamData || !streamData.servers) return;
+  if(!streamData || !streamData.servers){
+    return;
+  }
 
   const server = streamData.servers[currentServer];
 
@@ -4360,9 +4658,13 @@ function renderPlayerEpisodes(){
     return;
   }
 
-  server.episodes.forEach(ep => {
+  const episodes = getUniquePlayerEpisodes(server);
+
+  episodes.forEach(ep => {
 
     const btn = document.createElement("button");
+
+    btn.type = "button";
 
     btn.textContent =
       "S" + ep.season +
@@ -4376,24 +4678,61 @@ function renderPlayerEpisodes(){
 
     btn.onclick = () => {
 
-      if(!ep.url) return;
+      const selectedEpisode =
+        getEpisodeLanguages(
+          server,
+          ep.season,
+          ep.episode
+        );
+
+      if(!selectedEpisode.length){
+        return;
+      }
+
+      /*
+       * Keep the currently selected language if this
+       * episode has it. Otherwise use its first language.
+       */
+      let target = selectedEpisode.find(item =>
+        String(item.language || "Default") ===
+        String(window.currentPlayerLanguage || "")
+      );
+
+      if(!target){
+        target = selectedEpisode[0];
+      }
+
+      if(!target.url){
+        return;
+      }
+
+      currentEpisodeKey = getEpisodeKey(target);
+
+      if(target.language){
+        window.currentPlayerLanguage =
+          String(target.language);
+      }else{
+        window.currentPlayerLanguage = "";
+      }
 
       document.getElementById("playerTitle")
         .textContent =
-          "Season " + ep.season +
-          " • Episode " + ep.episode;
+          "Season " + target.season +
+          " • Episode " + target.episode +
+          (target.language
+            ? " • " + target.language
+            : "");
 
-      currentEpisodeKey = getEpisodeKey(ep);
-  updateEpisodeNavigation();
+      updateEpisodeNavigation();
+      renderPlayerLanguages();
       renderPlayerEpisodes();
-      loadPlayer(ep);
-
+      loadPlayer(target);
     };
 
     box.appendChild(btn);
-
   });
 
+  renderPlayerLanguages();
 }
 
 
@@ -4405,9 +4744,7 @@ function navigateEpisode(direction){
     return;
   }
 
-  const episodes = server.episodes.filter(ep =>
-    ep && ep.url && ep.season != null && ep.episode != null
-  );
+  const episodes = getUniquePlayerEpisodes(server);
 
   const currentIndex = episodes.findIndex(ep =>
     getEpisodeKey(ep) === currentEpisodeKey
@@ -4423,16 +4760,47 @@ function navigateEpisode(direction){
     return;
   }
 
-  const nextEpisode = episodes[nextIndex];
+  const baseEpisode = episodes[nextIndex];
+
+  const languageEntries = getEpisodeLanguages(
+    server,
+    baseEpisode.season,
+    baseEpisode.episode
+  );
+
+  let nextEpisode = languageEntries.find(ep =>
+    String(ep.language || "Default") ===
+    String(window.currentPlayerLanguage || "")
+  );
+
+  if(!nextEpisode){
+    nextEpisode = languageEntries[0] || baseEpisode;
+  }
+
+  if(!nextEpisode || !nextEpisode.url){
+    return;
+  }
 
   currentEpisodeKey = getEpisodeKey(nextEpisode);
+
+  if(nextEpisode.language){
+    window.currentPlayerLanguage =
+      String(nextEpisode.language);
+  }else{
+    window.currentPlayerLanguage = "";
+  }
 
   document.getElementById("playerTitle")
     .textContent =
       "Season " + nextEpisode.season +
-      " • Episode " + nextEpisode.episode;
+      " • Episode " + nextEpisode.episode +
+      (nextEpisode.language
+        ? " • " + nextEpisode.language
+        : "");
 
+  renderPlayerLanguages();
   renderPlayerEpisodes();
+  updateEpisodeNavigation();
   loadPlayer(nextEpisode);
 }
 
@@ -4440,8 +4808,12 @@ function navigateEpisode(direction){
 function updateEpisodeNavigation(){
 
   const server = streamData?.servers?.[currentServer];
-  const prevBtn = document.getElementById("prevEpisodeBtn");
-  const nextBtn = document.getElementById("nextEpisodeBtn");
+
+  const prevBtn =
+    document.getElementById("prevEpisodeBtn");
+
+  const nextBtn =
+    document.getElementById("nextEpisodeBtn");
 
   if(!server || !Array.isArray(server.episodes)){
     if(prevBtn) prevBtn.disabled = true;
@@ -4449,19 +4821,26 @@ function updateEpisodeNavigation(){
     return;
   }
 
-  const episodes = server.episodes.filter(ep =>
-    ep && ep.url && ep.season != null && ep.episode != null
-  );
+  const episodes =
+    getUniquePlayerEpisodes(server);
 
   const currentIndex = episodes.findIndex(ep =>
     getEpisodeKey(ep) === currentEpisodeKey
   );
 
-  if(prevBtn) prevBtn.disabled = currentIndex <= 0;
-  if(nextBtn) nextBtn.disabled =
-    currentIndex === -1 || currentIndex + 1 >= episodes.length;
+  if(prevBtn){
+    prevBtn.disabled =
+      currentIndex <= 0;
+  }
 
+  if(nextBtn){
+    nextBtn.disabled =
+      currentIndex === -1 ||
+      currentIndex + 1 >= episodes.length;
+  }
 }
+
+
 
 function loadPlayer(ep){
 

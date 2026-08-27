@@ -4,6 +4,7 @@ const path = require("path");
 const express = require("express");
 const cron = require("node-cron");
 const axios = require("axios");
+const https = require("https");
 const cheerio = require("cheerio");
 const cors = require("cors");
 const crypto = require("crypto");
@@ -15,32 +16,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
 
-const BASE_URL = "https://1xanimes.com";
 const PORT = process.env.PORT || 5000;
-cron.schedule("*/30 * * * *", () => {
-  const { spawn } = require("child_process");
-
-  console.log("AUTO SYNC: starting separate sync process");
-
-  const child = spawn(
-    process.execPath,
-    ["sync-runner.js"],
-    {
-      cwd: __dirname,
-      detached: false,
-      stdio: "inherit"
-    }
-  );
-
-  child.on("error", (error) => {
-    console.error("AUTO SYNC PROCESS ERROR:", error.message);
-  });
-
-  child.on("exit", (code) => {
-    console.log(`AUTO SYNC PROCESS EXIT: ${code}`);
-  });
-});
-
+const BASE_URL = "https://1xanimes.com";
 const headers = {
   "User-Agent":
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
@@ -661,13 +638,47 @@ app.get("/admin/api/anime", requireAdmin, (req, res) => {
 
 app.post("/admin/api/sync", requireAdmin, async (req, res) => {
   try {
-    const results = await syncCatalog();
+    const { syncAnimeSaltCatalog } = require("./sync");
+    const results = await syncAnimeSaltCatalog();
+
+    const catalogFile = path.join(__dirname, "data", "catalog.json");
+
+    const currentCatalog = fs.existsSync(catalogFile)
+      ? JSON.parse(fs.readFileSync(catalogFile, "utf8"))
+      : {};
+
+    const existing = Array.isArray(currentCatalog.results)
+      ? currentCatalog.results
+      : [];
+
+    const bySlug = new Map();
+
+    for (const item of existing) {
+      const slug = String(item?.slug || "").trim().toLowerCase();
+      if (slug) bySlug.set(slug, item);
+    }
+
+    for (const item of results) {
+      const slug = String(item?.slug || "").trim().toLowerCase();
+      if (slug) bySlug.set(slug, item);
+    }
+
+    const mergedResults = [...bySlug.values()];
+
+    fs.writeFileSync(
+      catalogFile,
+      JSON.stringify({
+        updatedAt: new Date().toISOString(),
+        count: mergedResults.length,
+        results: mergedResults
+      }, null, 2),
+      "utf8"
+    );
 
     res.json({
       success: true,
-      count: Array.isArray(results) ? results.length : 0
+      count: mergedResults.length
     });
-
   } catch (error) {
     console.error("ADMIN MANUAL SYNC ERROR:", error);
 
@@ -732,7 +743,7 @@ app.get("/admin", (req, res) => {
   );
 });
 
-const { startAutoSync, syncCatalog } = require("./sync");
+const { startAutoSync } = require("./sync");
 const STREAM_CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 
 // --------------------------------------------------
@@ -1136,7 +1147,7 @@ app.get("/api/search", async (req, res) => {
 
         return {
           title: item.title,
-          image,
+          image: tmdbPoster || catalogImage,
           link: item.url,
         };
       })
@@ -1167,92 +1178,199 @@ app.get("/api/anime/:slug", async (req, res) => {
   try {
     const slug = req.params.slug;
 
-    const { data } = await client.get(`/${slug}/`);
-    const $ = cheerio.load(data);
+    const catalogPath = path.join(__dirname, "data", "catalog.json");
+    const catalogData = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
+    const item = (catalogData.results || []).find(x => x.slug === slug);
 
-    const info = $(".nf-info").first();
+    if (!item) {
+      return res.status(404).json({
+        success: false,
+        message: "Anime not found",
+        animeSlug: slug
+      });
+    }
 
-    const title =
-      info.find("h1").first().text().trim() ||
-      $(".post-title").first().text().trim() ||
-      $(".entry-title").first().text().trim() ||
-      $("h1").first().text().trim() ||
-      $("title").text().trim();
+    const catalogTitle = item.title || "";
+    const catalogImage = item.image || "";
+    const catalogRating = item.rating || "";
 
-    const description =
-      $(".description").first().text().trim() ||
-      $(".entry-content p").first().text().trim() ||
-      $('meta[name="description"]').attr("content") ||
-      "";
+    const description = item.description || "";
+    const type = item.type || "";
+    const seasons = item.seasons ?? null;
+    const episodes = item.episodes ?? null;
+    const genres = Array.isArray(item.genres) ? item.genres : [];
+    const audio = Array.isArray(item.audio) ? item.audio : [];
+    const languages = Array.isArray(item.languages) ? item.languages : [];
 
-    const image =
-      info.find(".nf-poster img").first().attr("src") ||
-      $("img").map((i, el) => $(el).attr("src") || "").get()
-        .find(src => src.includes("image.tmdb.org")) ||
-      $("img").first().attr("src") ||
-      $('meta[property="og:image"]').attr("content") ||
-      "";
+    // ------------------------------------------
+    // TMDB metadata lookup + Blakite fallback
+    // ------------------------------------------
 
-    const metaText =
-      info.find(".nf-meta-row").first().text().replace(/\s+/g, " ").trim();
+    let tmdbId = null;
+    let tmdbType = "";
+    let tmdbPoster = "";
 
-    const type =
-      info.find(".nf-q-tag").first().text().trim() || "";
+    // 1. Try direct TMDB API first
+    try {
+      const tmdbApiKey = String(process.env.TMDB_API_KEY || "").trim();
 
-    const ratingMatch =
-      metaText.match(/★\s*([0-9.]+)/);
+      if (tmdbApiKey && catalogTitle) {
+        const tmdbRes = await axios.get(
+          "https://api.themoviedb.org/3/search/multi",
+          {
+            params: {
+              api_key: tmdbApiKey,
+              query: catalogTitle,
+              language: "en-US"
+            },
+            timeout: 10000
+          }
+        );
 
-    const rating =
-      ratingMatch ? ratingMatch[1] : "";
+        const results = Array.isArray(tmdbRes.data?.results)
+          ? tmdbRes.data.results
+          : [];
 
-    const seasonsMatch =
-      metaText.match(/\|\s*(\d+)\s+Seasons?/i);
+        const match = results.find(item =>
+          (item.media_type === "tv" || item.media_type === "movie") &&
+          item.id
+        );
 
-    const seasons =
-      seasonsMatch ? Number(seasonsMatch[1]) : null;
+        if (match) {
+          tmdbId = Number(match.id);
+          tmdbType = match.media_type;
 
-    const episodesMatch =
-      metaText.match(/\|\s*(\d+)\s+Episodes?/i);
+          if (match.poster_path) {
+            tmdbPoster =
+              "https://image.tmdb.org/t/p/w500" + match.poster_path;
+          }
 
-    const episodes =
-      episodesMatch ? Number(episodesMatch[1]) : null;
-
-    const genres = info
-      .find(".nf-meta-row a.nf-link")
-      .map((i, el) => $(el).text().trim())
-      .get();
-
-    const audio = [];
-
-    $(".nf-player-body").each((_, el) => {
-      const text = $(el).text().replace(/\s+/g, " ").trim();
-
-      const match = text.match(
-        /S\d+\s*:\s*Audio\s+([a-z0-9-]+)/i
-      );
-
-      if (match) {
-        match[1]
-          .split("-")
-          .map(x => x.trim().toLowerCase())
-          .filter(Boolean)
-          .forEach(x => {
-            if (!audio.includes(x)) audio.push(x);
-          });
+          console.log(
+            `TMDB MATCH: ${catalogTitle} -> ${tmdbType}/${tmdbId}`
+          );
+        }
       }
-    });
+    } catch (tmdbError) {
+      console.log(
+        "TMDB LOOKUP unavailable, trying Blakite:",
+        tmdbError.message
+      );
+    }
 
-    const languageMap = {
-      hin: "Hindi",
-      eng: "English",
-      jap: "Japanese",
-      tam: "Tamil",
-      telu: "Telugu"
-    };
+    // 2. Blakite fallback
+    //    Used when direct TMDB lookup is unavailable or has no match.
+    if (!tmdbId || !tmdbPoster) {
+      try {
+        const blakiteRes = await axios.get(
+          "https://blakiteapi.xyz/api/getAllAnime.php",
+          {
+            headers,
+            timeout: 20000,
+            maxRedirects: 5
+          }
+        );
 
-    const languages = audio.map(
-      code => languageMap[code] || code
-    );
+        const blakiteData = blakiteRes.data?.data;
+
+        if (blakiteData && typeof blakiteData === "object") {
+          const datasets = [
+            blakiteData.movies,
+            blakiteData.series,
+            blakiteData.dramas
+          ];
+
+          let blakiteItem = null;
+
+          // First try exact TMDB ID if catalog already has one.
+          for (const dataset of datasets) {
+            if (!dataset || typeof dataset !== "object") continue;
+
+            const found = Object.values(dataset).find(x =>
+              x &&
+              String(x.tmdbId || "") === String(item.tmdbId || "")
+            );
+
+            if (found) {
+              blakiteItem = found;
+              break;
+            }
+          }
+
+          // Otherwise match by normalized title.
+          if (!blakiteItem && catalogTitle) {
+            const normalize = value =>
+              String(value || "")
+                .toLowerCase()
+                .replace(/\([^)]*\)/g, " ")
+                .replace(/[^a-z0-9]+/g, " ")
+                .replace(/\s+/g, " ")
+                .trim();
+
+            const wantedTitle = normalize(catalogTitle);
+
+            for (const dataset of datasets) {
+              if (!dataset || typeof dataset !== "object") continue;
+
+              const found = Object.values(dataset).find(x => {
+                if (!x || !x.title) return false;
+
+                const candidate = normalize(x.title);
+
+                return (
+                  candidate === wantedTitle ||
+                  candidate.includes(wantedTitle) ||
+                  wantedTitle.includes(candidate)
+                );
+              });
+
+              if (found) {
+                blakiteItem = found;
+                break;
+              }
+            }
+          }
+
+          if (blakiteItem) {
+            if (!tmdbId && blakiteItem.tmdbId) {
+              tmdbId = Number(blakiteItem.tmdbId);
+            }
+
+            if (!tmdbType && blakiteItem.type) {
+              tmdbType =
+                String(blakiteItem.type).toLowerCase() === "movie"
+                  ? "movie"
+                  : "tv";
+            }
+
+            const blakitePoster =
+              blakiteItem.IMAGES?.poster ||
+              blakiteItem.IMAGES?.thumbnail ||
+              "";
+
+            if (!tmdbPoster && blakitePoster) {
+              tmdbPoster = blakitePoster;
+            }
+
+            console.log(
+              `BLAKITE MATCH: ${catalogTitle} -> ${tmdbType}/${tmdbId}`
+            );
+
+            console.log(
+              `BLAKITE POSTER: ${tmdbPoster || "none"}`
+            );
+          } else {
+            console.log(
+              `BLAKITE MATCH NOT FOUND: ${catalogTitle}`
+            );
+          }
+        }
+      } catch (blakiteError) {
+        console.log(
+          "BLAKITE LOOKUP unavailable:",
+          blakiteError.message
+        );
+      }
+    }
 
     // ------------------------------------------
     // Extra metadata from authorized metadata source
@@ -1322,11 +1440,13 @@ app.get("/api/anime/:slug", async (req, res) => {
       success: true,
       anime: {
         slug,
-        title,
+        title: catalogTitle,
+        tmdbId,
+        tmdbType,
         description,
-        image,
+        image: catalogImage || tmdbPoster,
         type,
-        rating,
+        rating: catalogRating,
         seasons,
         episodes,
         genres,
@@ -1379,45 +1499,309 @@ function decodeBase64Url(value) {
 // Extract v28D from page
 // --------------------------------------------------
 
-async function scrapeEpisodeServers(slug) {
-  const { data } = await client.get(`/${slug}/`);
-  const $ = cheerio.load(data);
+const ANIMESALT_BASE_URL = "https://animesalt.cx";
 
-  let v28D = null;
+const animeSaltHttpsAgent = new https.Agent({
+  keepAlive: true,
+  maxSockets: 20,
+  maxFreeSockets: 10,
+  timeout: 15000
+});
 
-  $("script").each((_, el) => {
-    const text = $(el).html() || "";
+async function scrapeAnimeSaltEpisode(episodeUrl, season, episode) {
+  try {
+    const { data: html } = await axios.get(episodeUrl, {
+      headers,
+      timeout: 15000,
+      maxRedirects: 5,
+      httpsAgent: animeSaltHttpsAgent
+    });
 
-    const match = text.match(
-      /var\s+v28D\s*=\s*(\[[\s\S]*?\]);/
-    );
+    const $ = cheerio.load(html);
 
-    if (match) {
-      try {
-        v28D = JSON.parse(match[1]);
-      } catch (error) {
-        console.error("v28D JSON ERROR:", error.message);
+    const results = [];
+
+    // --------------------------------------------------
+    // AnimeSalt CDN player
+    // --------------------------------------------------
+    let cdnUrl = null;
+
+    $("iframe").each((_, el) => {
+      const candidates = [
+        $(el).attr("src"),
+        $(el).attr("data-src"),
+        $(el).attr("data-url")
+      ].filter(Boolean);
+
+      for (const value of candidates) {
+        if (/^https?:\/\/as-cdn26\.top\/video\//i.test(value)) {
+          cdnUrl = value;
+          return false;
+        }
+      }
+    });
+
+    if (cdnUrl) {
+      console.log(
+        `ANIMESALT CDN [S${season}E${episode}]: ${cdnUrl}`
+      );
+
+      results.push({
+        episode: Number(episode),
+        season: Number(season),
+        type: "iframe",
+        url: cdnUrl,
+        language: "Hindi"
+      });
+    } else {
+      console.log(
+        `ANIMESALT CDN NOT FOUND: S${season}E${episode}`
+      );
+    }
+
+    // --------------------------------------------------
+    // AnimeSalt multi-language player
+    // --------------------------------------------------
+    let playerUrl = null;
+
+    $("iframe").each((_, el) => {
+      const candidates = [
+        $(el).attr("src"),
+        $(el).attr("data-src"),
+        $(el).attr("data-url")
+      ].filter(Boolean);
+
+      for (const value of candidates) {
+        if (
+          value.includes("/multi-lang-plyr/player.php?data=")
+        ) {
+          playerUrl = value;
+          return false;
+        }
+      }
+    });
+
+    if (!playerUrl) {
+      const match = html.match(
+        /https?:\/\/animesalt\.cx\/multi-lang-plyr\/player\.php\?data=[^"'<> \t\r\n]+/
+      );
+
+      if (match) {
+        playerUrl = match[0];
       }
     }
-  });
 
-  if (!Array.isArray(v28D)) {
+    if (!playerUrl) {
+      console.log(
+        `ANIMESALT MULTI PLAYER NOT FOUND: S${season}E${episode}`
+      );
+      return results;
+    }
+
+    const dataMatch = playerUrl.match(
+      /[?&]data=([^&"'<> \t\r\n]+)/
+    );
+
+    if (!dataMatch) {
+      return results;
+    }
+
+    const encoded = decodeURIComponent(dataMatch[1]);
+
+    let decoded;
+
+    try {
+      decoded = Buffer
+        .from(encoded, "base64")
+        .toString("utf8")
+        .trim();
+    } catch {
+      return results;
+    }
+
+    let languages;
+
+    try {
+      languages = JSON.parse(decoded);
+    } catch {
+      console.log(
+        `ANIMESALT JSON ERROR: S${season}E${episode}`
+      );
+      return results;
+    }
+
+    if (!Array.isArray(languages)) {
+      return results;
+    }
+
+    for (const item of languages) {
+      const language = String(item?.language || "").trim();
+      const link = String(item?.link || "").trim();
+
+      if (!language || !link) continue;
+
+      if (!/^https?:\/\//i.test(link)) {
+        continue;
+      }
+
+      console.log(
+        `ANIMESALT LINK [S${season}E${episode} ${language}]: ${link}`
+      );
+
+      results.push({
+        episode: Number(episode),
+        season: Number(season),
+        type: "iframe",
+        url: link,
+        language
+      });
+    }
+
+    return results;
+
+  } catch (error) {
+    console.error(
+      `ANIMESALT EPISODE ERROR [S${season}E${episode}]:`,
+      error.message
+    );
+
     return [];
   }
-
-  return v28D.map((server) => ({
-    name: server.name || "Unknown Server",
-    type: server.type || "series",
-
-    episodes: (server.episodes || []).map((ep) => ({
-      episode: Number(ep.num),
-      season: Number(ep.s),
-      type: "iframe",
-      url: decodeBase64Url(ep.url),
-    })),
-  }));
 }
 
+async function scrapeAnimeSaltEpisodes(slug) {
+  try {
+    const seriesUrl = `${ANIMESALT_BASE_URL}/series/${slug}/`;
+
+    console.log(`ANIMESALT SERIES: ${seriesUrl}`);
+
+    const { data } = await axios.get(seriesUrl, {
+      headers,
+      timeout: 15000,
+      maxRedirects: 5
+    });
+
+    const $ = cheerio.load(data);
+
+    const episodeLinks = new Map();
+
+    $("a[href]").each((_, el) => {
+      const href = $(el).attr("href");
+      if (!href) return;
+
+      const match = href.match(
+        /\/episode\/[^/]+-(\d+)x(\d+)\/?$/i
+      );
+
+      if (!match) return;
+
+      const season = Number(match[1]);
+      const episode = Number(match[2]);
+
+      if (!Number.isFinite(season) || !Number.isFinite(episode)) {
+        return;
+      }
+
+      const url = new URL(href, ANIMESALT_BASE_URL).href;
+
+      episodeLinks.set(
+        `${season}-${episode}`,
+        {
+          url,
+          season,
+          episode
+        }
+      );
+    });
+
+    const links = [...episodeLinks.values()]
+      .sort((a, b) => {
+        if (a.season !== b.season) {
+          return a.season - b.season;
+        }
+
+        return a.episode - b.episode;
+      });
+
+    console.log(
+      `ANIMESALT EPISODE LINKS FOUND: ${slug} (${links.length})`
+    );
+
+    if (!links.length) {
+      return [];
+    }
+
+    const episodes = [];
+    const BATCH_SIZE = 8;
+
+    for (let i = 0; i < links.length; i += BATCH_SIZE) {
+      const batch = links.slice(i, i + BATCH_SIZE);
+
+      const batchResults = await Promise.all(
+        batch.map(item =>
+          scrapeAnimeSaltEpisode(
+            item.url,
+            item.season,
+            item.episode
+          )
+        )
+      );
+
+      for (const found of batchResults) {
+        episodes.push(...found);
+      }
+
+      console.log(
+        `ANIMESALT EPISODE BATCH: ${Math.min(i + BATCH_SIZE, links.length)}/${links.length}`
+      );
+    }
+
+    const unique = [
+      ...new Map(
+        episodes.map(ep => [
+          `${ep.season}-${ep.episode}-${ep.language}-${ep.url}`,
+          ep
+        ])
+      ).values()
+    ];
+
+    console.log(
+      `ANIMESALT EPISODES FOUND: ${slug} (${unique.length} language entries)`
+    );
+
+    if (!unique.length) {
+      return [];
+    }
+
+    const cdnEpisodes = unique.filter(ep =>
+      /^https?:\/\/as-cdn26\.top\/video\//i.test(ep.url)
+    );
+
+    const servers = [];
+
+    if (cdnEpisodes.length) {
+      servers.push({
+        name: "AnimeSalt CDN",
+        type: "series",
+        episodes: cdnEpisodes
+      });
+    }
+
+    console.log(
+      `ANIMESALT SERVER BUILT: ${slug} (CDN: ${cdnEpisodes.length})`
+    );
+
+    return servers;
+
+  } catch (error) {
+    console.error(
+      `ANIMESALT ERROR [${slug}]:`,
+      error.message
+    );
+
+    return [];
+  }
+}
 
 // --------------------------------------------------
 // Episode Update Detection
@@ -1553,6 +1937,46 @@ app.get("/api/streams/:slug", async (req, res) => {
   try {
     const slug = req.params.slug;
 
+    // --------------------------------------------------
+    // ANIMESALT MOVIE DATA
+    // --------------------------------------------------
+    try {
+      const movieFile = path.join(
+        __dirname,
+        "animesalt-movie-streams.json"
+      );
+
+      if (fs.existsSync(movieFile)) {
+        const movieData = JSON.parse(
+          fs.readFileSync(movieFile, "utf8")
+        );
+
+        const movie = Array.isArray(movieData)
+          ? movieData.find(item => item && item.slug === slug)
+          : null;
+
+        if (movie && Array.isArray(movie.servers) && movie.servers.length) {
+          console.log(
+            `ANIMESALT MOVIE DATA: ${slug} (${movie.servers.length} server(s))`
+          );
+
+          return res.json({
+            success: true,
+            animeSlug: slug,
+            type: "movie",
+            cached: false,
+            serverCount: movie.servers.length,
+            servers: movie.servers
+          });
+        }
+      }
+    } catch (error) {
+      console.log(
+        `ANIMESALT MOVIE DATA FAILED [${slug}]: ${error.message}`
+      );
+    }
+
+
     if (streamCache.has(slug)) {
       const cached = streamCache.get(slug);
 
@@ -1569,7 +1993,22 @@ app.get("/api/streams/:slug", async (req, res) => {
       streamCache.delete(slug);
     }
 
-    const servers = await scrapeEpisodeServers(slug);
+    // Authorized player sources
+    let servers = [];
+
+    // Add AnimeSalt episodes when available
+    try {
+      const animeSaltServers = await scrapeAnimeSaltEpisodes(slug);
+
+      if (animeSaltServers.length) {
+        servers.push(...animeSaltServers);
+        console.log(
+          `ANIMESALT ADDED: ${slug} (${animeSaltServers[0].episodes.length} language entries)`
+        );
+      }
+    } catch (error) {
+      console.log(`ANIMESALT FAILED [${slug}]: ${error.message}`);
+    }
 
     updateEpisodeMetadata(slug, servers);
 

@@ -1,11 +1,11 @@
 {
   "hanaori-san-still-wants-to-fight-in-the-next-life": {
-    "views": 9,
+    "views": 13,
     "episodes": {
-      "S1E1": 7,
+      "S1E1": 11,
       "S1E2": 2
     },
-    "lastWatchedAt": "2026-08-12T08:11:16.718Z"
+    "lastWatchedAt": "2026-08-27T11:07:03.342Z"
   },
   "liar-game": {
     "views": 6,
@@ -49,12 +49,13 @@
     "lastWatchedAt": "2026-08-11T08:27:25.539Z"
   },
   "captain-tsubasa": {
-    "views": 2,
+    "views": 9,
     "episodes": {
       "S2E13": 1,
-      "S1E1": 1
+      "S1E1": 4,
+      "S2E21": 4
     },
-    "lastWatchedAt": "2026-08-12T05:40:21.428Z"
+    "lastWatchedAt": "2026-08-27T10:13:55.791Z"
   },
   "one-punch-man": {
     "views": 1,
@@ -84,5 +85,82 @@
       "S1E1": 1
     },
     "lastWatchedAt": "2026-08-14T06:29:19.495Z"
+  },
+  "mob-psycho-100": {
+    "views": 1,
+    "episodes": {
+      "S3E1": 1
+    },
+    "lastWatchedAt": "2026-08-24T13:55:36.055Z"
+  },
+  "sword-art-online-alternative-gun-gale-online": {
+    "views": 1,
+    "episodes": {
+      "S1E1": 1
+    },
+    "lastWatchedAt": "2026-08-25T09:20:25.106Z"
+  },
+  "kaiju-no-8": {
+    "views": 2,
+    "episodes": {
+      "S1E1": 2
+    },
+    "lastWatchedAt": "2026-08-26T07:43:31.105Z"
+  },
+  "series/nippon-sangoku-the-three-nations-of-the-crimson-sun": {
+    "views": 1,
+    "episodes": {
+      "S1E1": 1
+    },
+    "lastWatchedAt": "2026-08-26T16:13:06.893Z"
+  },
+  "series/a-mortals-journey-to-immortality": {
+    "views": 1,
+    "episodes": {
+      "S1E1": 1
+    },
+    "lastWatchedAt": "2026-08-26T16:14:46.599Z"
+  },
+  "series/barbie-dreamtopia": {
+    "views": 1,
+    "episodes": {
+      "S1E1": 1
+    },
+    "lastWatchedAt": "2026-08-27T10:09:10.556Z"
+  },
+  "series/digimon-fusion": {
+    "views": 1,
+    "episodes": {
+      "S1E1": 1
+    },
+    "lastWatchedAt": "2026-08-27T10:11:23.843Z"
+  },
+  "series/%e3%80%90oshi-no-ko%e3%80%91": {
+    "views": 1,
+    "episodes": {
+      "S3E11": 1
+    },
+    "lastWatchedAt": "2026-08-27T10:44:06.399Z"
+  },
+  "series/digimon-adventure": {
+    "views": 1,
+    "episodes": {
+      "S1E1": 1
+    },
+    "lastWatchedAt": "2026-08-27T11:02:42.888Z"
+  },
+  "series/dota-dragons-blood": {
+    "views": 1,
+    "episodes": {
+      "S1E1": 1
+    },
+    "lastWatchedAt": "2026-08-27T11:03:42.867Z"
+  },
+  "series/doraemon-2005": {
+    "views": 1,
+    "episodes": {
+      "S3E8": 1
+    },
+    "lastWatchedAt": "2026-08-27T11:04:31.954Z"
   }
 }

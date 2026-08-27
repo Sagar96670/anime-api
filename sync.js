@@ -1,231 +1,140 @@
 const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
+const cheerio = require("cheerio");
 const DATA_DIR = path.join(__dirname, "data");
 const CATALOG_FILE = path.join(DATA_DIR, "catalog.json");
-const cheerio = require("cheerio");
+// --------------------------------------------------
+// AnimeSalt Catalog Sync
+// --------------------------------------------------
 
-const BASE_URL = "https://1xanimes.com";
+const ANIMESALT_BASE_URL = "https://animesalt.cx";
 
-const client = axios.create({
-  baseURL: BASE_URL,
-  timeout: 15000,
-  maxRedirects: 5,
-  headers: {
-    "User-Agent":
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-      "AppleWebKit/537.36 (KHTML, like Gecko) " +
-      "Chrome/120.0.0.0 Safari/537.36",
-  },
-});
-function saveCatalog(results) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-
-  let oldResults = [];
-
-  try {
-    if (fs.existsSync(CATALOG_FILE)) {
-      const oldData = JSON.parse(
-        fs.readFileSync(CATALOG_FILE, "utf8")
-      );
-
-      oldResults = Array.isArray(oldData.results)
-        ? oldData.results
-        : [];
-    }
-  } catch (error) {
-    console.log("OLD CATALOG READ WARNING:", error.message);
-  }
-
-  const oldBySlug = new Map(
-    oldResults
-      .filter(item => item && item.slug)
-      .map(item => [item.slug, item])
-  );
-
-  const now = new Date().toISOString();
-
-  const enrichedResults = results.map(item => {
-
-    const old = oldBySlug.get(item.slug);
-
-    return {
-      ...item,
-      firstSeenAt: old?.firstSeenAt || now,
-      lastSeenAt: now,
-    };
-  });
-
-  const payload = {
-    updatedAt: now,
-    count: enrichedResults.length,
-    results: enrichedResults,
-  };
-
-  fs.writeFileSync(
-    CATALOG_FILE,
-    JSON.stringify(payload, null, 2),
-    "utf8"
-  );
-
-  console.log("Catalog saved:", CATALOG_FILE);
-}
-
-async function getAnimeRating(url) {
-  try {
-    const { data } = await client.get(url);
-    const $ = cheerio.load(data);
-
-    const metaText = $(".nf-meta-row")
-      .first()
-      .text()
-      .replace(/\s+/g, " ")
-      .trim();
-
-    const match = metaText.match(/★\s*(\d+(?:\.\d+)?)/);
-
-    return match ? match[1] : "";
-  } catch (error) {
-    console.error(
-      "RATING ERROR:",
-      url,
-      error.message
-    );
-    return "";
-  }
-}
-
-async function scrapeHomePage(page = 1) {
-  const url = page === 1 ? "/" : `/page/${page}/`;
-
-  const { data } = await client.get(url);
-  const $ = cheerio.load(data);
+async function syncAnimeSaltCatalog() {
+  console.log("=================================");
+  console.log("ANIMESALT CATALOG SYNC START");
+  console.log(new Date().toISOString());
+  console.log("=================================");
 
   const results = [];
   const seen = new Set();
 
-  $('a[href*="/anime/"], a[href*="/series/"], .post-title a, article a')
-    .each((_, el) => {
-      let link = $(el).attr("href") || "";
+  try {
+    const firstUrl = `${ANIMESALT_BASE_URL}/series/`;
 
-      const title =
-        $(el).text().trim() ||
-        $(el).attr("title") ||
-        $(el).find("img").attr("alt") ||
-        "";
-
-      const image =
-        $(el).find("img").attr("src") ||
-        $(el).find("img").attr("data-src") ||
-        "";
-
-      if (!link || !title || title.length < 3) return;
-
-      if (link.startsWith("/")) {
-        link = BASE_URL + link;
-      }
-
-      if (!link.startsWith(BASE_URL + "/")) return;
-
-      let path;
-
-      try {
-        path = new URL(link).pathname;
-      } catch {
-        return;
-      }
-
-      if (
-        path.startsWith("/category/") ||
-        path.startsWith("/page/") ||
-        path === "/a-to-z-navigation/" ||
-        path.includes("/wp-")
-      ) {
-        return;
-      }
-
-      const slug = path.replace(/^\/|\/$/g, "");
-
-      if (!slug || seen.has(slug)) return;
-
-      seen.add(slug);
-
-      results.push({
-        slug,
-        title: title.replace(/\s+/g, " ").trim(),
-        image,
-        link,
-      });
+    const { data: firstHtml } = await axios.get(firstUrl, {
+      timeout: 60000,
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+          "AppleWebKit/537.36 (KHTML, like Gecko) " +
+          "Chrome/120.0.0.0 Safari/537.36",
+      },
     });
- return results;
-}
 
-async function discoverPages(maxPages = 17) {
-  const pages = [];
+    const $first = cheerio.load(firstHtml);
 
-  for (let page = 1; page <= maxPages; page++) {
-    try {
-      const url = page === 1 ? "/" : `/page/${page}/`;
+    let maxPage = 1;
 
-      const response = await client.get(url);
+    $first('a[href*="/series/page/"]').each((_, el) => {
+      const href = $first(el).attr("href") || "";
+      const match = href.match(/\/series\/page\/(\d+)\/?/i);
 
-      if (response.status >= 200 && response.status < 400) {
-        pages.push(page);
-      }
-    } catch (error) {
-      console.log(`Page ${page} unavailable`);
-    }
-  }
-
-  return pages;
-}
-
-async function syncCatalog() {
-  console.log("=================================");
-  console.log("AUTO SYNC START");
-  console.log(new Date().toISOString());
-  console.log("=================================");
-
-  const pages = await discoverPages();
-
-  console.log("Pages discovered:", pages.join(", "));
-
-  const all = new Map();
-
-  for (const page of pages) {
-    try {
-      const items = await scrapeHomePage(page);
-
-      console.log(
-        `Page ${page}: ${items.length} anime candidates`
-      );
-
-      for (const item of items) {
-        if (!all.has(item.slug)) {
-          const rating = await getAnimeRating(item.link);
-
-          all.set(item.slug, {
-            ...item,
-            rating,
-          });
+      if (match) {
+        const page = Number(match[1]);
+        if (Number.isFinite(page)) {
+          maxPage = Math.max(maxPage, page);
         }
       }
-    } catch (error) {
-      console.error(
-        `Page ${page} failed:`,
-        error.message
+    });
+
+    console.log("ANIMESALT PAGES FOUND:", maxPage);
+
+    async function parsePage(html, pageNumber) {
+      const $ = cheerio.load(html);
+
+      $("article.post").each((_, el) => {
+        const title = $(el)
+          .find("h2.entry-title")
+          .first()
+          .text()
+          .replace(/\s+/g, " ")
+          .trim();
+
+        const href =
+          $(el).find("a.lnk-blk").first().attr("href") || "";
+
+        const image =
+          $(el).find("img").first().attr("data-src") ||
+          $(el).find("img").first().attr("src") ||
+          "";
+
+        if (!title || !href) return;
+
+        let slug = "";
+
+        try {
+          const url = new URL(href);
+          const parts = url.pathname.split("/").filter(Boolean);
+          slug = parts[parts.length - 1] || "";
+        } catch {
+          return;
+        }
+
+        if (!slug || seen.has(slug)) return;
+
+        seen.add(slug);
+
+        results.push({
+          slug,
+          title,
+          image: image.startsWith("//")
+            ? `https:${image}`
+            : image,
+          link: href,
+          source: "animesalt",
+        });
+      });
+
+      console.log(
+        `ANIMESALT PAGE ${pageNumber}: ${results.length} unique series`
       );
     }
+
+    await parsePage(firstHtml, 1);
+
+    for (let page = 2; page <= maxPage; page++) {
+      const url = `${ANIMESALT_BASE_URL}/series/page/${page}/`;
+
+      try {
+        const { data: html } = await axios.get(url, {
+          timeout: 60000,
+          headers: {
+            "User-Agent":
+              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+              "AppleWebKit/537.36 (KHTML, like Gecko) " +
+              "Chrome/120.0.0.0 Safari/537.36",
+          },
+        });
+
+        await parsePage(html, page);
+      } catch (error) {
+        console.error(
+          `ANIMESALT PAGE ${page} ERROR:`,
+          error.message
+        );
+      }
+    }
+
+    console.log("---------------------------------");
+    console.log("ANIMESALT UNIQUE SERIES:", results.length);
+    console.log("---------------------------------");
+
+    return results;
+  } catch (error) {
+    console.error("ANIMESALT CATALOG ERROR:", error.message);
+    return [];
   }
-
-  const results = [...all.values()];
-
-  console.log("---------------------------------");
-  console.log("TOTAL UNIQUE ANIME:", results.length);
-  console.log("---------------------------------");
-  saveCatalog(results);
-
-  return results;
 }
 
 // --------------------------------------------------
@@ -246,16 +155,31 @@ async function runBackgroundSync() {
 
   try {
     console.log("=================================");
-    console.log("BACKGROUND AUTO SYNC");
+    console.log("BACKGROUND AUTO SYNC - ANIMESALT");
     console.log(new Date().toISOString());
     console.log("=================================");
 
-    const results = await syncCatalog();
+    const results = await syncAnimeSaltCatalog();
 
-    console.log(
-      `BACKGROUND SYNC COMPLETE: ${results.length} anime`
+    const payload = {
+      updatedAt: new Date().toISOString(),
+      count: results.length,
+      results
+    };
+
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+
+    fs.writeFileSync(
+      CATALOG_FILE,
+      JSON.stringify(payload, null, 2),
+      "utf8"
     );
 
+    console.log("---------------------------------");
+    console.log("ANIMESALT AUTO SYNC COMPLETE");
+    console.log("ANIMESALT LIVE:", results.length);
+    console.log("CATALOG SAVED:", CATALOG_FILE);
+    console.log("---------------------------------");
   } catch (error) {
     console.error(
       "BACKGROUND SYNC ERROR:",
@@ -275,7 +199,7 @@ function startAutoSync() {
 }
 
 module.exports = {
-  syncCatalog,
+  syncAnimeSaltCatalog,
+  runBackgroundSync,
   startAutoSync,
-  getAnimeRating,
 };
