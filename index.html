@@ -2467,8 +2467,14 @@ function getSlug(link){
   try{
 
     const url = new URL(link);
-    return url.pathname
-      .replace(/^\/|\/$/g,"");
+
+    const parts = url.pathname
+      .split("/")
+      .filter(Boolean);
+
+    return parts.length
+      ? parts[parts.length - 1]
+      : "";
 
   }catch{
 
@@ -2626,7 +2632,9 @@ function showMovies(){
   const movies = Array.isArray(homeData)
     ? homeData.filter(item => {
         const title = String(item?.title || "").trim();
-        return /^MOVIE\b/i.test(title);
+        const type = String(item?.type || "").trim().toLowerCase();
+
+        return type === "movie" || /^MOVIE\b/i.test(title);
       })
     : [];
 
@@ -2753,7 +2761,9 @@ function filterAnimeByLetter(letter){
         moviesMode
           ? homeData.filter(item => {
               const title = String(item?.title || "").trim();
-              return /^MOVIE\b/i.test(title);
+              const type = String(item?.type || "").trim().toLowerCase();
+
+              return type === "movie" || /^MOVIE\b/i.test(title);
             })
           : homeData
       )
@@ -2934,6 +2944,7 @@ function renderLatestAnimePage(){
       (48 * 60 * 60 * 1000);
 
     const isMovie =
+      String(item?.type || "").trim().toLowerCase() === "movie" ||
       /^MOVIE\b/i.test(
         String(item?.title || "").trim()
       );
@@ -3896,6 +3907,20 @@ async function openAnime(slug, updateHistory = true){
 
     }
 
+    // Hide the episode panel for movies.
+    // Series keep the normal season/episode list.
+    const episodePanel =
+      document.querySelector("#episodeList")?.closest(".episode-panel");
+
+    if(episodePanel){
+      episodePanel.style.display =
+        streamData &&
+        streamData.success &&
+        streamData.type === "movie"
+          ? "none"
+          : "";
+    }
+
     renderAnimeEpisodes();
 
   }catch(error){
@@ -4022,10 +4047,23 @@ function getLatestEpisodeNumber(slug){
 }
 
 function renderAnimeEpisodes(){
-
   const box = document.getElementById("episodeList");
 
+  if(!box){
+    return;
+  }
+
   box.innerHTML = "";
+
+  // Movies do not have an episode list.
+  // The Start Watching button already opens the movie server directly.
+  if(
+    streamData &&
+    streamData.success &&
+    streamData.type === "movie"
+  ){
+    return;
+  }
 
   if(
     !streamData ||
@@ -4033,18 +4071,16 @@ function renderAnimeEpisodes(){
     !Array.isArray(streamData.servers) ||
     !streamData.servers.length
   ){
-
     box.textContent = "No episodes found";
     return;
   }
 
-  const episodes = [];
-  const seen = new Set();
+  // Collect unique episodes by SEASON + EPISODE.
+  // This keeps Season 1 and Season 2 completely separate.
+  const episodeMap = new Map();
 
   streamData.servers.forEach(server => {
-
     (server.episodes || []).forEach(ep => {
-
       if(
         !ep ||
         ep.season == null ||
@@ -4054,27 +4090,30 @@ function renderAnimeEpisodes(){
         return;
       }
 
-      const key =
-        String(ep.season) + "-" +
-        String(ep.episode);
+      const season = String(ep.season);
+      const episode = Number(ep.episode);
 
-      if(seen.has(key)) return;
+      if(!Number.isFinite(episode)){
+        return;
+      }
 
-      seen.add(key);
-      episodes.push(ep);
+      const key = season + "-" + episode;
 
+      if(!episodeMap.has(key)){
+        episodeMap.set(key, ep);
+      }
     });
-
   });
 
-  if(!episodes.length){
+  const episodes = [...episodeMap.values()];
 
+  if(!episodes.length){
     box.textContent = "No episodes found";
     return;
   }
 
+  // Sort Season first, then Episode.
   episodes.sort((a,b) => {
-
     const seasonA = Number(a.season) || 0;
     const seasonB = Number(b.season) || 0;
 
@@ -4082,14 +4121,18 @@ function renderAnimeEpisodes(){
       return seasonA - seasonB;
     }
 
-    return (Number(a.episode) || 0) -
-           (Number(b.episode) || 0);
-
+    return (
+      (Number(a.episode) || 0) -
+      (Number(b.episode) || 0)
+    );
   });
 
-  const seasons = [...new Set(
-    episodes.map(ep => String(ep.season))
-  )];
+  // Build season list.
+  const seasons = [
+    ...new Set(
+      episodes.map(ep => String(ep.season))
+    )
+  ].sort((a,b) => Number(a) - Number(b));
 
   const seasonTabs = document.createElement("div");
   seasonTabs.className = "season-tabs";
@@ -4101,20 +4144,37 @@ function renderAnimeEpisodes(){
 
     episodeContainer.innerHTML = "";
 
-    const seasonEpisodes =
-      episodes.filter(ep =>
+    const seasonEpisodes = episodes
+      .filter(ep =>
         String(ep.season) === String(season)
+      )
+      .sort((a,b) =>
+        Number(a.episode) - Number(b.episode)
       );
+
+    // Show episode count for THIS season only.
+    const seasonCount = document.createElement("div");
+    seasonCount.className = "season-episode-count";
+    seasonCount.textContent =
+      "Season " + season +
+      " • " + seasonEpisodes.length +
+      " Episodes";
+
+    episodeContainer.appendChild(seasonCount);
 
     seasonEpisodes.forEach(ep => {
 
       const btn = document.createElement("button");
-
       btn.className = "episode-card";
 
-      const watched = isEpisodeWatched(currentAnime, ep);
+      const watched =
+        isEpisodeWatched(currentAnime, ep);
 
-      const latestCount = getLatestEpisodeNumber(currentAnime);
+      // Latest episode check is season-aware.
+      const latestCount =
+        getLatestEpisodeNumber(
+          currentAnime + "-season-" + String(ep.season)
+        );
 
       const isNew =
         latestCount > 0 &&
@@ -4150,28 +4210,25 @@ function renderAnimeEpisodes(){
         playEpisodeFromData(ep);
 
       episodeContainer.appendChild(btn);
-
     });
 
     seasonTabs
       .querySelectorAll(".season-tab")
       .forEach(tab => {
-
         tab.classList.toggle(
           "active",
-          String(tab.dataset.season) === String(season)
+          String(tab.dataset.season) ===
+          String(season)
         );
-
       });
-
   }
 
   seasons.forEach((season, index) => {
 
     const tab = document.createElement("button");
 
+    tab.type = "button";
     tab.className = "season-tab";
-
     tab.dataset.season = season;
 
     tab.textContent =
@@ -4185,14 +4242,11 @@ function renderAnimeEpisodes(){
     if(index === 0){
       renderSeason(season);
     }
-
   });
 
   box.appendChild(seasonTabs);
   box.appendChild(episodeContainer);
-
 }
-
 
 /* ---------------- PLAYER ---------------- */
 
@@ -4737,16 +4791,34 @@ function renderPlayerEpisodes(){
 
 
 function navigateEpisode(direction){
-
   const server = streamData?.servers?.[currentServer];
 
   if(!server || !Array.isArray(server.episodes)){
     return;
   }
 
-  const episodes = getUniquePlayerEpisodes(server);
+  // Keep navigation inside the currently playing season.
+  const allEpisodes = getUniquePlayerEpisodes(server);
 
-  const currentIndex = episodes.findIndex(ep =>
+  const currentEpisode = allEpisodes.find(ep =>
+    getEpisodeKey(ep) === currentEpisodeKey
+  );
+
+  if(!currentEpisode){
+    return;
+  }
+
+  const currentSeason = String(currentEpisode.season);
+
+  const seasonEpisodes = allEpisodes
+    .filter(ep =>
+      String(ep.season) === currentSeason
+    )
+    .sort((a,b) =>
+      Number(a.episode) - Number(b.episode)
+    );
+
+  const currentIndex = seasonEpisodes.findIndex(ep =>
     getEpisodeKey(ep) === currentEpisodeKey
   );
 
@@ -4756,11 +4828,15 @@ function navigateEpisode(direction){
 
   const nextIndex = currentIndex + direction;
 
-  if(nextIndex < 0 || nextIndex >= episodes.length){
+  // Never jump from one season into another.
+  if(
+    nextIndex < 0 ||
+    nextIndex >= seasonEpisodes.length
+  ){
     return;
   }
 
-  const baseEpisode = episodes[nextIndex];
+  const baseEpisode = seasonEpisodes[nextIndex];
 
   const languageEntries = getEpisodeLanguages(
     server,
@@ -4790,13 +4866,19 @@ function navigateEpisode(direction){
     window.currentPlayerLanguage = "";
   }
 
-  document.getElementById("playerTitle")
-    .textContent =
+  const playerTitle =
+    document.getElementById("playerTitle");
+
+  if(playerTitle){
+    playerTitle.textContent =
       "Season " + nextEpisode.season +
       " • Episode " + nextEpisode.episode +
-      (nextEpisode.language
-        ? " • " + nextEpisode.language
-        : "");
+      (
+        nextEpisode.language
+          ? " • " + nextEpisode.language
+          : ""
+      );
+  }
 
   renderPlayerLanguages();
   renderPlayerEpisodes();
@@ -4806,7 +4888,6 @@ function navigateEpisode(direction){
 
 
 function updateEpisodeNavigation(){
-
   const server = streamData?.servers?.[currentServer];
 
   const prevBtn =
@@ -4821,10 +4902,30 @@ function updateEpisodeNavigation(){
     return;
   }
 
-  const episodes =
-    getUniquePlayerEpisodes(server);
+  const allEpisodes = getUniquePlayerEpisodes(server);
 
-  const currentIndex = episodes.findIndex(ep =>
+  const currentEpisode = allEpisodes.find(ep =>
+    getEpisodeKey(ep) === currentEpisodeKey
+  );
+
+  if(!currentEpisode){
+    if(prevBtn) prevBtn.disabled = true;
+    if(nextBtn) nextBtn.disabled = true;
+    return;
+  }
+
+  // Navigation is restricted to the current season.
+  const currentSeason = String(currentEpisode.season);
+
+  const seasonEpisodes = allEpisodes
+    .filter(ep =>
+      String(ep.season) === currentSeason
+    )
+    .sort((a,b) =>
+      Number(a.episode) - Number(b.episode)
+    );
+
+  const currentIndex = seasonEpisodes.findIndex(ep =>
     getEpisodeKey(ep) === currentEpisodeKey
   );
 
@@ -4836,10 +4937,9 @@ function updateEpisodeNavigation(){
   if(nextBtn){
     nextBtn.disabled =
       currentIndex === -1 ||
-      currentIndex + 1 >= episodes.length;
+      currentIndex + 1 >= seasonEpisodes.length;
   }
 }
-
 
 
 function loadPlayer(ep){

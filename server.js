@@ -1194,8 +1194,21 @@ app.get("/api/anime/:slug", async (req, res) => {
     const catalogImage = item.image || "";
     const catalogRating = item.rating || "";
 
-    const description = item.description || "";
     const type = item.type || "";
+
+    let description = item.description || "";
+
+    // Movie catalog entries may contain the entire source post
+    // including watch links, site promotion and recommended posts.
+    // Keep only the actual synopsis for movies.
+    if (String(type).toLowerCase() === "movie") {
+      description = String(description)
+        .split(/Watch\/Download Links/i)[0]
+        .split(/Winding Up/i)[0]
+        .split(/Thanks for visiting/i)[0]
+        .trim();
+    }
+
     const seasons = item.seasons ?? null;
     const episodes = item.episodes ?? null;
     const genres = Array.isArray(item.genres) ? item.genres : [];
@@ -1414,8 +1427,9 @@ app.get("/api/anime/:slug", async (req, res) => {
       }
 
       // Released / Year
+      // Keep only the 4-digit release year.
       const releasedMatch =
-        rareText.match(/Year\s*:\s*([^🔊]+)/i);
+        rareText.match(/Year\s*:\s*(\d{4})/i);
 
       if (releasedMatch) {
         released = releasedMatch[1].trim();
@@ -1958,9 +1972,11 @@ function updateEpisodeMetadata(slug, servers){
     // Only mark as updated when episode count increases.
     if(count > previous){
 
+      const now = new Date().toISOString();
+
       item.latestEpisodeCount = count;
-      item.episodeUpdatedAt =
-        new Date().toISOString();
+      item.episodeUpdatedAt = now;
+      item.lastSeenAt = now;
 
       fs.writeFileSync(
         catalogFile,
@@ -1970,6 +1986,10 @@ function updateEpisodeMetadata(slug, servers){
 
       console.log(
         `NEW EPISODES: ${slug} ${previous} -> ${count}`
+      );
+
+      console.log(
+        `RECENTLY UPDATED: ${slug} -> ${now}`
       );
 
     }
