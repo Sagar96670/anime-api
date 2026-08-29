@@ -2037,13 +2037,42 @@ app.get("/api/streams/:slug", async (req, res) => {
             `ANIMESALT MOVIE DATA: ${slug} (${movie.servers.length} server(s))`
           );
 
+          // Normalize movie servers into the same episode format
+          // used by the series player. A movie is represented as S1E1.
+          const movieServers = movie.servers
+            .filter(server => server && server.url)
+            .map((server, index) => ({
+              ...server,
+              index:
+                server.index != null
+                  ? server.index
+                  : index,
+              name:
+                server.name ||
+                `SERVER ${index + 1}`,
+              type:
+                server.type ||
+                "iframe",
+              episodes: [{
+                season: 1,
+                episode: 1,
+                type:
+                  server.type ||
+                  "iframe",
+                url: server.url,
+                language:
+                  server.language ||
+                  "Default"
+              }]
+            }));
+
           return res.json({
             success: true,
             animeSlug: slug,
             type: "movie",
             cached: false,
-            serverCount: movie.servers.length,
-            servers: movie.servers
+            serverCount: movieServers.length,
+            servers: movieServers
           });
         }
       }
