@@ -2,570 +2,445 @@ const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
 const cheerio = require("cheerio");
+
 const DATA_DIR = path.join(__dirname, "data");
 const CATALOG_FILE = path.join(DATA_DIR, "catalog.json");
-// --------------------------------------------------
-// AnimeSalt Catalog Sync
-// --------------------------------------------------
 
-const ANIMESALT_BASE_URL = "https://animesalt.cx";
+const TOONSTREAM_BASE_URL = "https://toonstream.vip";
+const TOONSTREAM_CATEGORY_URL =
+  `${TOONSTREAM_BASE_URL}/category/anime-series?type=all&page=`;
 
-async function syncAnimeSaltCatalog() {
+const TOONSTREAM_MOVIE_CATEGORY_URL =
+  `${TOONSTREAM_BASE_URL}/category/anime-movies?type=all&page=`;
+
+const REQUEST_HEADERS = {
+  "User-Agent":
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+    "AppleWebKit/537.36 (KHTML, like Gecko) " +
+    "Chrome/120.0.0.0 Safari/537.36",
+  Accept:
+    "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+};
+
+const REQUEST_TIMEOUT = 60000;
+
+function cleanText(value) {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function absoluteUrl(href) {
+  if (!href) return "";
+
+  try {
+    return new URL(href, TOONSTREAM_BASE_URL).href;
+  } catch {
+    return "";
+  }
+}
+
+function getSlugFromUrl(href) {
+  try {
+    const url = new URL(href, TOONSTREAM_BASE_URL);
+    const parts = url.pathname.split("/").filter(Boolean);
+    return parts[parts.length - 1] || "";
+  } catch {
+    return "";
+  }
+}
+
+function parseSeriesPage(html, seen) {
+  const $ = cheerio.load(html);
+  const results = [];
+
+  $('a.lnk-blk[href^="/series/"]').each((_, el) => {
+    const link = $(el).attr("href");
+    if (!link) return;
+
+    const fullLink = absoluteUrl(link);
+    const slug = getSlugFromUrl(fullLink);
+
+    if (!slug || seen.has(slug)) return;
+
+    const article = $(el).closest("article.post");
+
+    const title = cleanText(
+      article.find("h2.entry-title").first().text()
+    );
+
+    if (!title) return;
+
+    const image =
+      article.find(".post-thumbnail img").first().attr("src") || "";
+
+    const ratingText = cleanText(
+      article
+        .find(".vote")
+        .first()
+        .text()
+        .replace(/TMDB/i, "")
+    );
+
+    const ratingNumber = Number(ratingText);
+
+    seen.add(slug);
+
+    results.push({
+      slug,
+      title,
+      image: absoluteUrl(image),
+      link: fullLink,
+      rating: Number.isFinite(ratingNumber)
+        ? ratingNumber
+        : null,
+      source: "toonstream",
+      type: "series",
+    });
+  });
+
+  return results;
+}
+
+function parseMoviePage(html, seen) {
+  const $ = cheerio.load(html);
+  const results = [];
+
+  $('a.lnk-blk[href^="/movies/"]').each((_, el) => {
+    const link = $(el).attr("href");
+    if (!link) return;
+
+    const fullLink = absoluteUrl(link);
+    const slug = getSlugFromUrl(fullLink);
+
+    if (!slug || seen.has(slug)) return;
+
+    const article = $(el).closest("article.post");
+
+    const title = cleanText(
+      article.find("h2.entry-title").first().text()
+    );
+
+    if (!title) return;
+
+    const image =
+      article.find(".post-thumbnail img").first().attr("src") || "";
+
+    const ratingText = cleanText(
+      article
+        .find(".vote")
+        .first()
+        .text()
+        .replace(/TMDB/i, "")
+    );
+
+    const ratingNumber = Number(ratingText);
+
+    seen.add(slug);
+
+    results.push({
+      slug,
+      title,
+      image: absoluteUrl(image),
+      link: fullLink,
+      rating: Number.isFinite(ratingNumber)
+        ? ratingNumber
+        : null,
+      source: "toonstream",
+      type: "movie",
+    });
+  });
+
+  return results;
+}
+
+function detectMaxPage(html) {
+  const $ = cheerio.load(html);
+  let maxPage = 1;
+
+  $('a[href*="/category/anime-series?type=all&page="]').each(
+    (_, el) => {
+      const href = $(el).attr("href") || "";
+
+      try {
+        const url = new URL(href, TOONSTREAM_BASE_URL);
+        const page = Number(url.searchParams.get("page"));
+
+        if (Number.isInteger(page) && page > maxPage) {
+          maxPage = page;
+        }
+      } catch {}
+    }
+  );
+
+  return maxPage;
+}
+
+async function fetchCategoryPage(page) {
+  const url = `${TOONSTREAM_CATEGORY_URL}${page}`;
+
+  console.log(`[${page}] ${url}`);
+
+  const response = await axios.get(url, {
+    timeout: REQUEST_TIMEOUT,
+    headers: REQUEST_HEADERS,
+    maxRedirects: 5,
+  });
+
+  return String(response.data || "");
+}
+
+async function fetchMovieCategoryPage(page) {
+  const url = `${TOONSTREAM_MOVIE_CATEGORY_URL}${page}`;
+  console.log(`[MOVIE ${page}] ${url}`);
+
+  const response = await axios.get(url, {
+    timeout: REQUEST_TIMEOUT,
+    headers: REQUEST_HEADERS,
+    maxRedirects: 5,
+  });
+
+  return String(response.data || "");
+}
+
+async function syncToonStreamMovies() {
   console.log("=================================");
-  console.log("ANIMESALT CATALOG SYNC START");
+  console.log("TOONSTREAM MOVIE SYNC START");
   console.log(new Date().toISOString());
   console.log("=================================");
 
-  const results = [];
-  const seen = new Set();
-
   try {
-    const firstUrl = `${ANIMESALT_BASE_URL}/series/`;
+    const firstHtml = await fetchMovieCategoryPage(1);
+    const maxPage = detectMovieMaxPage(firstHtml);
 
-    const { data: firstHtml } = await axios.get(firstUrl, {
-      timeout: 60000,
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-          "AppleWebKit/537.36 (KHTML, like Gecko) " +
-          "Chrome/120.0.0.0 Safari/537.36",
-      },
-    });
+    console.log("---------------------------------");
+    console.log("TOONSTREAM MOVIE CATEGORY PAGES:", maxPage);
+    console.log("---------------------------------");
 
-    const $first = cheerio.load(firstHtml);
+    const seen = new Set();
+    const results = [];
 
-    let maxPage = 1;
+    const firstResults = parseMoviePage(firstHtml, seen);
+    results.push(...firstResults);
 
-    $first('a[href*="/series/page/"]').each((_, el) => {
-      const href = $first(el).attr("href") || "";
-      const match = href.match(/\/series\/page\/(\d+)\/?/i);
-
-      if (match) {
-        const page = Number(match[1]);
-        if (Number.isFinite(page)) {
-          maxPage = Math.max(maxPage, page);
-        }
-      }
-    });
-
-    console.log("ANIMESALT PAGES FOUND:", maxPage);
-
-    async function parsePage(html, pageNumber) {
-      const $ = cheerio.load(html);
-
-      $("article.post").each((_, el) => {
-        const title = $(el)
-          .find("h2.entry-title")
-          .first()
-          .text()
-          .replace(/\s+/g, " ")
-          .trim();
-
-        const href =
-          $(el).find("a.lnk-blk").first().attr("href") || "";
-
-        const image =
-          $(el).find("img").first().attr("data-src") ||
-          $(el).find("img").first().attr("src") ||
-          "";
-
-        if (!title || !href) return;
-
-        let slug = "";
-
-        try {
-          const url = new URL(href);
-          const parts = url.pathname.split("/").filter(Boolean);
-          slug = parts[parts.length - 1] || "";
-        } catch {
-          return;
-        }
-
-        if (!slug || seen.has(slug)) return;
-
-        seen.add(slug);
-
-        results.push({
-          slug,
-          title,
-          image: image.startsWith("//")
-            ? `https:${image}`
-            : image,
-          link: href,
-          source: "animesalt",
-        });
-      });
-
-      console.log(
-        `ANIMESALT PAGE ${pageNumber}: ${results.length} unique series`
-      );
-    }
-
-    await parsePage(firstHtml, 1);
+    console.log(
+      `[MOVIE 1/${maxPage}] new movies: ${firstResults.length}`
+    );
 
     for (let page = 2; page <= maxPage; page++) {
-      const url = `${ANIMESALT_BASE_URL}/series/page/${page}/`;
-
       try {
-        const { data: html } = await axios.get(url, {
-          timeout: 60000,
-          headers: {
-            "User-Agent":
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-              "AppleWebKit/537.36 (KHTML, like Gecko) " +
-              "Chrome/120.0.0.0 Safari/537.36",
-          },
-        });
+        const html = await fetchMovieCategoryPage(page);
+        const pageResults = parseMoviePage(html, seen);
 
-        await parsePage(html, page);
+        results.push(...pageResults);
+
+        console.log(
+          `[MOVIE ${page}/${maxPage}] new movies: ${pageResults.length}`
+        );
       } catch (error) {
         console.error(
-          `ANIMESALT PAGE ${page} ERROR:`,
+          `[MOVIE ${page}/${maxPage}] PAGE ERROR:`,
           error.message
         );
       }
     }
 
     console.log("---------------------------------");
-    console.log("ANIMESALT UNIQUE SERIES:", results.length);
+    console.log("TOONSTREAM MOVIES FOUND:", results.length);
     console.log("---------------------------------");
 
     return results;
-  } catch (error) {
-    console.error("ANIMESALT CATALOG ERROR:", error.message);
-    return [];
-  }
-}
-
-// --------------------------------------------------
-// AnimeSalt Movie Catalog Sync
-// --------------------------------------------------
-
-async function syncAnimeSaltMovies() {
-  console.log("=================================");
-  console.log("ANIMESALT MOVIE SYNC START");
-  console.log(new Date().toISOString());
-  console.log("=================================");
-
-  const results = [];
-  const seen = new Set();
-
-  try {
-    const firstUrl = `${ANIMESALT_BASE_URL}/movies/`;
-
-    const { data: firstHtml } = await axios.get(firstUrl, {
-      timeout: 60000,
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-          "AppleWebKit/537.36 (KHTML, like Gecko) " +
-          "Chrome/120.0.0.0 Safari/537.36",
-      },
-    });
-
-    const $first = cheerio.load(firstHtml);
-
-    let maxPage = 1;
-
-    $first('a[href*="/movies/page/"]').each((_, el) => {
-      const href = $first(el).attr("href") || "";
-      const match = href.match(/\/movies\/page\/(\d+)\/?/i);
-
-      if (match) {
-        const page = Number(match[1]);
-        if (Number.isFinite(page)) {
-          maxPage = Math.max(maxPage, page);
-        }
-      }
-    });
-
-    console.log("ANIMESALT MOVIE PAGES FOUND:", maxPage);
-
-    function parseMoviePage(html, pageNumber) {
-      const $ = cheerio.load(html);
-
-      $("article.post.movies").each((_, el) => {
-        const title = $(el)
-          .find("h2.entry-title")
-          .first()
-          .text()
-          .replace(/\s+/g, " ")
-          .trim();
-
-        const href =
-          $(el).find("a.lnk-blk").first().attr("href") ||
-          $(el).find("a").first().attr("href") ||
-          "";
-
-        const image =
-          $(el).find("img").first().attr("data-src") ||
-          $(el).find("img").first().attr("src") ||
-          "";
-
-        if (!title || !href) return;
-
-        let slug = "";
-
-        try {
-          const url = new URL(href);
-          const parts = url.pathname.split("/").filter(Boolean);
-          slug = parts[parts.length - 1] || "";
-        } catch {
-          return;
-        }
-
-        if (!slug || seen.has(slug)) return;
-
-        seen.add(slug);
-
-        results.push({
-          slug,
-          title,
-          image: image.startsWith("//")
-            ? `https:${image}`
-            : image,
-          link: href,
-          source: "animesalt",
-          type: "movie"
-        });
-      });
-
-      console.log(
-        `ANIMESALT MOVIE PAGE ${pageNumber}: ${results.length} unique movies`
-      );
-    }
-
-    parseMoviePage(firstHtml, 1);
-
-    for (let page = 2; page <= maxPage; page++) {
-      const url = `${ANIMESALT_BASE_URL}/movies/page/${page}/`;
-
-      try {
-        const { data: html } = await axios.get(url, {
-          timeout: 60000,
-          headers: {
-            "User-Agent":
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-              "AppleWebKit/537.36 (KHTML, like Gecko) " +
-              "Chrome/120.0.0.0 Safari/537.36",
-          },
-        });
-
-        parseMoviePage(html, page);
-      } catch (error) {
-        console.error(
-          `ANIMESALT MOVIE PAGE ${page} ERROR:`,
-          error.message
-        );
-      }
-    }
-
-    console.log("---------------------------------");
-    console.log("ANIMESALT UNIQUE MOVIES:", results.length);
-    console.log("---------------------------------");
-
-    return results;
-  } catch (error) {
-    console.error("ANIMESALT MOVIE CATALOG ERROR:", error.message);
-    return [];
-  }
-}
-
-// --------------------------------------------------
-// AnimeSalt Episode Count Checker
-// --------------------------------------------------
-
-async function getAnimeSaltEpisodeCount(slug) {
-  if (!slug) return 0;
-
-  try {
-    const seriesUrl = `${ANIMESALT_BASE_URL}/series/${slug}/`;
-
-    const { data: html } = await axios.get(seriesUrl, {
-      timeout: 15000,
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-          "AppleWebKit/537.36 (KHTML, like Gecko) " +
-          "Chrome/120.0.0.0 Safari/537.36",
-      },
-    });
-
-    const $ = cheerio.load(html);
-
-    const seasons = [];
-
-    $('a.season-btn[data-season][data-post]').each((_, el) => {
-      const season = Number($(el).attr("data-season"));
-      const post = String($(el).attr("data-post") || "").trim();
-
-      if (Number.isFinite(season) && post) {
-        seasons.push({ season, post });
-      }
-    });
-
-    const uniqueSeasons = [
-      ...new Map(seasons.map(x => [x.season, x])).values()
-    ];
-
-    if (!uniqueSeasons.length) {
-      return 0;
-    }
-
-    const episodeKeys = new Set();
-
-    for (const { season, post } of uniqueSeasons) {
-      try {
-        const ajaxUrl =
-          `${ANIMESALT_BASE_URL}/wp-admin/admin-ajax.php` +
-          `?action=action_select_season&season=${season}&post=${post}`;
-
-        const { data: seasonHtml } = await axios.get(ajaxUrl, {
-          timeout: 15000,
-          headers: {
-            "User-Agent":
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-              "AppleWebKit/537.36 (KHTML, like Gecko) " +
-              "Chrome/120.0.0.0 Safari/537.36",
-            "Referer": seriesUrl,
-            "X-Requested-With": "XMLHttpRequest"
-          }
-        });
-
-        const $$ = cheerio.load(seasonHtml);
-
-        $$('a[href]').each((_, el) => {
-          const href = $$(el).attr("href") || "";
-
-          const match = href.match(
-            /\/episode\/[^/]+-(\d+)x(\d+)\/?$/i
-          );
-
-          if (!match) return;
-
-          const epSeason = Number(match[1]);
-          const episode = Number(match[2]);
-
-          if (
-            Number.isFinite(epSeason) &&
-            Number.isFinite(episode) &&
-            epSeason === season
-          ) {
-            episodeKeys.add(
-              `${epSeason}-${episode}`
-            );
-          }
-        });
-
-      } catch (error) {
-        console.log(
-          `EPISODE COUNT SEASON ERROR [${slug} S${season}]:`,
-          error.message
-        );
-      }
-    }
-
-    return episodeKeys.size;
-
-  } catch (error) {
-    console.log(
-      `EPISODE COUNT ERROR [${slug}]:`,
-      error.message
-    );
-
-    return 0;
-  }
-}
-
-// --------------------------------------------------
-// Automatic Background Sync
-// --------------------------------------------------
-
-const SYNC_INTERVAL = 30 * 60 * 1000; // 30 minutes
-
-let syncRunning = false;
-
-async function runBackgroundSync() {
-  if (syncRunning) {
-    console.log("SYNC ALREADY RUNNING - SKIP");
-    return;
-  }
-
-  syncRunning = true;
-
-  try {
-    console.log("=================================");
-    console.log("BACKGROUND AUTO SYNC - ANIMESALT");
-    console.log(new Date().toISOString());
-    console.log("=================================");
-
-    const seriesResults = await syncAnimeSaltCatalog();
-    const movieResults = await syncAnimeSaltMovies();
-
-    const results = [...seriesResults, ...movieResults];
-
-    // Preserve catalog history so Recently Updated / New Releases
-    // continue working across automatic syncs.
-    let oldCatalog = {
-      results: []
-    };
-
-    try {
-      if (fs.existsSync(CATALOG_FILE)) {
-        oldCatalog = JSON.parse(
-          fs.readFileSync(CATALOG_FILE, "utf8")
-        );
-      }
-    } catch (error) {
-      console.log(
-        "OLD CATALOG READ ERROR:",
-        error.message
-      );
-    }
-
-    const oldItems = Array.isArray(oldCatalog.results)
-      ? oldCatalog.results
-      : [];
-
-    const oldBySlug = new Map();
-
-    for (const item of oldItems) {
-      const key = String(item?.slug || "").trim().toLowerCase();
-
-      if (key) {
-        oldBySlug.set(key, item);
-      }
-    }
-
-    const now = new Date().toISOString();
-
-    const mergedResults = results.map(item => {
-      const key = String(item?.slug || "").trim().toLowerCase();
-      const old = oldBySlug.get(key);
-
-      return {
-        ...old,
-        ...item,
-
-        firstSeenAt:
-          old?.firstSeenAt ||
-          now,
-
-        lastSeenAt:
-          old?.lastSeenAt ||
-          null
-      };
-    });
-
-    // --------------------------------------------------
-    // Detect newly added episodes
-    // --------------------------------------------------
-
-    let checked = 0;
-    let changed = 0;
-
-    for (const item of mergedResults) {
-
-      // Movies do not have episode updates.
-      if (
-        !item ||
-        item.type === "movie" ||
-        !item.slug
-      ) {
-        continue;
-      }
-
-      try {
-        const count =
-          await getAnimeSaltEpisodeCount(item.slug);
-
-        if (!count) {
-          continue;
-        }
-
-        const previous =
-          Number(item.latestEpisodeCount || 0);
-
-        // First scan establishes the baseline only.
-        if (!previous) {
-          item.latestEpisodeCount = count;
-
-          console.log(
-            `EPISODE BASELINE: ${item.slug} = ${count}`
-          );
-        }
-
-        // New episode detected.
-        else if (count > previous) {
-          item.latestEpisodeCount = count;
-          item.episodeUpdatedAt = now;
-          item.lastSeenAt = now;
-
-          changed++;
-
-          console.log(
-            `NEW EPISODES: ${item.slug} ${previous} -> ${count}`
-          );
-
-          console.log(
-            `RECENTLY UPDATED: ${item.slug} -> ${now}`
-          );
-        }
-
-        checked++;
-
-      } catch (error) {
-        console.log(
-          `EPISODE CHECK FAILED [${item.slug}]:`,
-          error.message
-        );
-      }
-    }
-
-    console.log(
-      `EPISODE UPDATE CHECK COMPLETE: ${checked} checked, ${changed} updated`
-    );
-
-    const payload = {
-      updatedAt: now,
-      count: mergedResults.length,
-      results: mergedResults
-    };
-
-    fs.mkdirSync(DATA_DIR, { recursive: true });
-
-    fs.writeFileSync(
-      CATALOG_FILE,
-      JSON.stringify(payload, null, 2),
-      "utf8"
-    );
-
-    console.log("---------------------------------");
-    console.log("ANIMESALT AUTO SYNC COMPLETE");
-    console.log("ANIMESALT LIVE:", results.length);
-    console.log("CATALOG SAVED:", CATALOG_FILE);
-    console.log("---------------------------------");
   } catch (error) {
     console.error(
-      "BACKGROUND SYNC ERROR:",
+      "TOONSTREAM MOVIE SYNC ERROR:",
       error.message
     );
-  } finally {
-    syncRunning = false;
+    return [];
   }
+}
+
+function detectMovieMaxPage(html) {
+  const $ = cheerio.load(html);
+  let maxPage = 1;
+
+  $('a[href*="/category/anime-movies?type=all&page="]').each(
+    (_, el) => {
+      const href = $(el).attr("href") || "";
+
+      try {
+        const url = new URL(href, TOONSTREAM_BASE_URL);
+        const page = Number(url.searchParams.get("page"));
+
+        if (Number.isInteger(page) && page > maxPage) {
+          maxPage = page;
+        }
+      } catch {}
+    }
+  );
+
+  return maxPage;
+}
+
+async function syncToonStreamCatalog() {
+  console.log("=================================");
+  console.log("TOONSTREAM SERIES SYNC START");
+  console.log(new Date().toISOString());
+  console.log("=================================");
+
+  try {
+    const firstHtml = await fetchCategoryPage(1);
+
+    const maxPage = detectMaxPage(firstHtml);
+
+    console.log("---------------------------------");
+    console.log("TOONSTREAM CATEGORY PAGES:", maxPage);
+    console.log("---------------------------------");
+
+    const seen = new Set();
+    const results = [];
+
+    const firstResults = parseSeriesPage(firstHtml, seen);
+
+    results.push(...firstResults);
+
+    console.log(
+      `[1/${maxPage}] new series: ${firstResults.length}`
+    );
+
+    for (let page = 2; page <= maxPage; page++) {
+      try {
+        const html = await fetchCategoryPage(page);
+        const pageResults = parseSeriesPage(html, seen);
+
+        results.push(...pageResults);
+
+        console.log(
+          `[${page}/${maxPage}] new series: ${pageResults.length}`
+        );
+      } catch (error) {
+        console.error(
+          `[${page}/${maxPage}] PAGE ERROR:`,
+          error.message
+        );
+      }
+    }
+
+    console.log("---------------------------------");
+    console.log("TOONSTREAM SERIES FOUND:", results.length);
+    console.log("---------------------------------");
+
+    if (!results.length) {
+      console.error(
+        "TOONSTREAM ERROR: No public series cards found."
+      );
+      return [];
+    }
+
+    return results;
+  } catch (error) {
+    console.error(
+      "TOONSTREAM CATALOG ERROR:",
+      error.message
+    );
+    return [];
+  }
+}
+
+async function writeCatalog(results) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+
+  const payload = {
+    updatedAt: new Date().toISOString(),
+    count: results.length,
+    results,
+  };
+
+  fs.writeFileSync(
+    CATALOG_FILE,
+    JSON.stringify(payload, null, 2),
+    "utf8"
+  );
+
+  console.log("CATALOG WRITTEN:", CATALOG_FILE);
+  console.log("CATALOG COUNT:", results.length);
+
+  return payload;
+}
+
+async function runBackgroundSync() {
+  const seriesResults = await syncToonStreamCatalog();
+  const movieResults = await syncToonStreamMovies();
+
+  const results = [...seriesResults, ...movieResults];
+
+  if (!results.length) {
+    console.error(
+      "TOONSTREAM AUTO SYNC ABORTED: empty catalog."
+    );
+    return [];
+  }
+
+  console.log("---------------------------------");
+  console.log("TOONSTREAM SERIES:", seriesResults.length);
+  console.log("TOONSTREAM MOVIES:", movieResults.length);
+  console.log("TOONSTREAM TOTAL:", results.length);
+  console.log("---------------------------------");
+
+  await writeCatalog(results);
+
+  console.log("---------------------------------");
+  console.log("TOONSTREAM AUTO SYNC COMPLETE");
+  console.log("---------------------------------");
+
+  return results;
 }
 
 function startAutoSync() {
-  console.log(
-    `AUTO SYNC SCHEDULER: every ${SYNC_INTERVAL / 60000} minutes`
-  );
+  const run = async () => {
+    try {
+      await runBackgroundSync();
+    } catch (error) {
+      console.error(
+        "TOONSTREAM AUTO SYNC ERROR:",
+        error.message
+      );
+    }
+  };
 
-  setInterval(runBackgroundSync, SYNC_INTERVAL);
+  run();
+
+  setInterval(run, 30 * 60 * 1000);
+
+  console.log(
+    "TOONSTREAM AUTO SYNC SCHEDULER: every 30 minutes"
+  );
+}
+
+if (require.main === module) {
+  runBackgroundSync()
+    .then(() => {
+      console.log(
+        "TOONSTREAM SYNC PROCESS FINISHED"
+      );
+    })
+    .catch((error) => {
+      console.error(
+        "TOONSTREAM SYNC FATAL ERROR:",
+        error
+      );
+      process.exitCode = 1;
+    });
 }
 
 module.exports = {
-  syncAnimeSaltCatalog,
-  syncAnimeSaltMovies,
+  TOONSTREAM_BASE_URL,
+  TOONSTREAM_CATEGORY_URL,
+  CATALOG_FILE,
+  parseSeriesPage,
+  parseMoviePage,
+  syncToonStreamCatalog,
+  syncToonStreamMovies,
   runBackgroundSync,
   startAutoSync,
+  writeCatalog,
 };

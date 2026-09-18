@@ -1196,7 +1196,6 @@ iframe{
 
 #servers,
 #playerEpisodes,
-#episodeList,
 #playerLanguages{
   display:flex;
   flex-wrap:wrap;
@@ -2190,6 +2189,7 @@ let currentAnimeImage = "";
 let currentAnimeTmdbId = null;
 let currentAnimeTmdbType = "";
 let streamData = null;
+let animeLoadId = 0;
 let currentServer = 0;
 
 
@@ -3554,6 +3554,7 @@ document.getElementById("search").addEventListener(
 
 
 async function openAnime(slug, updateHistory = true){
+  const loadId = ++animeLoadId;
 
   const cleanSlug =
     String(slug || "").trim();
@@ -3600,8 +3601,14 @@ async function openAnime(slug, updateHistory = true){
     ]);
 
     const anime = await animeRes.json();
-    streamData = await streamRes.json();
+    const newStreamData = await streamRes.json();
 
+    // Ignore responses belonging to an older anime page.
+    if(loadId !== animeLoadId){
+      return;
+    }
+
+    streamData = newStreamData;
     currentAnime = slug;
 
     const hasNewEpisode =
@@ -3811,7 +3818,12 @@ async function openAnime(slug, updateHistory = true){
     const movieServer =
       Array.isArray(streamData.servers)
         ? streamData.servers.find(
-            server => server && server.url
+            server =>
+              server &&
+              String(server.name || "").trim().toLowerCase() === "play" &&
+              Array.isArray(server.episodes) &&
+              server.episodes[0] &&
+              server.episodes[0].url
           )
         : null;
 
@@ -3833,7 +3845,7 @@ async function openAnime(slug, updateHistory = true){
       player.src = "about:blank";
 
       setTimeout(() => {
-        player.src = movieServer.url;
+        player.src = movieServer.episodes[0].url;
       }, 50);
     }
 
@@ -4075,12 +4087,21 @@ function renderAnimeEpisodes(){
     return;
   }
 
-  // Collect unique episodes by SEASON + EPISODE.
-  // This keeps Season 1 and Season 2 completely separate.
+  // Collect episodes from the available RareAnimes player server.
+  const playerServer = streamData.servers.find(server =>
+    server &&
+    Array.isArray(server.episodes) &&
+    server.episodes.length
+  );
+
+  if(!playerServer){
+    box.textContent = "No episodes found";
+    return;
+  }
+
   const episodeMap = new Map();
 
-  streamData.servers.forEach(server => {
-    (server.episodes || []).forEach(ep => {
+  playerServer.episodes.forEach(ep => {
       if(
         !ep ||
         ep.season == null ||
@@ -4103,7 +4124,6 @@ function renderAnimeEpisodes(){
         episodeMap.set(key, ep);
       }
     });
-  });
 
   const episodes = [...episodeMap.values()];
 
@@ -4277,25 +4297,21 @@ function getFirstAvailableEpisode(streams){
     return null;
   }
 
-  for(const server of streams.servers){
+  // Playback is restricted to the existing Play server.
+  const playServer = streams.servers.find(server =>
+    String(server.name || "").trim().toLowerCase() === "play"
+  );
 
-    const episodes = Array.isArray(server.episodes)
-      ? server.episodes
-      : [];
-
-    const first = episodes.find(ep =>
-      ep &&
-      ep.url &&
-      ep.season != null &&
-      ep.episode != null
-    );
-
-    if(first){
-      return first;
-    }
+  if(!playServer || !Array.isArray(playServer.episodes)){
+    return null;
   }
 
-  return null;
+  return playServer.episodes.find(ep =>
+    ep &&
+    ep.url &&
+    ep.season != null &&
+    ep.episode != null
+  ) || null;
 }
 
 
@@ -4434,18 +4450,31 @@ function playEpisodeFromData(ep, updateHistory = true){
   });
 
   const serverIndex = streamData.servers.findIndex(server =>
-    (server.episodes || []).some(x =>
+    server &&
+    Array.isArray(server.episodes) &&
+    server.episodes.some(x =>
       String(x.season) === String(ep.season) &&
       String(x.episode) === String(ep.episode) &&
-      x.url === ep.url
+      x.url
     )
   );
 
   if(serverIndex === -1) return;
 
+  const playerServer = streamData.servers[serverIndex];
+  const playerEpisode = (playerServer.episodes || []).find(x =>
+    String(x.season) === String(ep.season) &&
+    String(x.episode) === String(ep.episode) &&
+    x.url
+  );
+
+  if(!playerEpisode || !playerEpisode.url) return;
+
   currentServer = serverIndex;
-  currentEpisodeKey = getEpisodeKey(ep);
-  updateEpisodeNavigation();
+  currentEpisodeKey = getEpisodeKey(playerEpisode);
+  ep = playerEpisode;
+
+    updateEpisodeNavigation();
 
   document.getElementById("animePage")
     .classList.add("hidden");
@@ -4474,6 +4503,8 @@ function renderServers(){
   if(!streamData || !streamData.servers) return;
 
   streamData.servers.forEach((server,index) => {
+    // Show only the existing Play server button.
+    if (String(server.name || "").trim().toLowerCase() !== "play") return;
 
     const btn = document.createElement("button");
 

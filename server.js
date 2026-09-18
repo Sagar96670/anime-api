@@ -34,7 +34,358 @@ const client = axios.create({
 
 const streamCache = new Map();
 
+const TOONSTREAM_BASE_URL = "https://toonstream.vip";
 
+const TOONSTREAM_HEADERS = {
+  "User-Agent":
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+    "AppleWebKit/537.36 (KHTML, like Gecko) " +
+    "Chrome/120.0.0.0 Safari/537.36",
+  Accept:
+    "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+};
+
+const toonStreamClient = axios.create({
+  baseURL: TOONSTREAM_BASE_URL,
+  headers: TOONSTREAM_HEADERS,
+  timeout: 60000,
+  maxRedirects: 5,
+});
+
+function toonAbsoluteUrl(href) {
+  if (!href) return "";
+
+  try {
+    return new URL(href, TOONSTREAM_BASE_URL).href;
+  } catch {
+    return "";
+  }
+}
+
+function toonCleanText(value) {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function toonEpisodeNumbers(url) {
+  const match = String(url || "").match(/-(\d+)x(\d+)\/?$/);
+
+  if (!match) {
+    return {
+      season: null,
+      episode: null,
+    };
+  }
+
+  return {
+    season: Number(match[1]),
+    episode: Number(match[2]),
+  };
+}
+
+async function fetchToonStreamPage(url) {
+  const response = await toonStreamClient.get(url);
+  return String(response.data || "");
+}
+
+async function getToonStreamEpisodes(slug) {
+  const seriesUrl = `${TOONSTREAM_BASE_URL}/series/${encodeURIComponent(slug)}`;
+  const seriesHtml = await fetchToonStreamPage(seriesUrl);
+  const $series = cheerio.load(seriesHtml);
+
+  const seasons = [];
+
+  $series('[data-season][data-url]').each((_, el) => {
+    const season = Number($series(el).attr("data-season"));
+    const href = $series(el).attr("data-url");
+
+    if (!Number.isInteger(season) || !href) return;
+
+    const url = toonAbsoluteUrl(href);
+
+    if (!url) return;
+
+    if (!seasons.some(item => item.season === season)) {
+      seasons.push({
+        season,
+        url,
+      });
+    }
+  });
+
+  seasons.sort((a, b) => a.season - b.season);
+
+  if (!seasons.length) {
+    seasons.push({
+      season: 1,
+      url: seriesUrl,
+    });
+  }
+
+  const episodes = [];
+
+  for (const seasonInfo of seasons) {
+    try {
+      const seasonHtml = await fetchToonStreamPage(seasonInfo.url);
+      const $season = cheerio.load(seasonHtml);
+
+      $season('a[href*="/episode/"]').each((_, el) => {
+        const href = $season(el).attr("href");
+        if (!href) return;
+
+        const url = toonAbsoluteUrl(href);
+        const numbers = toonEpisodeNumbers(url);
+
+        const season = Number.isInteger(numbers.season)
+          ? numbers.season
+          : seasonInfo.season;
+
+        if (!Number.isInteger(numbers.episode)) return;
+
+        const title = toonCleanText(
+          $season(el)
+            .find("h5.entry-title1, .entry-title1, .entry-title")
+            .first()
+            .text()
+        );
+
+        if (
+          !episodes.some(
+            item =>
+              item.season === season &&
+              item.episode === numbers.episode
+          )
+        ) {
+          episodes.push({
+            season,
+            episode: numbers.episode,
+            pageUrl: url,
+            title:
+              title ||
+              `Episode ${numbers.episode}`,
+          });
+        }
+      });
+    } catch (error) {
+      console.error(
+        `TOONSTREAM SEASON ERROR ${seasonInfo.season}:`,
+        error.message
+      );
+    }
+  }
+
+  episodes.sort(
+    (a, b) =>
+      a.season - b.season ||
+      a.episode - b.episode
+  );
+
+  return episodes;
+}
+
+async function getToonStreamServerConfig() {
+  try {
+    const response = await toonStreamClient.get("/public/servers");
+
+    const data = response.data?.data;
+
+    if (!Array.isArray(data)) {
+      return [];
+    }
+
+    return data
+      .filter(item => item && item.enabled !== false)
+      .sort(
+        (a, b) =>
+          Number(a.order || 999) -
+          Number(b.order || 999)
+      );
+  } catch (error) {
+    console.error(
+      "TOONSTREAM SERVER CONFIG ERROR:",
+      error.message
+    );
+
+    return [];
+  }
+}
+
+async function parseToonStreamEpisodePage(episode) {
+  const html = await fetchToonStreamPage(episode.pageUrl);
+  const $ = cheerio.load(html);
+
+  const config = await getToonStreamServerConfig();
+
+  const enabledNames = new Set(
+    config.map(item =>
+      toonCleanText(item.name).toLowerCase()
+    )
+  );
+
+  const found = [];
+
+  $(".aa-tbs-video li").each((index, el) => {
+    const li = $(el);
+
+    const serverName = toonCleanText(
+      li.find(".server").first().text()
+    );
+
+    const button = li.find(".btn").first();
+    const href = button.attr("href") || "";
+
+    const option = href.match(/^#options-(\d+)$/);
+
+    if (!serverName || !option) return;
+
+    if (
+      enabledNames.size &&
+      !enabledNames.has(serverName.toLowerCase())
+    ) {
+      return;
+    }
+
+    const optionId = `#${option[0].slice(1)}`;
+
+    const container = $(optionId);
+
+    if (!container.length) return;
+
+    const iframe = container.find("iframe").first();
+
+    const url =
+      iframe.attr("src") ||
+      iframe.attr("data-src") ||
+      "";
+
+    if (!url) return;
+
+    found.push({
+      index,
+      name: serverName,
+      url: toonAbsoluteUrl(url),
+    });
+  });
+
+  return found;
+}
+
+async function getToonStreamMovieSources(slug) {
+  const url = `/movies/${encodeURIComponent(slug)}`;
+
+  console.log(`TOONSTREAM MOVIE PAGE: ${url}`);
+
+  const response = await toonStreamClient.get(url);
+  const $ = cheerio.load(String(response.data || ""));
+
+  const title =
+    toonCleanText($("h1.entry-title").first().text()) ||
+    toonCleanText($("h1").first().text()) ||
+    slug;
+
+  const servers = [];
+  const seen = new Set();
+
+  $(".aa-tbs-video li").each((_, el) => {
+    const button = $(el).find('a[href^="#options-"]').first();
+    if (!button.length) return;
+
+    const optionId = button.attr("href");
+    if (!optionId) return;
+
+    const serverName =
+      toonCleanText($(el).find(".server").first().text()) ||
+      toonCleanText(button.text()) ||
+      "Server";
+
+    if (seen.has(serverName)) return;
+
+    const target = $(optionId);
+    if (!target.length) return;
+
+    const iframe = target.find("iframe").first();
+    if (!iframe.length) return;
+
+    const streamUrl =
+      iframe.attr("data-src") ||
+      iframe.attr("src") ||
+      "";
+
+    if (!streamUrl || streamUrl === "about:blank") return;
+
+    seen.add(serverName);
+
+    servers.push({
+      name: serverName,
+      episodes: [
+        {
+          season: 1,
+          episode: 1,
+          type: "iframe",
+          url: toonAbsoluteUrl(streamUrl),
+          language: "Multi Audio",
+          title,
+        },
+      ],
+    });
+  });
+
+  return servers;
+}
+
+async function getToonStreamSources(slug) {
+  const episodeList = await getToonStreamEpisodes(slug);
+
+  if (!episodeList.length) {
+    return [];
+  }
+
+  const serverMap = new Map();
+
+  for (const episode of episodeList) {
+    try {
+      const sources =
+        await parseToonStreamEpisodePage(episode);
+
+      for (const source of sources) {
+        const duplicateIndex = sources
+          .slice(0, source.index + 1)
+          .filter(item => item.name === source.name)
+          .length;
+
+        const serverKey =
+          duplicateIndex > 1 || sources.filter(item => item.name === source.name).length > 1
+            ? `${source.name} ${duplicateIndex}`
+            : source.name;
+
+        if (!serverMap.has(serverKey)) {
+          serverMap.set(serverKey, {
+            name: serverKey,
+            type: "iframe",
+            episodes: [],
+          });
+        }
+
+        serverMap.get(serverKey).episodes.push({
+          season: episode.season,
+          episode: episode.episode,
+          type: "iframe",
+          url: source.url,
+          language: "Multi Audio",
+          title: episode.title,
+        });
+      }
+    } catch (error) {
+      console.error(
+        `TOONSTREAM EPISODE ERROR S${episode.season}E${episode.episode}:`,
+        error.message
+      );
+    }
+  }
+
+  return Array.from(serverMap.values());
+}
 
 // --------------------------------------------------
 // ADMIN PANEL
@@ -638,8 +989,8 @@ app.get("/admin/api/anime", requireAdmin, (req, res) => {
 
 app.post("/admin/api/sync", requireAdmin, async (req, res) => {
   try {
-    const { syncAnimeSaltCatalog } = require("./sync");
-    const results = await syncAnimeSaltCatalog();
+    const { syncRareAnimesCatalog } = require("./sync");
+    const results = await syncRareAnimesCatalog();
 
     const catalogFile = path.join(__dirname, "data", "catalog.json");
 
@@ -1484,397 +1835,6 @@ app.get("/api/anime/:slug", async (req, res) => {
 });
 
 // --------------------------------------------------
-// Decode Base64 player URL
-// --------------------------------------------------
-
-function decodeBase64Url(value) {
-  if (!value) return null;
-
-  try {
-    const decoded = Buffer
-      .from(value, "base64")
-      .toString("utf8")
-      .trim();
-
-    if (
-      decoded.startsWith("http://") ||
-      decoded.startsWith("https://")
-    ) {
-      return decoded;
-    }
-
-    return null;
-  } catch {
-    return null;
-  }
-}
-
-// --------------------------------------------------
-// Extract v28D from page
-// --------------------------------------------------
-
-const ANIMESALT_BASE_URL = "https://animesalt.cx";
-
-const animeSaltHttpsAgent = new https.Agent({
-  keepAlive: true,
-  maxSockets: 20,
-  maxFreeSockets: 10,
-  timeout: 15000
-});
-
-async function scrapeAnimeSaltEpisode(episodeUrl, season, episode) {
-  try {
-    const { data: html } = await axios.get(episodeUrl, {
-      headers,
-      timeout: 15000,
-      maxRedirects: 5,
-      httpsAgent: animeSaltHttpsAgent
-    });
-
-    const $ = cheerio.load(html);
-
-    const results = [];
-
-    // --------------------------------------------------
-    // AnimeSalt CDN player
-    // --------------------------------------------------
-    let cdnUrl = null;
-
-    $("iframe").each((_, el) => {
-      const candidates = [
-        $(el).attr("src"),
-        $(el).attr("data-src"),
-        $(el).attr("data-url")
-      ].filter(Boolean);
-
-      for (const value of candidates) {
-        if (/^https?:\/\/as-cdn26\.top\/video\//i.test(value)) {
-          cdnUrl = value;
-          return false;
-        }
-      }
-    });
-
-    if (cdnUrl) {
-      console.log(
-        `ANIMESALT CDN [S${season}E${episode}]: ${cdnUrl}`
-      );
-
-      results.push({
-        episode: Number(episode),
-        season: Number(season),
-        type: "iframe",
-        url: cdnUrl,
-        language: "Hindi"
-      });
-    } else {
-      console.log(
-        `ANIMESALT CDN NOT FOUND: S${season}E${episode}`
-      );
-    }
-
-    // --------------------------------------------------
-    // AnimeSalt multi-language player
-    // --------------------------------------------------
-    let playerUrl = null;
-
-    $("iframe").each((_, el) => {
-      const candidates = [
-        $(el).attr("src"),
-        $(el).attr("data-src"),
-        $(el).attr("data-url")
-      ].filter(Boolean);
-
-      for (const value of candidates) {
-        if (
-          value.includes("/multi-lang-plyr/player.php?data=")
-        ) {
-          playerUrl = value;
-          return false;
-        }
-      }
-    });
-
-    if (!playerUrl) {
-      const match = html.match(
-        /https?:\/\/animesalt\.cx\/multi-lang-plyr\/player\.php\?data=[^"'<> \t\r\n]+/
-      );
-
-      if (match) {
-        playerUrl = match[0];
-      }
-    }
-
-    if (!playerUrl) {
-      console.log(
-        `ANIMESALT MULTI PLAYER NOT FOUND: S${season}E${episode}`
-      );
-      return results;
-    }
-
-    const dataMatch = playerUrl.match(
-      /[?&]data=([^&"'<> \t\r\n]+)/
-    );
-
-    if (!dataMatch) {
-      return results;
-    }
-
-    const encoded = decodeURIComponent(dataMatch[1]);
-
-    let decoded;
-
-    try {
-      decoded = Buffer
-        .from(encoded, "base64")
-        .toString("utf8")
-        .trim();
-    } catch {
-      return results;
-    }
-
-    let languages;
-
-    try {
-      languages = JSON.parse(decoded);
-    } catch {
-      console.log(
-        `ANIMESALT JSON ERROR: S${season}E${episode}`
-      );
-      return results;
-    }
-
-    if (!Array.isArray(languages)) {
-      return results;
-    }
-
-    for (const item of languages) {
-      const language = String(item?.language || "").trim();
-      const link = String(item?.link || "").trim();
-
-      if (!language || !link) continue;
-
-      if (!/^https?:\/\//i.test(link)) {
-        continue;
-      }
-
-      console.log(
-        `ANIMESALT LINK [S${season}E${episode} ${language}]: ${link}`
-      );
-
-      results.push({
-        episode: Number(episode),
-        season: Number(season),
-        type: "iframe",
-        url: link,
-        language
-      });
-    }
-
-    return results;
-
-  } catch (error) {
-    console.error(
-      `ANIMESALT EPISODE ERROR [S${season}E${episode}]:`,
-      error.message
-    );
-
-    return [];
-  }
-}
-
-async function scrapeAnimeSaltEpisodes(slug) {
-  try {
-    const seriesUrl = `${ANIMESALT_BASE_URL}/series/${slug}/`;
-    console.log(`ANIMESALT SERIES: ${seriesUrl}`);
-
-    const { data: html } = await axios.get(seriesUrl, {
-      headers,
-      timeout: 15000,
-      maxRedirects: 5,
-      httpsAgent: animeSaltHttpsAgent
-    });
-
-    const $ = cheerio.load(html);
-
-    // AnimeSalt exposes all seasons through its season buttons.
-    const seasons = [];
-
-    $('a.season-btn[data-season][data-post]').each((_, el) => {
-      const season = Number($(el).attr('data-season'));
-      const post = String($(el).attr('data-post') || '').trim();
-
-      if (Number.isFinite(season) && post) {
-        seasons.push({ season, post });
-      }
-    });
-
-    const uniqueSeasons = [
-      ...new Map(seasons.map(x => [x.season, x])).values()
-    ].sort((a, b) => a.season - b.season);
-
-    console.log(
-      `ANIMESALT SEASONS FOUND: ${slug} (${uniqueSeasons.map(x => x.season).join(", ")})`
-    );
-
-    if (!uniqueSeasons.length) {
-      return [];
-    }
-
-    const episodeLinks = new Map();
-
-    // Get the complete episode list for EVERY season through AnimeSalt AJAX.
-    for (const { season, post } of uniqueSeasons) {
-      try {
-        const ajaxUrl =
-          `${ANIMESALT_BASE_URL}/wp-admin/admin-ajax.php` +
-          `?action=action_select_season&season=${season}&post=${post}`;
-
-        const { data: seasonHtml } = await axios.get(ajaxUrl, {
-          headers: {
-            ...headers,
-            "Referer": seriesUrl,
-            "X-Requested-With": "XMLHttpRequest"
-          },
-          timeout: 15000,
-          maxRedirects: 5,
-          httpsAgent: animeSaltHttpsAgent
-        });
-
-        const $$ = cheerio.load(seasonHtml);
-        let foundCount = 0;
-
-        $$('a[href]').each((_, el) => {
-          const href = $$(el).attr('href');
-          if (!href) return;
-
-          const match = href.match(
-            /\/episode\/[^/]+-(\d+)x(\d+)\/?$/i
-          );
-
-          if (!match) return;
-
-          const epSeason = Number(match[1]);
-          const episode = Number(match[2]);
-
-          if (
-            !Number.isFinite(epSeason) ||
-            !Number.isFinite(episode) ||
-            epSeason !== season
-          ) {
-            return;
-          }
-
-          const url = new URL(href, ANIMESALT_BASE_URL).href;
-
-          episodeLinks.set(
-            `${epSeason}-${episode}`,
-            {
-              url,
-              season: epSeason,
-              episode
-            }
-          );
-
-          foundCount++;
-        });
-
-        console.log(
-          `ANIMESALT AJAX SEASON ${season}: ${foundCount} episode links`
-        );
-      } catch (error) {
-        console.error(
-          `ANIMESALT AJAX SEASON ERROR S${season}:`,
-          error.message
-        );
-      }
-    }
-
-    const links = [...episodeLinks.values()].sort((a, b) => {
-      if (a.season !== b.season) {
-        return a.season - b.season;
-      }
-      return a.episode - b.episode;
-    });
-
-    console.log(
-      `ANIMESALT COMPLETE EPISODE LINKS: ${slug} (${links.length})`
-    );
-
-    if (!links.length) {
-      return [];
-    }
-
-    const episodes = [];
-    const BATCH_SIZE = 8;
-
-    for (let i = 0; i < links.length; i += BATCH_SIZE) {
-      const batch = links.slice(i, i + BATCH_SIZE);
-
-      const batchResults = await Promise.all(
-        batch.map(item =>
-          scrapeAnimeSaltEpisode(
-            item.url,
-            item.season,
-            item.episode
-          )
-        )
-      );
-
-      for (const found of batchResults) {
-        episodes.push(...found);
-      }
-
-      console.log(
-        `ANIMESALT EPISODE BATCH: ${Math.min(
-          i + BATCH_SIZE,
-          links.length
-        )}/${links.length}`
-      );
-    }
-
-    const unique = [
-      ...new Map(
-        episodes.map(ep => [
-          `${ep.season}-${ep.episode}-${ep.language}-${ep.url}`,
-          ep
-        ])
-      ).values()
-    ];
-
-    console.log(
-      `ANIMESALT EPISODES FOUND: ${slug} (${unique.length} language entries)`
-    );
-
-    const cdnEpisodes = unique.filter(ep =>
-      /^https?:\/\/as-cdn26\.top\/video\//i.test(ep.url)
-    );
-
-    const servers = [];
-
-    if (cdnEpisodes.length) {
-      servers.push({
-        name: "AnimeSalt CDN",
-        type: "series",
-        episodes: cdnEpisodes
-      });
-    }
-
-    console.log(
-      `ANIMESALT SERVER BUILT: ${slug} (CDN: ${cdnEpisodes.length})`
-    );
-
-    return servers;
-  } catch (error) {
-    console.error(
-      `ANIMESALT ERROR [${slug}]:`,
-      error.message
-    );
-    return [];
-  }
-}
-
-// --------------------------------------------------
 // Episode Update Detection
 // --------------------------------------------------
 
@@ -1948,6 +1908,38 @@ function updateEpisodeMetadata(slug, servers){
       return;
     }
 
+    // Save season/episode metadata from the available player sources.
+    const seasonSet = new Set();
+    const episodeSet = new Set();
+
+    for(const server of servers){
+      for(const ep of (server.episodes || [])){
+        if(!ep || ep.season == null || ep.episode == null){
+          continue;
+        }
+
+        const season = Number(ep.season);
+        const episode = Number(ep.episode);
+
+        if(!Number.isFinite(season) || !Number.isFinite(episode)){
+          continue;
+        }
+
+        seasonSet.add(season);
+        episodeSet.add(`${season}-${episode}`);
+      }
+    }
+
+    const newSeasons = seasonSet.size;
+    const newEpisodes = episodeSet.size;
+
+    const metadataChanged =
+      Number(item.seasons || 0) !== newSeasons ||
+      Number(item.episodes || 0) !== newEpisodes;
+
+    item.seasons = newSeasons;
+    item.episodes = newEpisodes;
+
     const previous =
       Number(item.latestEpisodeCount || 0);
 
@@ -1967,6 +1959,19 @@ function updateEpisodeMetadata(slug, servers){
       );
 
       return;
+    }
+
+    // Save metadata even when the episode count did not increase.
+    if(metadataChanged){
+      fs.writeFileSync(
+        catalogFile,
+        JSON.stringify(catalog, null, 2),
+        "utf8"
+      );
+
+      console.log(
+        `EPISODE METADATA SAVED: ${slug} seasons=${newSeasons} episodes=${newEpisodes}`
+      );
     }
 
     // Only mark as updated when episode count increases.
@@ -2014,75 +2019,6 @@ app.get("/api/streams/:slug", async (req, res) => {
   try {
     const slug = req.params.slug;
 
-    // --------------------------------------------------
-    // ANIMESALT MOVIE DATA
-    // --------------------------------------------------
-    try {
-      const movieFile = path.join(
-        __dirname,
-        "animesalt-movie-streams.json"
-      );
-
-      if (fs.existsSync(movieFile)) {
-        const movieData = JSON.parse(
-          fs.readFileSync(movieFile, "utf8")
-        );
-
-        const movie = Array.isArray(movieData)
-          ? movieData.find(item => item && item.slug === slug)
-          : null;
-
-        if (movie && Array.isArray(movie.servers) && movie.servers.length) {
-          console.log(
-            `ANIMESALT MOVIE DATA: ${slug} (${movie.servers.length} server(s))`
-          );
-
-          // Normalize movie servers into the same episode format
-          // used by the series player. A movie is represented as S1E1.
-          const movieServers = movie.servers
-            .filter(server => server && server.url)
-            .map((server, index) => ({
-              ...server,
-              index:
-                server.index != null
-                  ? server.index
-                  : index,
-              name:
-                server.name ||
-                `SERVER ${index + 1}`,
-              type:
-                server.type ||
-                "iframe",
-              episodes: [{
-                season: 1,
-                episode: 1,
-                type:
-                  server.type ||
-                  "iframe",
-                url: server.url,
-                language:
-                  server.language ||
-                  "Default"
-              }]
-            }));
-
-          return res.json({
-            success: true,
-            animeSlug: slug,
-            type: "movie",
-            cached: false,
-            serverCount: movieServers.length,
-            servers: movieServers
-          });
-        }
-      }
-    } catch (error) {
-      console.log(
-        `ANIMESALT MOVIE DATA FAILED [${slug}]: ${error.message}`
-      );
-    }
-
-
     if (streamCache.has(slug)) {
       const cached = streamCache.get(slug);
 
@@ -2090,6 +2026,7 @@ app.get("/api/streams/:slug", async (req, res) => {
         return res.json({
           success: true,
           animeSlug: slug,
+          type: cached.type || "series",
           cached: true,
           servers: cached.servers,
         });
@@ -2099,51 +2036,68 @@ app.get("/api/streams/:slug", async (req, res) => {
       streamCache.delete(slug);
     }
 
-    // Authorized player sources
-    let servers = [];
+    const catalogFile = path.join(
+      __dirname,
+      "data",
+      "catalog.json"
+    );
 
-    // Add AnimeSalt episodes when available
+    let animeType = "series";
+
     try {
-      const animeSaltServers = await scrapeAnimeSaltEpisodes(slug);
+      const catalogData = JSON.parse(
+        fs.readFileSync(catalogFile, "utf8")
+      );
 
-      if (animeSaltServers.length) {
-        servers.push(...animeSaltServers);
-        console.log(
-          `ANIMESALT ADDED: ${slug} (${animeSaltServers[0].episodes.length} language entries)`
-        );
-      }
+      const catalog = Array.isArray(catalogData)
+        ? catalogData
+        : catalogData.results || [];
+
+      const anime = catalog.find(
+        item => item && item.slug === slug
+      );
+
+      animeType = anime?.type || "series";
     } catch (error) {
-      console.log(`ANIMESALT FAILED [${slug}]: ${error.message}`);
+      console.error(
+        "CATALOG READ ERROR:",
+        error.message
+      );
     }
 
-    updateEpisodeMetadata(slug, servers);
+    const servers =
+      animeType === "movie"
+        ? await getToonStreamMovieSources(slug)
+        : await getToonStreamSources(slug);
 
     if (!servers.length) {
       return res.status(404).json({
         success: false,
-        message: "No authorized player sources found",
+        message: "No public ToonStream episode sources found",
         animeSlug: slug,
       });
     }
 
     streamCache.set(slug, {
       updatedAt: Date.now(),
+      type: animeType,
       servers,
     });
 
     res.json({
       success: true,
       animeSlug: slug,
+      type: animeType,
       cached: false,
       serverCount: servers.length,
       servers,
     });
   } catch (error) {
-    console.error("STREAM ERROR:", error.message);
+    console.error("TOONSTREAM STREAM ERROR:", error.message);
 
     res.status(500).json({
       success: false,
-      message: "Unable to load player sources",
+      message: "Unable to load ToonStream episode sources",
       error: error.message,
     });
   }
@@ -2178,6 +2132,188 @@ app.get("/watch/:slug/:episode", (req, res) => {
 });
 
 // --------------------------------------------------
+
+// --------------------------------------------------
+// MEDIA STREAM NORMALIZER
+// --------------------------------------------------
+function normalizeMediaStream(htmlContent, baseUrl) {
+  const mediaRegex =
+    /(?:https?:\/\/|\/|\.{1,2}\/)?[^\s"'<>\\]+?\.(mp4|m3u8)(?:[?#][^\s"'<>\\]*)?/gi;
+
+  const match = mediaRegex.exec(String(htmlContent || ""));
+
+  if (!match) {
+    return {
+      type: "iframe",
+      url: baseUrl
+    };
+  }
+
+  const rawUrl = match[0]
+    .replace(/\\\//g, "/")
+    .replace(/&amp;/g, "&");
+
+  try {
+    const resolvedUrl = new URL(rawUrl, baseUrl).href;
+
+    return {
+      type: /\.m3u8(?:[?#]|$)/i.test(resolvedUrl)
+        ? "hls"
+        : "direct",
+      url: resolvedUrl
+    };
+  } catch {
+    return {
+      type: "iframe",
+      url: baseUrl
+    };
+  }
+}
+
+// --------------------------------------------------
+// PUBLIC MEDIA SOURCE PARSER
+// Finds openly exposed MP4/M3U8 URLs in an HTML page.
+// Does not bypass protected/tokenized media sources.
+// --------------------------------------------------
+function parseOpenMediaSources(html, baseUrl) {
+  const urls = new Set();
+
+  // Absolute URLs inside HTML/JavaScript.
+  const absoluteRegex =
+    /https?:\/\/[^\s"'<>\\]+?\.(?:mp4|m3u8)(?:[?#][^\s"'<>\\]*)?/gi;
+
+  for (const match of html.matchAll(absoluteRegex)) {
+    urls.add(
+      match[0]
+        .replace(/\\\//g, "/")
+        .replace(/&amp;/g, "&")
+    );
+  }
+
+  const $ = cheerio.load(html);
+
+  function addUrl(value) {
+    if (!value) return;
+
+    try {
+      const absolute = new URL(value, baseUrl).href;
+
+      if (/\.(?:mp4|m3u8)(?:[?#]|$)/i.test(absolute)) {
+        urls.add(absolute);
+      }
+    } catch {
+      // Ignore malformed URLs.
+    }
+  }
+
+  $("video[src]").each((_, el) => {
+    addUrl($(el).attr("src"));
+  });
+
+  $("source[src]").each((_, el) => {
+    addUrl($(el).attr("src"));
+  });
+
+  $("[data-src], [data-url], [data-file]").each((_, el) => {
+    addUrl($(el).attr("data-src"));
+    addUrl($(el).attr("data-url"));
+    addUrl($(el).attr("data-file"));
+  });
+
+  return [...urls];
+}
+
+function getOpenMediaFormat(url) {
+  return /\.m3u8(?:[?#]|$)/i.test(url) ? "m3u8" : "mp4";
+}
+
+app.get("/api/parse-stream", async (req, res) => {
+  const targetUrl = req.query.url;
+
+  if (!targetUrl) {
+    return res.status(400).json({
+      success: false,
+      error: "Missing required query parameter: url"
+    });
+  }
+
+  let parsedUrl;
+
+  try {
+    parsedUrl = new URL(targetUrl);
+
+    if (!["http:", "https:"].includes(parsedUrl.protocol)) {
+      throw new Error("Invalid protocol");
+    }
+  } catch {
+    return res.status(400).json({
+      success: false,
+      error: "Invalid URL"
+    });
+  }
+
+  try {
+    const response = await axios.get(parsedUrl.href, {
+      timeout: 15000,
+      maxRedirects: 5,
+      responseType: "text",
+      headers: {
+        "User-Agent": headers["User-Agent"],
+        "Accept":
+          "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Referer": parsedUrl.href
+      }
+    });
+
+    const sources = parseOpenMediaSources(
+      response.data,
+      parsedUrl.href
+    );
+
+    if (!sources.length) {
+      return res.status(404).json({
+        success: false,
+        error: "No open MP4 or M3U8 media URL found"
+      });
+    }
+
+    const streamUrl = sources[0];
+
+    return res.json({
+      success: true,
+      streamUrl,
+      format: getOpenMediaFormat(streamUrl)
+    });
+
+  } catch (error) {
+    console.error(
+      "[parse-stream]",
+      error.code || "",
+      error.message
+    );
+
+    if (error.response) {
+      return res.status(500).json({
+        success: false,
+        error: `Source returned HTTP ${error.response.status}`
+      });
+    }
+
+    if (error.code === "ECONNABORTED") {
+      return res.status(500).json({
+        success: false,
+        error: "Source request timed out"
+      });
+    }
+
+    return res.status(500).json({
+      success: false,
+      error: "Failed to fetch source URL"
+    });
+  }
+});
+
+
 // 404
 // --------------------------------------------------
 
@@ -2193,6 +2329,8 @@ app.use((req, res) => {
 // --------------------------------------------------
 
 startAutoSync();
+
+
 
 app.listen(PORT, () => {
   console.log(`API running on http://localhost:${PORT}`);

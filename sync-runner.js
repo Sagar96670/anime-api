@@ -1,14 +1,23 @@
-const { syncAnimeSaltCatalog } = require("./sync");
+const { syncToonStreamCatalog } = require("./sync");
 const fs = require("fs");
 const path = require("path");
 
 (async () => {
   try {
     console.log("SYNC RUNNER START");
+    console.log("TOONSTREAM SYNC START");
 
-    const results = await syncAnimeSaltCatalog();
+    const results = await syncToonStreamCatalog();
 
-    const catalogFile = path.join(__dirname, "data", "catalog.json");
+    if (!results.length) {
+      throw new Error("ToonStream sync returned an empty catalog");
+    }
+
+    const catalogFile = path.join(
+      __dirname,
+      "data",
+      "catalog.json"
+    );
 
     const payload = {
       updatedAt: new Date().toISOString(),
@@ -16,7 +25,10 @@ const path = require("path");
       results
     };
 
-    fs.mkdirSync(path.dirname(catalogFile), { recursive: true });
+    fs.mkdirSync(
+      path.dirname(catalogFile),
+      { recursive: true }
+    );
 
     fs.writeFileSync(
       catalogFile,
@@ -25,15 +37,18 @@ const path = require("path");
     );
 
     console.log("---------------------------------");
-    console.log("ANIMESALT SYNC COMPLETE");
-    console.log("ANIMESALT LIVE:", results.length);
+    console.log("TOONSTREAM SYNC COMPLETE");
+    console.log("TOONSTREAM LIVE:", results.length);
     console.log("FINAL CATALOG:", results.length);
     console.log("CATALOG SAVED:", catalogFile);
     console.log("---------------------------------");
 
     process.exit(0);
   } catch (error) {
-    console.error("SYNC RUNNER ERROR:", error.message);
+    console.error(
+      "TOONSTREAM SYNC ERROR:",
+      error.message
+    );
     process.exit(1);
   }
 })();
