@@ -3556,8 +3556,12 @@ document.getElementById("search").addEventListener(
 async function openAnime(slug, updateHistory = true){
   const loadId = ++animeLoadId;
 
-  const cleanSlug =
+  let cleanSlug =
     String(slug || "").trim();
+
+  try {
+    cleanSlug = decodeURIComponent(cleanSlug);
+  } catch {}
 
   if(cleanSlug){
     const target =
@@ -3609,6 +3613,7 @@ async function openAnime(slug, updateHistory = true){
     }
 
     streamData = newStreamData;
+    console.log("ANIZENX STREAM DEBUG:", streamData?.success, streamData?.type, streamData?.serverCount, streamData?.servers?.[0]?.name, streamData?.servers?.[0]?.episodes?.length);
     currentAnime = slug;
 
     const hasNewEpisode =
@@ -4089,7 +4094,7 @@ function renderAnimeEpisodes(){
     return;
   }
 
-  // Collect episodes from the available RareAnimes player server.
+  // Collect episodes from the available AnimeSalt player server.
   const playerServer = streamData.servers.find(server =>
     server &&
     Array.isArray(server.episodes) &&
