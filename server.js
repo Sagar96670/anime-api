@@ -2053,6 +2053,335 @@ function updateEpisodeMetadata(slug, servers){
 // Automatic Servers + Episodes
 // --------------------------------------------------
 
+// --------------------------------------------------
+// AnimeSalt Public Iframe Streams
+// --------------------------------------------------
+
+const ANIMESALT_BASE_URL = "https://animesalt.cx";
+
+function animeSaltCleanText(value) {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const ANIMESALT_HEADERS = {
+  "User-Agent":
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+    "AppleWebKit/537.36 (KHTML, like Gecko) " +
+    "Chrome/120.0.0.0 Safari/537.36",
+  Accept:
+    "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+};
+
+const animeSaltClient = axios.create({
+  baseURL: ANIMESALT_BASE_URL,
+  headers: ANIMESALT_HEADERS,
+  timeout: 30000,
+  maxRedirects: 5,
+});
+
+function animeSaltAbsoluteUrl(url) {
+  if (!url) return "";
+  try {
+    return new URL(url, ANIMESALT_BASE_URL).href;
+  } catch {
+    return "";
+  }
+}
+
+function parseAnimeSaltEpisodeNumber(text) {
+  const match = String(text || "").match(
+    /(?:^|\s)(\d+)\s*x\s*(\d+)(?:\s|$)/i
+  );
+
+  if (!match) {
+    return {
+      season: 1,
+      episode: 1,
+    };
+  }
+
+  return {
+    season: Number(match[1]),
+    episode: Number(match[2]),
+  };
+}
+
+async function fetchAnimeSaltPage(url) {
+  const response = await animeSaltClient.get(url);
+  return response.data;
+}
+
+function parseAnimeSaltEpisodeLinks(html) {
+  const $ = cheerio.load(html);
+  const episodes = [];
+  const seen = new Set();
+
+  $("article.post.episodes, article.episodes, article.post").each(
+    (_, el) => {
+      const card = $(el);
+
+      const href =
+        card.find('a[href*="/episode/"]').first().attr("href") || "";
+
+      if (!href) return;
+
+      const url = animeSaltAbsoluteUrl(href);
+
+      if (!url || !url.includes("/episode/")) return;
+
+      if (seen.has(url)) return;
+      seen.add(url);
+
+      const title = animeSaltCleanText(
+        card.find("h2.entry-title, h3.entry-title")
+          .first()
+          .text() ||
+        card.find(".entry-title")
+          .first()
+          .text()
+      );
+
+      const numbers = parseAnimeSaltEpisodeNumber(title || url);
+
+      episodes.push({
+        season: numbers.season,
+        episode: numbers.episode,
+        pageUrl: url,
+        title: title || "",
+      });
+    }
+  );
+
+  return episodes.sort((a, b) => {
+    if (a.season !== b.season) {
+      return a.season - b.season;
+    }
+
+    return a.episode - b.episode;
+  });
+}
+
+function parseAnimeSaltPublicIframes(html) {
+  const $ = cheerio.load(html);
+  const results = [];
+  const seen = new Set();
+
+  $("iframe").each((_, el) => {
+    const iframe = $(el);
+
+    const src =
+      iframe.attr("data-src") ||
+      iframe.attr("src") ||
+      "";
+
+    if (!src) return;
+
+    const url = animeSaltAbsoluteUrl(src);
+
+    if (!url) return;
+
+    // Only use the openly exposed AnimeSalt MyStream iframe.
+    // Do not unwrap protected/hidden media URLs.
+    if (!url.startsWith("https://as-cdn26.top/video/")) {
+      return;
+    }
+
+    if (seen.has(url)) return;
+    seen.add(url);
+
+    results.push(url);
+  });
+
+  return results;
+}
+
+async function getAnimeSaltSeriesSources(slug) {
+  const seriesUrl =
+    `${ANIMESALT_BASE_URL}/series/${slug}/`;
+
+  const seriesHtml = await fetchAnimeSaltPage(seriesUrl);
+
+  // Season 1 is present directly in the series HTML.
+  const firstSeasonEpisodes =
+    parseAnimeSaltEpisodeLinks(seriesHtml);
+
+  // Read the public season selector from the same page.
+  // AnimeSalt loads additional seasons through its public AJAX endpoint.
+  const $ = cheerio.load(seriesHtml);
+
+  const seasonButtons = [];
+
+  $(".season-btn").each((_, el) => {
+    const btn = $(el);
+
+    const postId = btn.attr("data-post");
+    const season = Number(btn.attr("data-season"));
+
+    if (!postId || !Number.isInteger(season) || season < 1) {
+      return;
+    }
+
+    const key = `${postId}:${season}`;
+
+    if (
+      seasonButtons.some(
+        item => `${item.postId}:${item.season}` === key
+      )
+    ) {
+      return;
+    }
+
+    seasonButtons.push({
+      postId,
+      season,
+    });
+  });
+
+  const allEpisodeLinks = [];
+  const seenEpisodeLinks = new Set();
+
+  for (const item of firstSeasonEpisodes) {
+    if (seenEpisodeLinks.has(item.pageUrl)) {
+      continue;
+    }
+
+    seenEpisodeLinks.add(item.pageUrl);
+    allEpisodeLinks.push(item);
+  }
+
+  // Fetch every publicly exposed season through AnimeSalt's
+  // normal season-selection AJAX endpoint.
+  for (const seasonButton of seasonButtons) {
+    if (seasonButton.season === 1) {
+      continue;
+    }
+
+    try {
+      const ajaxUrl =
+        `${ANIMESALT_BASE_URL}/wp-admin/admin-ajax.php` +
+        `?action=action_select_season` +
+        `&season=${seasonButton.season}` +
+        `&post=${seasonButton.postId}`;
+
+      const seasonHtml =
+        await fetchAnimeSaltPage(ajaxUrl);
+
+      const seasonEpisodes =
+        parseAnimeSaltEpisodeLinks(seasonHtml);
+
+      console.log(
+        `ANIMESALT SEASON ${seasonButton.season}: ` +
+        `${seasonEpisodes.length} episodes`
+      );
+
+      for (const episode of seasonEpisodes) {
+        if (seenEpisodeLinks.has(episode.pageUrl)) {
+          continue;
+        }
+
+        seenEpisodeLinks.add(episode.pageUrl);
+        allEpisodeLinks.push(episode);
+      }
+    } catch (error) {
+      console.error(
+        `ANIMESALT SEASON ${seasonButton.season} ERROR:`,
+        error.message
+      );
+    }
+  }
+
+  allEpisodeLinks.sort((a, b) => {
+    if (a.season !== b.season) {
+      return a.season - b.season;
+    }
+
+    return a.episode - b.episode;
+  });
+
+  if (!allEpisodeLinks.length) {
+    return [];
+  }
+
+  const episodes = [];
+
+  for (const item of allEpisodeLinks) {
+    try {
+      const html =
+        await fetchAnimeSaltPage(item.pageUrl);
+
+      const iframes =
+        parseAnimeSaltPublicIframes(html);
+
+      if (!iframes.length) {
+        continue;
+      }
+
+      episodes.push({
+        season: item.season,
+        episode: item.episode,
+        type: "iframe",
+        url: iframes[0],
+        language: "Hindi",
+        title: item.title,
+      });
+    } catch (error) {
+      console.error(
+        `ANIMESALT EPISODE ERROR ${item.season}x${item.episode}:`,
+        error.message
+      );
+    }
+  }
+
+  if (!episodes.length) {
+    return [];
+  }
+
+  return [
+    {
+      name: "MyStream",
+      type: "iframe",
+      episodes,
+    },
+  ];
+}
+async function getAnimeSaltMovieSources(slug) {
+  const movieUrl =
+    `${ANIMESALT_BASE_URL}/movies/${slug}/`;
+
+  const html = await fetchAnimeSaltPage(movieUrl);
+
+  const iframes =
+    parseAnimeSaltPublicIframes(html);
+
+  if (!iframes.length) {
+    return [];
+  }
+
+  return [
+    {
+      name: "MyStream",
+      type: "iframe",
+      episodes: [
+        {
+          season: 1,
+          episode: 1,
+          type: "iframe",
+          url: iframes[0],
+          language: "Hindi",
+          title: slug,
+        },
+      ],
+    },
+  ];
+}
+
+
+// --------------------------------------------------
+// Automatic Servers + Episodes
+// --------------------------------------------------
+
 app.get("/api/streams/:slug", async (req, res) => {
   try {
     const slug = req.params.slug;
@@ -2066,6 +2395,7 @@ app.get("/api/streams/:slug", async (req, res) => {
           animeSlug: slug,
           type: cached.type || "series",
           cached: true,
+          serverCount: cached.servers.length,
           servers: cached.servers,
         });
       }
@@ -2091,11 +2421,27 @@ app.get("/api/streams/:slug", async (req, res) => {
         ? catalogData
         : catalogData.results || [];
 
-      const anime = catalog.find(
-        item => item && item.slug === slug
-      );
+      const anime = catalog.find(item => {
+        if (!item || !item.slug) return false;
 
-      animeType = anime?.type || "series";
+        if (item.slug === slug) return true;
+
+        try {
+          return decodeURIComponent(item.slug) === slug;
+        } catch {
+          return false;
+        }
+      });
+
+      if (!anime) {
+        return res.status(404).json({
+          success: false,
+          message: "Anime not found in catalog",
+          animeSlug: slug,
+        });
+      }
+
+      animeType = anime.type || "series";
     } catch (error) {
       console.error(
         "CATALOG READ ERROR:",
@@ -2105,14 +2451,15 @@ app.get("/api/streams/:slug", async (req, res) => {
 
     const servers =
       animeType === "movie"
-        ? await getToonStreamMovieSources(slug)
-        : await getToonStreamSources(slug);
+        ? await getAnimeSaltMovieSources(slug)
+        : await getAnimeSaltSeriesSources(slug);
 
     if (!servers.length) {
       return res.status(404).json({
         success: false,
-        message: "No public ToonStream episode sources found",
+        message: "No public AnimeSalt iframe sources found",
         animeSlug: slug,
+        type: animeType,
       });
     }
 
@@ -2130,12 +2477,16 @@ app.get("/api/streams/:slug", async (req, res) => {
       serverCount: servers.length,
       servers,
     });
+
   } catch (error) {
-    console.error("TOONSTREAM STREAM ERROR:", error.message);
+    console.error(
+      "ANIMESALT STREAM ERROR:",
+      error.message
+    );
 
     res.status(500).json({
       success: false,
-      message: "Unable to load ToonStream episode sources",
+      message: "Unable to load AnimeSalt episode sources",
       error: error.message,
     });
   }

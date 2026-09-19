@@ -3820,7 +3820,9 @@ async function openAnime(slug, updateHistory = true){
         ? streamData.servers.find(
             server =>
               server &&
-              String(server.name || "").trim().toLowerCase() === "play" &&
+              ["play", "mystream"].includes(
+                String(server.name || "").trim().toLowerCase()
+              ) &&
               Array.isArray(server.episodes) &&
               server.episodes[0] &&
               server.episodes[0].url

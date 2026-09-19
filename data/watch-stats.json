@@ -49,13 +49,15 @@
     "lastWatchedAt": "2026-08-11T08:27:25.539Z"
   },
   "captain-tsubasa": {
-    "views": 9,
+    "views": 11,
     "episodes": {
       "S2E13": 1,
       "S1E1": 4,
-      "S2E21": 4
+      "S2E21": 4,
+      "S2E24": 1,
+      "S2E30": 1
     },
-    "lastWatchedAt": "2026-08-27T10:13:55.791Z"
+    "lastWatchedAt": "2026-09-19T11:10:05.244Z"
   },
   "one-punch-man": {
     "views": 1,
@@ -172,5 +174,91 @@
       "S2E1": 1
     },
     "lastWatchedAt": "2026-08-27T14:59:40.175Z"
+  },
+  "welcome-to-demon-school-iruma-kun": {
+    "views": 4,
+    "episodes": {
+      "S3E1": 4
+    },
+    "lastWatchedAt": "2026-09-04T19:29:53.179Z"
+  },
+  "the-elusive-samurai": {
+    "views": 6,
+    "episodes": {
+      "S2E1": 2,
+      "S1E1": 4
+    },
+    "lastWatchedAt": "2026-09-06T09:26:03.829Z"
+  },
+  "jojos-bizarre-adventure-season-3-diamond-is-unbreakable-hindi-dubbed-episodes-download-hd": {
+    "views": 1,
+    "episodes": {
+      "S3E1": 1
+    },
+    "lastWatchedAt": "2026-09-14T21:02:45.142Z"
+  },
+  "grand-blue-dreaming": {
+    "views": 1,
+    "episodes": {
+      "S2E12": 1
+    },
+    "lastWatchedAt": "2026-09-15T19:07:54.445Z"
+  },
+  "hana-kimi": {
+    "views": 1,
+    "episodes": {
+      "S2E1": 1
+    },
+    "lastWatchedAt": "2026-09-17T17:17:50.784Z"
+  },
+  "smoking-behind-the-supermarket-with-you": {
+    "views": 3,
+    "episodes": {
+      "S1E11": 2,
+      "S1E1": 1
+    },
+    "lastWatchedAt": "2026-09-18T17:57:42.974Z"
+  },
+  "black-clover": {
+    "views": 1,
+    "episodes": {
+      "S1E1": 1
+    },
+    "lastWatchedAt": "2026-09-17T19:11:34.325Z"
+  },
+  "that-time-i-got-reincarnated-as-a-slime": {
+    "views": 1,
+    "episodes": {
+      "S4E17": 1
+    },
+    "lastWatchedAt": "2026-09-18T17:59:03.297Z"
+  },
+  "legend-of-exorcism": {
+    "views": 1,
+    "episodes": {
+      "S1E13": 1
+    },
+    "lastWatchedAt": "2026-09-19T03:53:14.647Z"
+  },
+  "kaiju-no-8-original-short-anime-narumis-week-at-work": {
+    "views": 1,
+    "episodes": {
+      "S1E1": 1
+    },
+    "lastWatchedAt": "2026-09-19T10:47:48.359Z"
+  },
+  "%e3%80%90oshi-no-ko%e3%80%91": {
+    "views": 1,
+    "episodes": {
+      "S3E11": 1
+    },
+    "lastWatchedAt": "2026-09-19T11:05:37.023Z"
+  },
+  "the-frontier-lord-begins-with-zero-subjects": {
+    "views": 1,
+    "episodes": {
+      "S1E1": 1
+    },
+    "lastWatchedAt": "2026-09-19T11:19:36.492Z"
   }
 }

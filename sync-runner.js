@@ -1,16 +1,16 @@
-const { syncToonStreamCatalog } = require("./sync");
+const { syncAnimeSaltCatalog } = require("./sync");
 const fs = require("fs");
 const path = require("path");
 
 (async () => {
   try {
     console.log("SYNC RUNNER START");
-    console.log("TOONSTREAM SYNC START");
+    console.log("ANIMESALT SYNC START");
 
-    const results = await syncToonStreamCatalog();
+    const results = await syncAnimeSaltCatalog();
 
     if (!results.length) {
-      throw new Error("ToonStream sync returned an empty catalog");
+      throw new Error("AnimeSalt sync returned an empty catalog");
     }
 
     const catalogFile = path.join(
@@ -37,8 +37,8 @@ const path = require("path");
     );
 
     console.log("---------------------------------");
-    console.log("TOONSTREAM SYNC COMPLETE");
-    console.log("TOONSTREAM LIVE:", results.length);
+    console.log("ANIMESALT SYNC COMPLETE");
+    console.log("ANIMESALT LIVE:", results.length);
     console.log("FINAL CATALOG:", results.length);
     console.log("CATALOG SAVED:", catalogFile);
     console.log("---------------------------------");
@@ -46,7 +46,7 @@ const path = require("path");
     process.exit(0);
   } catch (error) {
     console.error(
-      "TOONSTREAM SYNC ERROR:",
+      "ANIMESALT SYNC ERROR:",
       error.message
     );
     process.exit(1);
