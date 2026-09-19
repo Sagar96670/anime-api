@@ -341,22 +341,66 @@ async function getToonStreamSources(slug) {
     return [];
   }
 
+  // Fetch server config only once.
+  const config = await getToonStreamServerConfig();
+
+  if (!config.length) {
+    return [];
+  }
+
   const serverMap = new Map();
 
-  for (const episode of episodeList) {
-    try {
-      const sources =
-        await parseToonStreamEpisodePage(episode);
+  // Controlled concurrency:
+  // Don't hammer ToonStream, but don't wait for every episode sequentially.
+  const BATCH_SIZE = 8;
+
+  for (let i = 0; i < episodeList.length; i += BATCH_SIZE) {
+    const batch = episodeList.slice(i, i + BATCH_SIZE);
+
+    const results = await Promise.all(
+      batch.map(async episode => {
+        try {
+          const sources =
+            await parseToonStreamEpisodePage(episode, config);
+
+          return {
+            episode,
+            sources,
+          };
+        } catch (error) {
+          console.error(
+            `TOONSTREAM EPISODE ERROR S${episode.season}E${episode.episode}:`,
+            error.message
+          );
+
+          return {
+            episode,
+            sources: [],
+          };
+        }
+      })
+    );
+
+    for (const result of results) {
+      const episode = result.episode;
+      const sources = result.sources;
+
+      const duplicateCounts = new Map();
 
       for (const source of sources) {
-        const duplicateIndex = sources
-          .slice(0, source.index + 1)
-          .filter(item => item.name === source.name)
-          .length;
+        const count =
+          (duplicateCounts.get(source.name) || 0) + 1;
+
+        duplicateCounts.set(source.name, count);
+
+        const totalSameName =
+          sources.filter(
+            item => item.name === source.name
+          ).length;
 
         const serverKey =
-          duplicateIndex > 1 || sources.filter(item => item.name === source.name).length > 1
-            ? `${source.name} ${duplicateIndex}`
+          count > 1 || totalSameName > 1
+            ? `${source.name} ${count}`
             : source.name;
 
         if (!serverMap.has(serverKey)) {
@@ -376,17 +420,11 @@ async function getToonStreamSources(slug) {
           title: episode.title,
         });
       }
-    } catch (error) {
-      console.error(
-        `TOONSTREAM EPISODE ERROR S${episode.season}E${episode.episode}:`,
-        error.message
-      );
     }
   }
 
   return Array.from(serverMap.values());
 }
-
 // --------------------------------------------------
 // ADMIN PANEL
 // --------------------------------------------------

@@ -407,8 +407,6 @@ function startAutoSync() {
     }
   };
 
-  run();
-
   setInterval(run, 30 * 60 * 1000);
 
   console.log(
