@@ -17,7 +17,6 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 const PORT = process.env.PORT || 5000;
-const BASE_URL = "https://1xanimes.com";
 const headers = {
   "User-Agent":
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
@@ -25,406 +24,8 @@ const headers = {
     "Chrome/120.0.0.0 Safari/537.36",
 };
 
-const client = axios.create({
-  baseURL: BASE_URL,
-  headers,
-  timeout: 15000,
-  maxRedirects: 5,
-});
-
 const streamCache = new Map();
 
-const TOONSTREAM_BASE_URL = "https://toonstream.vip";
-
-const TOONSTREAM_HEADERS = {
-  "User-Agent":
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-    "AppleWebKit/537.36 (KHTML, like Gecko) " +
-    "Chrome/120.0.0.0 Safari/537.36",
-  Accept:
-    "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-};
-
-const toonStreamClient = axios.create({
-  baseURL: TOONSTREAM_BASE_URL,
-  headers: TOONSTREAM_HEADERS,
-  timeout: 60000,
-  maxRedirects: 5,
-});
-
-function toonAbsoluteUrl(href) {
-  if (!href) return "";
-
-  try {
-    return new URL(href, TOONSTREAM_BASE_URL).href;
-  } catch {
-    return "";
-  }
-}
-
-function toonCleanText(value) {
-  return String(value || "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function toonEpisodeNumbers(url) {
-  const match = String(url || "").match(/-(\d+)x(\d+)\/?$/);
-
-  if (!match) {
-    return {
-      season: null,
-      episode: null,
-    };
-  }
-
-  return {
-    season: Number(match[1]),
-    episode: Number(match[2]),
-  };
-}
-
-async function fetchToonStreamPage(url) {
-  const response = await toonStreamClient.get(url);
-  return String(response.data || "");
-}
-
-async function getToonStreamEpisodes(slug) {
-  const seriesUrl = `${TOONSTREAM_BASE_URL}/series/${encodeURIComponent(slug)}`;
-  const seriesHtml = await fetchToonStreamPage(seriesUrl);
-  const $series = cheerio.load(seriesHtml);
-
-  const seasons = [];
-
-  $series('[data-season][data-url]').each((_, el) => {
-    const season = Number($series(el).attr("data-season"));
-    const href = $series(el).attr("data-url");
-
-    if (!Number.isInteger(season) || !href) return;
-
-    const url = toonAbsoluteUrl(href);
-
-    if (!url) return;
-
-    if (!seasons.some(item => item.season === season)) {
-      seasons.push({
-        season,
-        url,
-      });
-    }
-  });
-
-  seasons.sort((a, b) => a.season - b.season);
-
-  if (!seasons.length) {
-    seasons.push({
-      season: 1,
-      url: seriesUrl,
-    });
-  }
-
-  const episodes = [];
-
-  for (const seasonInfo of seasons) {
-    try {
-      const seasonHtml = await fetchToonStreamPage(seasonInfo.url);
-      const $season = cheerio.load(seasonHtml);
-
-      $season('a[href*="/episode/"]').each((_, el) => {
-        const href = $season(el).attr("href");
-        if (!href) return;
-
-        const url = toonAbsoluteUrl(href);
-        const numbers = toonEpisodeNumbers(url);
-
-        const season = Number.isInteger(numbers.season)
-          ? numbers.season
-          : seasonInfo.season;
-
-        if (!Number.isInteger(numbers.episode)) return;
-
-        const title = toonCleanText(
-          $season(el)
-            .find("h5.entry-title1, .entry-title1, .entry-title")
-            .first()
-            .text()
-        );
-
-        if (
-          !episodes.some(
-            item =>
-              item.season === season &&
-              item.episode === numbers.episode
-          )
-        ) {
-          episodes.push({
-            season,
-            episode: numbers.episode,
-            pageUrl: url,
-            title:
-              title ||
-              `Episode ${numbers.episode}`,
-          });
-        }
-      });
-    } catch (error) {
-      console.error(
-        `TOONSTREAM SEASON ERROR ${seasonInfo.season}:`,
-        error.message
-      );
-    }
-  }
-
-  episodes.sort(
-    (a, b) =>
-      a.season - b.season ||
-      a.episode - b.episode
-  );
-
-  return episodes;
-}
-
-async function getToonStreamServerConfig() {
-  try {
-    const response = await toonStreamClient.get("/public/servers");
-
-    const data = response.data?.data;
-
-    if (!Array.isArray(data)) {
-      return [];
-    }
-
-    return data
-      .filter(item => item && item.enabled !== false)
-      .sort(
-        (a, b) =>
-          Number(a.order || 999) -
-          Number(b.order || 999)
-      );
-  } catch (error) {
-    console.error(
-      "TOONSTREAM SERVER CONFIG ERROR:",
-      error.message
-    );
-
-    return [];
-  }
-}
-
-async function parseToonStreamEpisodePage(episode) {
-  const html = await fetchToonStreamPage(episode.pageUrl);
-  const $ = cheerio.load(html);
-
-  const config = await getToonStreamServerConfig();
-
-  const enabledNames = new Set(
-    config.map(item =>
-      toonCleanText(item.name).toLowerCase()
-    )
-  );
-
-  const found = [];
-
-  $(".aa-tbs-video li").each((index, el) => {
-    const li = $(el);
-
-    const serverName = toonCleanText(
-      li.find(".server").first().text()
-    );
-
-    const button = li.find(".btn").first();
-    const href = button.attr("href") || "";
-
-    const option = href.match(/^#options-(\d+)$/);
-
-    if (!serverName || !option) return;
-
-    if (
-      enabledNames.size &&
-      !enabledNames.has(serverName.toLowerCase())
-    ) {
-      return;
-    }
-
-    const optionId = `#${option[0].slice(1)}`;
-
-    const container = $(optionId);
-
-    if (!container.length) return;
-
-    const iframe = container.find("iframe").first();
-
-    const url =
-      iframe.attr("src") ||
-      iframe.attr("data-src") ||
-      "";
-
-    if (!url) return;
-
-    found.push({
-      index,
-      name: serverName,
-      url: toonAbsoluteUrl(url),
-    });
-  });
-
-  return found;
-}
-
-async function getToonStreamMovieSources(slug) {
-  const url = `/movies/${encodeURIComponent(slug)}`;
-
-  console.log(`TOONSTREAM MOVIE PAGE: ${url}`);
-
-  const response = await toonStreamClient.get(url);
-  const $ = cheerio.load(String(response.data || ""));
-
-  const title =
-    toonCleanText($("h1.entry-title").first().text()) ||
-    toonCleanText($("h1").first().text()) ||
-    slug;
-
-  const servers = [];
-  const seen = new Set();
-
-  $(".aa-tbs-video li").each((_, el) => {
-    const button = $(el).find('a[href^="#options-"]').first();
-    if (!button.length) return;
-
-    const optionId = button.attr("href");
-    if (!optionId) return;
-
-    const serverName =
-      toonCleanText($(el).find(".server").first().text()) ||
-      toonCleanText(button.text()) ||
-      "Server";
-
-    if (seen.has(serverName)) return;
-
-    const target = $(optionId);
-    if (!target.length) return;
-
-    const iframe = target.find("iframe").first();
-    if (!iframe.length) return;
-
-    const streamUrl =
-      iframe.attr("data-src") ||
-      iframe.attr("src") ||
-      "";
-
-    if (!streamUrl || streamUrl === "about:blank") return;
-
-    seen.add(serverName);
-
-    servers.push({
-      name: serverName,
-      episodes: [
-        {
-          season: 1,
-          episode: 1,
-          type: "iframe",
-          url: toonAbsoluteUrl(streamUrl),
-          language: "Multi Audio",
-          title,
-        },
-      ],
-    });
-  });
-
-  return servers;
-}
-
-async function getToonStreamSources(slug) {
-  const episodeList = await getToonStreamEpisodes(slug);
-
-  if (!episodeList.length) {
-    return [];
-  }
-
-  // Fetch server config only once.
-  const config = await getToonStreamServerConfig();
-
-  if (!config.length) {
-    return [];
-  }
-
-  const serverMap = new Map();
-
-  // Controlled concurrency:
-  // Don't hammer ToonStream, but don't wait for every episode sequentially.
-  const BATCH_SIZE = 8;
-
-  for (let i = 0; i < episodeList.length; i += BATCH_SIZE) {
-    const batch = episodeList.slice(i, i + BATCH_SIZE);
-
-    const results = await Promise.all(
-      batch.map(async episode => {
-        try {
-          const sources =
-            await parseToonStreamEpisodePage(episode, config);
-
-          return {
-            episode,
-            sources,
-          };
-        } catch (error) {
-          console.error(
-            `TOONSTREAM EPISODE ERROR S${episode.season}E${episode.episode}:`,
-            error.message
-          );
-
-          return {
-            episode,
-            sources: [],
-          };
-        }
-      })
-    );
-
-    for (const result of results) {
-      const episode = result.episode;
-      const sources = result.sources;
-
-      const duplicateCounts = new Map();
-
-      for (const source of sources) {
-        const count =
-          (duplicateCounts.get(source.name) || 0) + 1;
-
-        duplicateCounts.set(source.name, count);
-
-        const totalSameName =
-          sources.filter(
-            item => item.name === source.name
-          ).length;
-
-        const serverKey =
-          count > 1 || totalSameName > 1
-            ? `${source.name} ${count}`
-            : source.name;
-
-        if (!serverMap.has(serverKey)) {
-          serverMap.set(serverKey, {
-            name: serverKey,
-            type: "iframe",
-            episodes: [],
-          });
-        }
-
-        serverMap.get(serverKey).episodes.push({
-          season: episode.season,
-          episode: episode.episode,
-          type: "iframe",
-          url: source.url,
-          language: "Multi Audio",
-          title: episode.title,
-        });
-      }
-    }
-  }
-
-  return Array.from(serverMap.values());
-}
 // --------------------------------------------------
 // ADMIN PANEL
 // --------------------------------------------------
@@ -1027,8 +628,8 @@ app.get("/admin/api/anime", requireAdmin, (req, res) => {
 
 app.post("/admin/api/sync", requireAdmin, async (req, res) => {
   try {
-    const { syncRareAnimesCatalog } = require("./sync");
-    const results = await syncRareAnimesCatalog();
+    const { syncAnimeSaltCatalog } = require("./sync");
+    const results = await syncAnimeSaltCatalog();
 
     const catalogFile = path.join(__dirname, "data", "catalog.json");
 
@@ -1506,43 +1107,44 @@ app.get("/api/search", async (req, res) => {
   }
 
   try {
-    const { data } = await client.get("/wp-json/wp/v2/search", {
-      params: {
-        search: query,
-        per_page: 20,
-      },
-    });
+    const catalogFile =
+      path.join(__dirname, "data", "catalog.json");
 
-    const results = await Promise.all(
-      data.map(async (item) => {
-        let image = "";
+    if (!fs.existsSync(catalogFile)) {
+      return res.status(500).json({
+        success: false,
+        message: "Catalog not found",
+      });
+    }
 
-        try {
-          const page = await client.get(new URL(item.url).pathname);
-          const $ = cheerio.load(page.data);
+    const catalog =
+      JSON.parse(fs.readFileSync(catalogFile, "utf8"));
 
-          image =
-            $("img")
-              .map((i, el) => $(el).attr("src") || "")
-              .get()
-              .find((src) => src.includes("image.tmdb.org")) || "";
-        } catch (imageError) {
-          console.error(
-            "IMAGE ERROR:",
-            item.title,
-            imageError.message
-          );
-        }
+    const items = Array.isArray(catalog.results)
+      ? catalog.results
+      : [];
 
-        return {
-          title: item.title,
-          image: tmdbPoster || catalogImage,
-          link: item.url,
-        };
+    const q = query.toLowerCase();
+
+    const results = items
+      .filter((item) => {
+        if (!item) return false;
+
+        const title = String(item.title || "").toLowerCase();
+        const slug = String(item.slug || "").toLowerCase();
+
+        return title.includes(q) || slug.includes(q);
       })
-    );
+      .slice(0, 20)
+      .map((item) => ({
+        title: item.title || "",
+        image: item.image || "",
+        link: item.link || "",
+        slug: item.slug || "",
+        type: item.type || "",
+      }));
 
-    res.json({
+    return res.json({
       success: true,
       query,
       count: results.length,
@@ -1551,7 +1153,7 @@ app.get("/api/search", async (req, res) => {
   } catch (error) {
     console.error("SEARCH ERROR:", error.message);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Search failed",
     });
@@ -1567,9 +1169,14 @@ app.get("/api/anime/:slug", async (req, res) => {
   try {
     const slug = req.params.slug;
 
-    const catalogPath = path.join(__dirname, "data", "catalog.json");
-    const catalogData = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
-    const item = (catalogData.results || []).find(x => x.slug === slug);
+    const catalogPath =
+      path.join(__dirname, "data", "catalog.json");
+
+    const catalogData =
+      JSON.parse(fs.readFileSync(catalogPath, "utf8"));
+
+    const item =
+      (catalogData.results || []).find(x => x.slug === slug);
 
     if (!item) {
       return res.status(404).json({
@@ -1582,14 +1189,10 @@ app.get("/api/anime/:slug", async (req, res) => {
     const catalogTitle = item.title || "";
     const catalogImage = item.image || "";
     const catalogRating = item.rating || "";
-
     const type = item.type || "";
 
     let description = item.description || "";
 
-    // Movie catalog entries may contain the entire source post
-    // including watch links, site promotion and recommended posts.
-    // Keep only the actual synopsis for movies.
     if (String(type).toLowerCase() === "movie") {
       description = String(description)
         .split(/Watch\/Download Links/i)[0]
@@ -1604,242 +1207,15 @@ app.get("/api/anime/:slug", async (req, res) => {
     const audio = Array.isArray(item.audio) ? item.audio : [];
     const languages = Array.isArray(item.languages) ? item.languages : [];
 
-    // ------------------------------------------
-    // TMDB metadata lookup + Blakite fallback
-    // ------------------------------------------
+    const tmdbId = item.tmdbId ?? null;
+    const tmdbType = item.tmdbType || "";
 
-    let tmdbId = null;
-    let tmdbType = "";
-    let tmdbPoster = "";
+    const quality = item.quality || "";
+    const status = item.status || "";
+    const released = item.released || "";
+    const duration = item.duration || "";
 
-    // 1. Try direct TMDB API first
-    try {
-      const tmdbApiKey = String(process.env.TMDB_API_KEY || "").trim();
-
-      if (tmdbApiKey && catalogTitle) {
-        const tmdbRes = await axios.get(
-          "https://api.themoviedb.org/3/search/multi",
-          {
-            params: {
-              api_key: tmdbApiKey,
-              query: catalogTitle,
-              language: "en-US"
-            },
-            timeout: 10000
-          }
-        );
-
-        const results = Array.isArray(tmdbRes.data?.results)
-          ? tmdbRes.data.results
-          : [];
-
-        const match = results.find(item =>
-          (item.media_type === "tv" || item.media_type === "movie") &&
-          item.id
-        );
-
-        if (match) {
-          tmdbId = Number(match.id);
-          tmdbType = match.media_type;
-
-          if (match.poster_path) {
-            tmdbPoster =
-              "https://image.tmdb.org/t/p/w500" + match.poster_path;
-          }
-
-          console.log(
-            `TMDB MATCH: ${catalogTitle} -> ${tmdbType}/${tmdbId}`
-          );
-        }
-      }
-    } catch (tmdbError) {
-      console.log(
-        "TMDB LOOKUP unavailable, trying Blakite:",
-        tmdbError.message
-      );
-    }
-
-    // 2. Blakite fallback
-    //    Used when direct TMDB lookup is unavailable or has no match.
-    if (!tmdbId || !tmdbPoster) {
-      try {
-        const blakiteRes = await axios.get(
-          "https://blakiteapi.xyz/api/getAllAnime.php",
-          {
-            headers,
-            timeout: 20000,
-            maxRedirects: 5
-          }
-        );
-
-        const blakiteData = blakiteRes.data?.data;
-
-        if (blakiteData && typeof blakiteData === "object") {
-          const datasets = [
-            blakiteData.movies,
-            blakiteData.series,
-            blakiteData.dramas
-          ];
-
-          let blakiteItem = null;
-
-          // First try exact TMDB ID if catalog already has one.
-          for (const dataset of datasets) {
-            if (!dataset || typeof dataset !== "object") continue;
-
-            const found = Object.values(dataset).find(x =>
-              x &&
-              String(x.tmdbId || "") === String(item.tmdbId || "")
-            );
-
-            if (found) {
-              blakiteItem = found;
-              break;
-            }
-          }
-
-          // Otherwise match by normalized title.
-          if (!blakiteItem && catalogTitle) {
-            const normalize = value =>
-              String(value || "")
-                .toLowerCase()
-                .replace(/\([^)]*\)/g, " ")
-                .replace(/[^a-z0-9]+/g, " ")
-                .replace(/\s+/g, " ")
-                .trim();
-
-            const wantedTitle = normalize(catalogTitle);
-
-            for (const dataset of datasets) {
-              if (!dataset || typeof dataset !== "object") continue;
-
-              const found = Object.values(dataset).find(x => {
-                if (!x || !x.title) return false;
-
-                const candidate = normalize(x.title);
-
-                return (
-                  candidate === wantedTitle ||
-                  candidate.includes(wantedTitle) ||
-                  wantedTitle.includes(candidate)
-                );
-              });
-
-              if (found) {
-                blakiteItem = found;
-                break;
-              }
-            }
-          }
-
-          if (blakiteItem) {
-            if (!tmdbId && blakiteItem.tmdbId) {
-              tmdbId = Number(blakiteItem.tmdbId);
-            }
-
-            if (!tmdbType && blakiteItem.type) {
-              tmdbType =
-                String(blakiteItem.type).toLowerCase() === "movie"
-                  ? "movie"
-                  : "tv";
-            }
-
-            const blakitePoster =
-              blakiteItem.IMAGES?.poster ||
-              blakiteItem.IMAGES?.thumbnail ||
-              "";
-
-            if (!tmdbPoster && blakitePoster) {
-              tmdbPoster = blakitePoster;
-            }
-
-            console.log(
-              `BLAKITE MATCH: ${catalogTitle} -> ${tmdbType}/${tmdbId}`
-            );
-
-            console.log(
-              `BLAKITE POSTER: ${tmdbPoster || "none"}`
-            );
-          } else {
-            console.log(
-              `BLAKITE MATCH NOT FOUND: ${catalogTitle}`
-            );
-          }
-        }
-      } catch (blakiteError) {
-        console.log(
-          "BLAKITE LOOKUP unavailable:",
-          blakiteError.message
-        );
-      }
-    }
-
-    // ------------------------------------------
-    // Extra metadata from authorized metadata source
-    // ------------------------------------------
-
-    let quality = "";
-    let status = "";
-    let released = "";
-    let duration = "";
-
-    try {
-      const rareUrl =
-        `https://www.rareanimes.mov/${encodeURIComponent(slug)}/`;
-
-      const rareRes = await axios.get(rareUrl, {
-        headers,
-        maxRedirects: 5,
-        timeout: 10000
-      });
-
-      const rareHtml = String(rareRes.data || "");
-
-      // Status: completed category
-      if (/category-completed/i.test(rareHtml)) {
-        status = "Completed";
-      }
-
-      // Convert relevant HTML to readable text
-      const rare$ = cheerio.load(rareHtml);
-      const rareText = rare$("body")
-        .text()
-        .replace(/\s+/g, " ")
-        .trim();
-
-      // Duration
-      const durationMatch =
-        rareText.match(/RunTime\s*:\s*([^🎞]+)/i);
-
-      if (durationMatch) {
-        duration = durationMatch[1].trim();
-      }
-
-      // Released / Year
-      // Keep only the 4-digit release year.
-      const releasedMatch =
-        rareText.match(/Year\s*:\s*(\d{4})/i);
-
-      if (releasedMatch) {
-        released = releasedMatch[1].trim();
-      }
-
-      // Quality
-      const qualityMatch =
-        rareText.match(/Quality\s*:\s*\(([^)]+)\)/i);
-
-      if (qualityMatch) {
-        quality = qualityMatch[1].trim();
-      }
-
-    } catch (metadataError) {
-      console.log(
-        "EXTRA METADATA unavailable:",
-        metadataError.message
-      );
-    }
-
-    res.json({
+    return res.json({
       success: true,
       anime: {
         slug,
@@ -1847,7 +1223,7 @@ app.get("/api/anime/:slug", async (req, res) => {
         tmdbId,
         tmdbType,
         description,
-        image: catalogImage || tmdbPoster,
+        image: catalogImage,
         type,
         rating: catalogRating,
         seasons,
@@ -1865,7 +1241,7 @@ app.get("/api/anime/:slug", async (req, res) => {
   } catch (error) {
     console.error("ANIME ERROR:", error.message);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Unable to load anime",
     });
